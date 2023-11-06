@@ -1,0 +1,427 @@
+[
+  {
+    "version": "2.0.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.0.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.1.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.1.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.1.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.1.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.2.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.2.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.3.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.3.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.3.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.3.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.3.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.3.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.4.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.4.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.4.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.4.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.5.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.5.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.5.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.5.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.5.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.5.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.6.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.6.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.6.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.7.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.7.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.7.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.7.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.7.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.7.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.8.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.8.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.8.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.8.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.8.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.9.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.9.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.9.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.9.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.9.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.9.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.9.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.9.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.10.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.10.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.10.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.10.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.10.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.10.5",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.10.5/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.12.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.12.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.12.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.12.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.12.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.12.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.12.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.12.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.12.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.12.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.13.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.13.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.13.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.13.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.13.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.13.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.13.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.13.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.14.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.14.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.14.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.14.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.14.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.14.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.14.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.14.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.14.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.14.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.15.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.15.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.15.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.15.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.16.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.16.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.16.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.17.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.17.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.17.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.17.5",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.5/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.17.6",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.6/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.17.7",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.17.7/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.5",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.5/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.6",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.6/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.18.7",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.18.7/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.5",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.5/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "2.19.6",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.19.6/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.5",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.5/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.6",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.6/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.0.7",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.0.7/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.1.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.1.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.1.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.1.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.1.4",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.4/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.1.5",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.1.5/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  }
+]
