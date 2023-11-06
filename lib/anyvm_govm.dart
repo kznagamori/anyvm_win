@@ -50,8 +50,8 @@ Future<void> setVersion(String version) async {
   anyvm_util.logger.d(goVersionDirPath);
   var goVersionDir = Directory(goVersionDirPath);
 
-  var goPubCacheDirPath = path.join(getEnvDirectory(), '.pub-cache');
-  anyvm_util.logger.d(goPubCacheDirPath);
+  var goPathPath = path.join(getEnvDirectory(), 'go');
+  anyvm_util.logger.d(goPathPath);
 
   if (!await goVersionDir.exists()) {
     anyvm_util.logger.w('version does not exist');
@@ -85,8 +85,9 @@ Future<void> setVersion(String version) async {
   }
 
   var goBinPath = path.join(goCurrentDirPath, 'bin');
+  var goPathBinPath = path.join(goPathPath, 'bin');
 
-  var setPath = '$goBinPath;';
+  var setPath = '$goBinPath;$goPathBinPath;';
   anyvm_util.logger.d(setPath);
 
   var goEnvPath = path.join(goCurrentDirPath, 'env');
@@ -105,8 +106,10 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET PATH=$setPath%PATH%\n';
   scriptText += 'SET _OLD_GOROOT=%GOROOT%\n';
   scriptText += 'SET GOROOT=$goCurrentDirPath\n';
+  scriptText += 'SET _OLD_GOPATH=%GOPATH%\n';
+  scriptText += 'SET GOPATH=$goPathPath\n';
   scriptText += 'SET _OLD_GOBIN=%GOBIN%\n';
-  scriptText += 'SET GOBIN=$goBinPath\n';
+  scriptText += 'SET GOBIN=$goPathBinPath\n';
   scriptText += 'SET _OLD_GOCACHE=%GOCACHE%\n';
   scriptText += 'SET GOCACHE=$goCacheDir\n';
   scriptText += 'SET _OLD_GOENV=%GOENV%\n';
@@ -127,8 +130,10 @@ Future<void> setVersion(String version) async {
   scriptText += '    \$env:Path = "$setPath" + \$env:Path;\n';
   scriptText += '    \$env:_OLD_GOROOT = \$env:GOROOT;\n';
   scriptText += '    \$env:GOROOT = "$goCurrentDirPath";\n';
+  scriptText += '    \$env:_OLD_GOPATH = \$env:GOPATH;\n';
+  scriptText += '    \$env:GOPATH = "$goPathPath";\n';
   scriptText += '    \$env:_OLD_GOBIN = \$env:GOBIN;\n';
-  scriptText += '    \$env:GOBIN = "$goBinPath";\n';
+  scriptText += '    \$env:GOBIN = "$goPathBinPath";\n';
   scriptText += '    \$env:_OLD_GOCACHE = \$env:GOCACHE;\n';
   scriptText += '    \$env:GOCACHE = "$goCacheDir";\n';
   scriptText += '    \$env:_OLD_GOENV = \$env:GOENV;\n';
@@ -151,6 +156,8 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET PATH=%PATH:$setPath=%\n';
   scriptText += 'SET GOROOT=%_OLD_GOROOT%\n';
   scriptText += 'SET _OLD_GOROOT=';
+  scriptText += 'SET GOPATH=%_OLD_GOPATH%\n';
+  scriptText += 'SET _OLD_GOPATH=';
   scriptText += 'SET GOBIN=%_OLD_GOBIN%\n';
   scriptText += 'SET _OLD_GOBIN=\n';
   scriptText += 'SET GOCACHE=%_OLD_GOCACHE%\n';
@@ -174,6 +181,8 @@ Future<void> setVersion(String version) async {
   scriptText += '    Set-Item ENV:Path \$ENV:Path.Replace("$setPath", "");\n';
   scriptText += '    \$env:GOROOT = \$env:_OLD_GOROOT;\n';
   scriptText += '    \$env:_OLD_GOROOT = "";\n';
+  scriptText += '    \$env:GOPATH = \$env:_OLD_GOPATH;\n';
+  scriptText += '    \$env:_OLD_GOPATH = "";\n';
   scriptText += '    \$env:GOBIN = \$env:_OLD_GOBIN;\n';
   scriptText += '    \$env:_OLD_GOBIN = ""\n';
   scriptText += '    \$env:GOCACHE = \$env:_OLD_GOCACHE;\n';
