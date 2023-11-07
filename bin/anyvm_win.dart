@@ -6,6 +6,7 @@ import 'package:anyvm_win/anyvm_fluttervm.dart' as anyvm_fluttervm;
 import 'package:anyvm_win/anyvm_govm.dart' as anyvm_govm;
 import 'package:anyvm_win/anyvm_init.dart' as anyvm_init;
 import 'package:anyvm_win/anyvm_ninjavm.dart' as anyvm_ninjavm;
+import 'package:anyvm_win/anyvm_nodejsvm.dart' as anyvm_nodejsvm;
 import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
 
@@ -32,6 +33,7 @@ void main(List<String> args) async {
   runner.addCommand(anyvm_ninjavm.NinjaVm());
   runner.addCommand(anyvm_fluttervm.FlutterVm());
   runner.addCommand(anyvm_govm.GoVm());
+  runner.addCommand(anyvm_nodejsvm.NodejsVm());
 
   await runner.run(args).catchError((error) {
     if (error is! UsageException) throw error;
