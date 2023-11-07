@@ -8,13 +8,13 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  path: any
-  logger: any
-  args: any
-  http: any
-  archive: any
-  charset: any
-  html: any
+  path: ^1.8.3
+  logger: ^2.0.2+1
+  args: ^2.4.2
+  http: ^1.1.0
+  archive: ^3.4.6
+  charset: ^2.0.1
+  html: ^0.15.4
 
 dev_dependencies:
   lints: ^2.0.0
