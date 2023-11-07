@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
 import 'package:anyvm_win/anyvm_dartvm.dart' as anyvm_dartvm;
@@ -71,20 +72,32 @@ class InitVm extends Command {
     scriptText += '@ECHO OFF\n';
     for (var activate in activates) {
       scriptPath = path.join(scriptDirPath, '$activate.bat');
-      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      var script = File(scriptPath);
+      if (!await script.exists()) {
+        await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      }
     }
     for (var deactivate in deactivates) {
       scriptPath = path.join(scriptDirPath, '$deactivate.bat');
-      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      var script = File(scriptPath);
+      if (!await script.exists()) {
+        await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      }
     }
     scriptText = '\n';
     for (var activate in activates) {
       scriptPath = path.join(scriptDirPath, '$activate.ps1');
-      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      var script = File(scriptPath);
+      if (!await script.exists()) {
+        await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      }
     }
     for (var deactivate in deactivates) {
       scriptPath = path.join(scriptDirPath, '$deactivate.ps1');
-      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      var script = File(scriptPath);
+      if (!await script.exists()) {
+        await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+      }
     }
 
     anyvm_util.logger
