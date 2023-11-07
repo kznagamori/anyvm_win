@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:async';
-import 'dart:convert';
 import 'package:args/command_runner.dart';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
 import 'package:anyvm_win/anyvm_dartvm.dart' as anyvm_dartvm;
@@ -55,5 +52,18 @@ class InitVm extends Command {
     scriptText += '. \$PSScriptRoot\\${anyvm_govm.vmDeactivate}.ps1\n';
     scriptText += '. \$PSScriptRoot\\${anyvm_ninjavm.vmDeactivate}.ps1\n';
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+
+    anyvm_util.logger
+        .i('Please append the following process to the profile.ps1 file.');
+    anyvm_util.logger.i(
+        '\$env:Path = "${anyvm_util.getApplicationDirectory()};" + \$env:Path;');
+    anyvm_util.logger.i('. "${path.join(scriptDirPath, "AnyVmActivate.ps1")}"');
+
+    anyvm_util.logger
+        .i('Please append the following process to the CmdProfile.bat file.');
+    anyvm_util.logger
+        .i('SET PATH=${anyvm_util.getApplicationDirectory()};%PATH%');
+    anyvm_util.logger
+        .i('CALL "${path.join(scriptDirPath, "AnyVmActivate.bat")}"');
   }
 }
