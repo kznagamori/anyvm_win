@@ -68,7 +68,7 @@ Future<void> setVersion(String version) async {
       anyvm_util.logger.e('Failed to delete junction: ${result.stderr}');
       return;
     } else {
-      anyvm_util.logger.i('Derectori deleted: $flutterCurrentDirPath');
+      anyvm_util.logger.i('Derectory deleted: $flutterCurrentDirPath');
     }
   }
   var args = [
@@ -85,6 +85,7 @@ Future<void> setVersion(String version) async {
   final result = await Process.run('cmd.exe', args);
   if (result.exitCode != 0) {
     anyvm_util.logger.e('${result.stderr}');
+    return;
   } else {
     anyvm_util.logger.i(
         'Junction created: $flutterCurrentDirPath -> $flutterVersionDirPath');
@@ -156,7 +157,6 @@ Future<void> setVersion(String version) async {
 Future<void> unSetVersion() async {
   var currentVersion = await anyvm_util.getVmVersion(vmName);
   if (currentVersion == null) {
-    anyvm_util.logger.w('version does not exist');
     return;
   }
   var flutterCurrentDirPath = path.join(getEnvDirectory(), 'current');
@@ -354,7 +354,10 @@ class FlutterVmUpdate extends Command {
     }
     ProcessResult result = await Process.run(exe, args);
     // コマンドが成功したかどうかを確認
-    if (result.exitCode == 0) {
+    if (result.exitCode != 0) {
+      anyvm_util.logger.e('Failed to git: ${result.stderr}');
+      return;
+    } else {
       var versions = <String>[];
       var tags = result.stdout.split('\n');
       anyvm_util.logger.d(tags);
@@ -392,8 +395,6 @@ class FlutterVmUpdate extends Command {
       File file = File(jsonPath);
       await file.writeAsString(jsonString);
       anyvm_util.logger.i('$jsonPath creatred');
-    } else {
-      anyvm_util.logger.e('Command failed');
     }
   }
 }

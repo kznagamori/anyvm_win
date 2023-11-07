@@ -5,6 +5,7 @@ import 'package:anyvm_win/anyvm_fluttervm.dart' as anyvm_fluttervm;
 import 'package:anyvm_win/anyvm_govm.dart' as anyvm_govm;
 import 'package:anyvm_win/anyvm_ninjavm.dart' as anyvm_ninjavm;
 import 'package:anyvm_win/anyvm_nodejsvm.dart' as anyvm_nodejsvm;
+import 'package:anyvm_win/anyvm_pythonvm.dart' as anyvm_pythonvm;
 import 'package:path/path.dart' as path;
 
 class InitVm extends Command {
@@ -27,12 +28,14 @@ class InitVm extends Command {
     activates.add(anyvm_govm.vmActivate);
     activates.add(anyvm_ninjavm.vmActivate);
     activates.add(anyvm_nodejsvm.vmActivate);
+    activates.add(anyvm_pythonvm.vmActivate);
 
     deactivates.add(anyvm_dartvm.vmDeactivate);
     deactivates.add(anyvm_fluttervm.vmDeactivate);
     deactivates.add(anyvm_govm.vmDeactivate);
     deactivates.add(anyvm_ninjavm.vmDeactivate);
     deactivates.add(anyvm_nodejsvm.vmDeactivate);
+    deactivates.add(anyvm_pythonvm.vmDeactivate);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.bat');
     scriptText = '';

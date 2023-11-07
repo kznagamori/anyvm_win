@@ -150,7 +150,6 @@ Future<void> setVersion(String version) async {
 Future<void> unSetVersion() async {
   var currentVersion = await anyvm_util.getVmVersion(vmName);
   if (currentVersion == null) {
-    anyvm_util.logger.w('version does not exist');
     return;
   }
   var dartCurrentDirPath = path.join(getEnvDirectory(), 'current');
@@ -349,7 +348,10 @@ class DartVmUpdate extends Command {
     }
     ProcessResult result = await Process.run(exe, args);
     // コマンドが成功したかどうかを確認
-    if (result.exitCode == 0) {
+    if (result.exitCode != 0) {
+      anyvm_util.logger.e('Failed to git: ${result.stderr}');
+      return;
+    } else {
       var versions = <String>[];
       var tags = result.stdout.split('\n');
       anyvm_util.logger.d(tags);
@@ -387,8 +389,6 @@ class DartVmUpdate extends Command {
       File file = File(jsonPath);
       await file.writeAsString(jsonString);
       anyvm_util.logger.i('$jsonPath creatred');
-    } else {
-      anyvm_util.logger.e('Command failed');
     }
   }
 }

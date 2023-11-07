@@ -140,7 +140,6 @@ Future<void> setVersion(String version) async {
 Future<void> unSetVersion() async {
   var currentVersion = await anyvm_util.getVmVersion(vmName);
   if (currentVersion == null) {
-    anyvm_util.logger.w('version does not exist');
     return;
   }
   var nodejsCurrentDirPath = path.join(getEnvDirectory(), 'current');
