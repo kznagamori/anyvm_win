@@ -18,40 +18,68 @@ class InitVm extends Command {
     var scriptDirPath = anyvm_util.getScriptsDirectory();
     String scriptText;
     String scriptPath;
+    List<String> activates = <String>[];
+    List<String> deactivates = <String>[];
+
+    activates.add(anyvm_dartvm.vmActivate);
+    activates.add(anyvm_fluttervm.vmActivate);
+    activates.add(anyvm_govm.vmActivate);
+    activates.add(anyvm_ninjavm.vmActivate);
+
+    deactivates.add(anyvm_dartvm.vmDeactivate);
+    deactivates.add(anyvm_fluttervm.vmDeactivate);
+    deactivates.add(anyvm_govm.vmDeactivate);
+    deactivates.add(anyvm_ninjavm.vmDeactivate);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.bat');
     scriptText = '';
     scriptText += '@ECHO OFF\n';
-    scriptText += 'CALL %~dp0${anyvm_dartvm.vmActivate}.bat\n';
-    scriptText += 'CALL %~dp0${anyvm_fluttervm.vmActivate}.bat\n';
-    scriptText += 'CALL %~dp0${anyvm_govm.vmActivate}.bat\n';
-    scriptText += 'CALL %~dp0${anyvm_ninjavm.vmActivate}.bat\n';
+    for (var activate in activates) {
+      scriptText += 'CALL %~dp0$activate.bat\n';
+    }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.ps1');
     scriptText = '';
-    scriptText += '. \$PSScriptRoot\\${anyvm_dartvm.vmActivate}.ps1\n';
-    scriptText += '. \$PSScriptRoot\\${anyvm_fluttervm.vmActivate}.ps1\n';
-    scriptText += '. \$PSScriptRoot\\${anyvm_govm.vmActivate}.ps1\n';
-    scriptText += '. \$PSScriptRoot\\${anyvm_ninjavm.vmActivate}.ps1\n';
+    for (var activate in activates) {
+      scriptText += '. \$PSScriptRoot\\$activate.ps1\n';
+    }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmDeactivate.bat');
     scriptText = '';
     scriptText += '@ECHO OFF\n';
-    scriptText += 'CALL %~dp0${anyvm_dartvm.vmDeactivate}.bat\n';
-    scriptText += 'CALL %~dp0${anyvm_fluttervm.vmDeactivate}.bat\n';
-    scriptText += 'CALL %~dp0${anyvm_govm.vmDeactivate}.bat\n';
-    scriptText += 'CALL %~dp0${anyvm_ninjavm.vmDeactivate}.bat\n';
+    for (var deactivate in deactivates) {
+      scriptText += 'CALL %~dp0$deactivate.bat\n';
+    }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmDeactivate.ps1');
     scriptText = '';
-    scriptText += '. \$PSScriptRoot\\${anyvm_dartvm.vmDeactivate}.ps1\n';
-    scriptText += '. \$PSScriptRoot\\${anyvm_fluttervm.vmDeactivate}.ps1\n';
-    scriptText += '. \$PSScriptRoot\\${anyvm_govm.vmDeactivate}.ps1\n';
-    scriptText += '. \$PSScriptRoot\\${anyvm_ninjavm.vmDeactivate}.ps1\n';
+    for (var deactivate in deactivates) {
+      scriptText += '. \$PSScriptRoot\\$deactivate.ps1\n';
+    }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+
+    scriptText = '';
+    scriptText += '@ECHO OFF\n';
+    for (var activate in activates) {
+      scriptPath = path.join(scriptDirPath, '$activate.bat');
+      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    }
+    for (var deactivate in deactivates) {
+      scriptPath = path.join(scriptDirPath, '$deactivate.bat');
+      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    }
+    scriptText = '\n';
+    for (var activate in activates) {
+      scriptPath = path.join(scriptDirPath, '$activate.ps1');
+      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    }
+    for (var deactivate in deactivates) {
+      scriptPath = path.join(scriptDirPath, '$deactivate.ps1');
+      await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    }
 
     anyvm_util.logger
         .i('Please append the following process to the profile.ps1 file.');
