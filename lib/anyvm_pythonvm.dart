@@ -88,7 +88,9 @@ Future<void> setVersion(String version) async {
         .i('Junction created: $pythonCurrentDirPath -> $pythonVersionDirPath');
   }
 
-  var setPath = '$pythonCurrentDirPath;';
+  var pythonScriptsPath = path.join(pythonVersionDirPath, 'Scripts');
+
+  var setPath = '$pythonCurrentDirPath;$pythonScriptsPath;';
   anyvm_util.logger.d(setPath);
 
   var scriptsDir = anyvm_util.getScriptsDirectory();
