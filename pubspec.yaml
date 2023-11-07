@@ -15,7 +15,6 @@ dependencies:
   archive: any
   charset: any
   html: any
-  url: any
 
 dev_dependencies:
   lints: ^2.0.0

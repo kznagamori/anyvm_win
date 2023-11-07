@@ -24,6 +24,13 @@ class InitVm extends Command {
     List<String> activates = <String>[];
     List<String> deactivates = <String>[];
 
+    var scriptDir = Directory(scriptDirPath);
+    anyvm_util.logger.d(scriptDir);
+    if (!await scriptDir.exists()) {
+      await scriptDir.create(recursive: true);
+      anyvm_util.logger.i('$scriptDirPath creatred');
+    }
+
     activates.add(anyvm_dartvm.vmActivate);
     activates.add(anyvm_fluttervm.vmActivate);
     activates.add(anyvm_govm.vmActivate);
@@ -45,6 +52,7 @@ class InitVm extends Command {
       scriptText += 'CALL %~dp0$activate.bat\n';
     }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    anyvm_util.logger.i('$scriptPath creatred');
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.ps1');
     scriptText = '';
@@ -52,6 +60,7 @@ class InitVm extends Command {
       scriptText += '. \$PSScriptRoot\\$activate.ps1\n';
     }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    anyvm_util.logger.i('$scriptPath creatred');
 
     scriptPath = path.join(scriptDirPath, 'AnyVmDeactivate.bat');
     scriptText = '';
@@ -60,6 +69,7 @@ class InitVm extends Command {
       scriptText += 'CALL %~dp0$deactivate.bat\n';
     }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    anyvm_util.logger.i('$scriptPath creatred');
 
     scriptPath = path.join(scriptDirPath, 'AnyVmDeactivate.ps1');
     scriptText = '';
@@ -67,6 +77,7 @@ class InitVm extends Command {
       scriptText += '. \$PSScriptRoot\\$deactivate.ps1\n';
     }
     await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+    anyvm_util.logger.i('$scriptPath creatred');
 
     scriptText = '';
     scriptText += '@ECHO OFF\n';
@@ -75,6 +86,7 @@ class InitVm extends Command {
       var script = File(scriptPath);
       if (!await script.exists()) {
         await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+        anyvm_util.logger.i('$scriptPath creatred');
       }
     }
     for (var deactivate in deactivates) {
@@ -82,6 +94,7 @@ class InitVm extends Command {
       var script = File(scriptPath);
       if (!await script.exists()) {
         await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+        anyvm_util.logger.i('$scriptPath creatred');
       }
     }
     scriptText = '\n';
@@ -90,6 +103,7 @@ class InitVm extends Command {
       var script = File(scriptPath);
       if (!await script.exists()) {
         await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+        anyvm_util.logger.i('$scriptPath creatred');
       }
     }
     for (var deactivate in deactivates) {
@@ -97,17 +111,19 @@ class InitVm extends Command {
       var script = File(scriptPath);
       if (!await script.exists()) {
         await anyvm_util.writeStringWithSjisEncoding(scriptPath, scriptText);
+        anyvm_util.logger.i('$scriptPath creatred');
       }
     }
 
     anyvm_util.logger
-        .i('Please append the following process to the profile.ps1 file.');
+        .i('\nPlease append the following process to the profile.ps1 file.\n');
     anyvm_util.logger.i(
         '\$env:Path = "${anyvm_util.getApplicationDirectory()};" + \$env:Path;');
-    anyvm_util.logger.i('. "${path.join(scriptDirPath, "AnyVmActivate.ps1")}"');
+    anyvm_util.logger
+        .i('. "${path.join(scriptDirPath, "AnyVmActivate.ps1")}"\n');
 
     anyvm_util.logger
-        .i('Please append the following process to the CmdProfile.bat file.');
+        .i('Please append the following process to the CmdProfile.bat file.\n');
     anyvm_util.logger
         .i('SET PATH=${anyvm_util.getApplicationDirectory()};%PATH%');
     anyvm_util.logger
