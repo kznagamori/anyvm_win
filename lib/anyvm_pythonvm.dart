@@ -12,6 +12,7 @@ const String vmName = 'PythonVm';
 const String langName = 'PythonLang';
 const String vmActivate = 'PythonVmActivate';
 const String vmDeactivate = 'PythonVmDeactivate';
+const String pythonWindowsURL = 'https://www.python.org/downloads/windows/';
 const String pythonURL = 'https://www.python.org/ftp/python/';
 const String wixURL =
     'https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311-binaries.zip';
@@ -473,65 +474,54 @@ class PythonVmUpdate extends Command {
 
   @override
   Future<void> run() async {
-    var jsonPath =
-        path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
-    anyvm_util.logger.d(jsonPath);
-    File file = File(jsonPath);
+    final response = await http.get(Uri.parse(pythonWindowsURL));
+    if (response.statusCode == 200) {
+      var versions = <String>[];
+      var document = parser.parse(response.body);
+      // ディレクトリリストを含むaタグを取得
+      var links = document.querySelectorAll('a');
 
-    var lastVersion = '3.6.99';
-    List<Map<String, dynamic>> versionList;
-
-    if (await file.exists()) {
-      String jsonString = await file.readAsString();
-      versionList = (jsonDecode(jsonString) as List)
-          .map((item) => item as Map<String, dynamic>)
-          .toList();
-    } else {
-      versionList = <Map<String, dynamic>>[];
-    }
-
-    var dirList = await getWebDirectory(pythonURL);
-    anyvm_util.logger.d(dirList);
-    var versions = <String>[];
-
-    for (var dir in dirList) {
-      var version = removeVAndTrailingSlash(dir);
-      RegExp pattern = RegExp(r'^\d+\.\d+\.\d+$');
-      if (pattern.hasMatch(version)) {
-        var baseUrl = Uri.parse(pythonURL);
-        var fullUrl = baseUrl.resolve('$version/python-$version-amd64.exe');
-        if (anyvm_util.compareVersion(version, lastVersion) > 0) {
-          try {
-            Map<String, dynamic> foundMap =
-                versionList.firstWhere((map) => map['version'] == version);
-            anyvm_util.logger.d(foundMap);
-            versions.add(version);
-          } catch (e) {
-            if (await checkURLIfFileExists(fullUrl.toString())) {
+      for (final link in links) {
+        final text = link.text;
+        if (text == 'Windows installer (64-bit)') {
+          final href = link.attributes['href'];
+          if (href != null) {
+            final versionPath = href.replaceAll(pythonURL, '');
+            var version = versionPath.split('/').first;
+            var baseUrl = Uri.parse(pythonURL);
+            var fullUrl = baseUrl.resolve('$version/python-$version-amd64.exe');
+            if (fullUrl.toString() == href) {
               versions.add(version);
             }
-            await Future.delayed(Duration(seconds: 1));
           }
         }
       }
-    }
-    versions.sort(anyvm_util.compareVersion);
-    versionList.clear();
-    for (var version in versions) {
-      var baseUrl = Uri.parse(pythonURL);
-      var fullUrl = baseUrl.resolve('$version/python-$version-amd64.exe');
-      Map<String, dynamic> versionMap = {
-        'version': version,
-        'url': fullUrl.toString(),
-        'file': 'python-$version-amd64.exe'
-      };
-      versionList.add(versionMap);
-    }
-    String jsonString = const JsonEncoder.withIndent('  ').convert(versionList);
-    anyvm_util.logger.d(jsonString);
+      versions.sort(anyvm_util.compareVersion);
+      List<Map<String, dynamic>> versionList = <Map<String, dynamic>>[];
+      for (var version in versions) {
+        var baseUrl = Uri.parse(pythonURL);
+        var fullUrl = baseUrl.resolve('$version/python-$version-amd64.exe');
+        Map<String, dynamic> versionMap = {
+          'version': version,
+          'url': fullUrl.toString(),
+          'file': 'python-$version-amd64.exe'
+        };
+        versionList.add(versionMap);
+      }
+      String jsonString =
+          const JsonEncoder.withIndent('  ').convert(versionList);
+      anyvm_util.logger.d(jsonString);
 
-    await file.writeAsString(jsonString);
-    anyvm_util.logger.i('$jsonPath creatred');
+      var jsonPath =
+          path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
+      anyvm_util.logger.d(jsonPath);
+
+      File file = File(jsonPath);
+      await file.writeAsString(jsonString);
+      anyvm_util.logger.i('$jsonPath creatred');
+    } else {
+      throw Exception('Failed to get python web site');
+    }
   }
 }
 

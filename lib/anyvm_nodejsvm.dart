@@ -428,64 +428,60 @@ class NodejsVmUpdate extends Command {
 
   @override
   Future<void> run() async {
-    var lastVersion = '13.99.99';
-    List<Map<String, dynamic>> versionList;
-    var jsonPath =
-        path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
-    anyvm_util.logger.d(jsonPath);
+    final exe = 'git';
+    var args = <String>[];
+    args.add('ls-remote');
+    args.add('--tags');
+    args.add('https://github.com/nodejs/node.git');
 
-    File file = File(jsonPath);
-    if (await file.exists()) {
-      String jsonString = await file.readAsString();
-      versionList = (jsonDecode(jsonString) as List)
-          .map((item) => item as Map<String, dynamic>)
-          .toList();
-    } else {
-      versionList = <Map<String, dynamic>>[];
+    anyvm_util.logger.d(exe);
+    for (var arg in args) {
+      anyvm_util.logger.d(arg);
     }
-
-    var dirList = await getWebDirectory(nodejsURL);
-    anyvm_util.logger.d(dirList);
-    var versions = <String>[];
-
-    for (var dir in dirList) {
-      var version = removeVAndTrailingSlash(dir);
-      RegExp pattern = RegExp(r'^\d+\.\d+\.\d+$');
-      if (pattern.hasMatch(version)) {
-        var baseUrl = Uri.parse(nodejsURL);
-        var fullUrl = baseUrl.resolve('v$version/node-v$version-win-x64.zip');
-        if (anyvm_util.compareVersion(version, lastVersion) > 0) {
-          try {
-            Map<String, dynamic> foundMap =
-                versionList.firstWhere((map) => map['version'] == version);
-            anyvm_util.logger.d(foundMap);
-            versions.add(version);
-          } catch (e) {
-            if (await checkURLIfFileExists(fullUrl.toString())) {
+    ProcessResult result = await Process.run(exe, args);
+    if (result.exitCode != 0) {
+      anyvm_util.logger.e('Failed to git: ${result.stderr}');
+      return;
+    } else {
+      var versions = <String>[];
+      var tags = result.stdout.split('\n');
+      anyvm_util.logger.d(tags);
+      for (var tag in tags) {
+        var tagInfo = tag.split('\t');
+        if (tagInfo.length > 1) {
+          var version = tagInfo[1].replaceAll('refs/tags/v', '');
+          RegExp pattern = RegExp(r'^\d+\.\d+\.\d+$');
+          if (pattern.hasMatch(version)) {
+            if (anyvm_util.compareVersion(version, '14.0.0') >= 0) {
               versions.add(version);
             }
-            await Future.delayed(Duration(seconds: 1));
           }
         }
       }
-    }
-    versions.sort(anyvm_util.compareVersion);
-    versionList.clear();
-    for (var version in versions) {
-      var baseUrl = Uri.parse(nodejsURL);
-      var fullUrl = baseUrl.resolve('v$version/node-v$version-win-x64.zip');
-      Map<String, dynamic> versionMap = {
-        'version': version,
-        'url': fullUrl.toString(),
-        'file': 'node-v$version-win-x64.zip'
-      };
-      versionList.add(versionMap);
-    }
-    String jsonString = const JsonEncoder.withIndent('  ').convert(versionList);
-    anyvm_util.logger.d(jsonString);
+      versions.sort(anyvm_util.compareVersion);
+      List<Map<String, dynamic>> versionList = <Map<String, dynamic>>[];
+      for (var version in versions) {
+        var baseUrl = Uri.parse(nodejsURL);
+        var fullUrl = baseUrl.resolve('v$version/node-v$version-win-x64.zip');
+        Map<String, dynamic> versionMap = {
+          'version': version,
+          'url': fullUrl.toString(),
+          'file': 'node-v$version-win-x64.zip'
+        };
+        versionList.add(versionMap);
+      }
+      String jsonString =
+          const JsonEncoder.withIndent('  ').convert(versionList);
+      anyvm_util.logger.d(jsonString);
 
-    await file.writeAsString(jsonString);
-    anyvm_util.logger.i('$jsonPath creatred');
+      var jsonPath =
+          path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
+      anyvm_util.logger.d(jsonPath);
+
+      File file = File(jsonPath);
+      await file.writeAsString(jsonString);
+      anyvm_util.logger.i('$jsonPath creatred');
+    }
   }
 }
 
