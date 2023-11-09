@@ -473,6 +473,23 @@ class PythonVmUpdate extends Command {
 
   @override
   Future<void> run() async {
+    var jsonPath =
+        path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
+    anyvm_util.logger.d(jsonPath);
+    File file = File(jsonPath);
+
+    var lastVersion = '3.6.99';
+    List<Map<String, dynamic>> versionList;
+
+    if (await file.exists()) {
+      String jsonString = await file.readAsString();
+      versionList = (jsonDecode(jsonString) as List)
+          .map((item) => item as Map<String, dynamic>)
+          .toList();
+    } else {
+      versionList = <Map<String, dynamic>>[];
+    }
+
     var dirList = await getWebDirectory(pythonURL);
     anyvm_util.logger.d(dirList);
     var versions = <String>[];
@@ -483,16 +500,23 @@ class PythonVmUpdate extends Command {
       if (pattern.hasMatch(version)) {
         var baseUrl = Uri.parse(pythonURL);
         var fullUrl = baseUrl.resolve('$version/python-$version-amd64.exe');
-        if (anyvm_util.compareVersion(version, '3.7.0') >= 0) {
-          if (await checkURLIfFileExists(fullUrl.toString())) {
+        if (anyvm_util.compareVersion(version, lastVersion) > 0) {
+          try {
+            Map<String, dynamic> foundMap =
+                versionList.firstWhere((map) => map['version'] == version);
+            anyvm_util.logger.d(foundMap);
             versions.add(version);
+          } catch (e) {
+            if (await checkURLIfFileExists(fullUrl.toString())) {
+              versions.add(version);
+            }
+            await Future.delayed(Duration(seconds: 1));
           }
-          await Future.delayed(Duration(seconds: 1));
         }
       }
     }
     versions.sort(anyvm_util.compareVersion);
-    List<Map<String, dynamic>> versionList = <Map<String, dynamic>>[];
+    versionList.clear();
     for (var version in versions) {
       var baseUrl = Uri.parse(pythonURL);
       var fullUrl = baseUrl.resolve('$version/python-$version-amd64.exe');
@@ -506,11 +530,6 @@ class PythonVmUpdate extends Command {
     String jsonString = const JsonEncoder.withIndent('  ').convert(versionList);
     anyvm_util.logger.d(jsonString);
 
-    var jsonPath =
-        path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
-    anyvm_util.logger.d(jsonPath);
-
-    File file = File(jsonPath);
     await file.writeAsString(jsonString);
     anyvm_util.logger.i('$jsonPath creatred');
   }
