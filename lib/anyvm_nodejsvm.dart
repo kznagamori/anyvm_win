@@ -27,6 +27,10 @@ String getEnvCacheDirectory() {
   return path.join(envDir, 'install-cache');
 }
 
+String getNpmCacheDirectory() {
+  return path.join(getEnvDirectory(), 'npm-cache');
+}
+
 List<String> getVersionDirectory() {
   List<String> versionDir = <String>[];
   var directory = Directory(getEnvDirectory());
@@ -90,12 +94,18 @@ Future<void> setVersion(String version) async {
   var scriptsDir = anyvm_util.getScriptsDirectory();
   String scriptText;
 
+  var npmrcPath = getEnvDirectory();
+
   var activateScriptBat = path.join(scriptsDir, '$vmActivate.bat');
   scriptText = '';
   scriptText += '@ECHO OFF\n';
   scriptText += 'IF DEFINED _${vmName}_ENV_VAL GOTO END_SET_ENV_VAL\n';
   scriptText += 'SET _${vmName}_ENV_VAL="yes"\n';
   scriptText += 'SET PATH=$setPath%PATH%\n';
+  scriptText += 'SET _OLD_NPM_CONFIG_USERCONFIG=%NPM_CONFIG_USERCONFIG%\n';
+  scriptText += 'SET NPM_CONFIG_USERCONFIG=$npmrcPath\n';
+  scriptText += 'SET _OLD_YARN_CACHE_FOLDER=%YARN_CACHE_FOLDER%\n';
+  scriptText += 'SET YARN_CACHE_FOLDER=${getNpmCacheDirectory()}\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(activateScriptBat, scriptText);
@@ -106,6 +116,12 @@ Future<void> setVersion(String version) async {
   scriptText += 'if([string]::IsNullOrEmpty(\$env:_${vmName}_ENV_VAL)) {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "yes";\n';
   scriptText += '    \$env:Path = "$setPath" + \$env:Path;\n';
+  scriptText +=
+      '    \$env:_OLD_NPM_CONFIG_USERCONFIG = \$env:NPM_CONFIG_USERCONFIG;\n';
+  scriptText += '    \$env:NPM_CONFIG_USERCONFIG = "$npmrcPath";\n';
+  scriptText += '    \$env:_OLD_YARN_CACHE_FOLDER = \$env:YARN_CACHE_FOLDER;\n';
+  scriptText += '    \$env:YARN_CACHE_FOLDER = "${getNpmCacheDirectory()}";\n';
+
   scriptText += '} else {\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
@@ -118,6 +134,10 @@ Future<void> setVersion(String version) async {
   scriptText += 'IF NOT DEFINED _${vmName}_ENV_VAL GOTO END_SET_ENV_VAL\n';
   scriptText += 'SET _${vmName}_ENV_VAL=\n';
   scriptText += 'SET PATH=%PATH:$setPath=%\n';
+  scriptText += 'SET NPM_CONFIG_USERCONFIG=%_OLD_NPM_CONFIG_USERCONFIG%\n';
+  scriptText += 'SET _OLD_NPM_CONFIG_USERCONFIG=\n';
+  scriptText += 'SET YARN_CACHE_FOLDER=%_OLD_YARN_CACHE_FOLDER%\n';
+  scriptText += 'SET _OLD_YARN_CACHE_FOLDER=\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptBat, scriptText);
@@ -129,6 +149,11 @@ Future<void> setVersion(String version) async {
   scriptText += '} else {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "";\n';
   scriptText += '    Set-Item ENV:Path \$ENV:Path.Replace("$setPath", "");\n';
+  scriptText +=
+      '    \$env:NPM_CONFIG_USERCONFIG = \$env:_OLD_NPM_CONFIG_USERCONFIG;\n';
+  scriptText += '    \$env:_OLD_NPM_CONFIG_USERCONFIG = "";\n';
+  scriptText += '    \$env:YARN_CACHE_FOLDER = \$env:_OLD_YARN_CACHE_FOLDER;\n';
+  scriptText += '    \$env:_OLD_YARN_CACHE_FOLDER = "";\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);
@@ -355,6 +380,40 @@ class NodejsVmInstall extends Command {
     if (await file.exists()) {
       await file.delete();
       anyvm_util.logger.i('File deleted successfully.: $filePath');
+    }
+    var npmrcPath = getEnvDirectory();
+
+    var npmCmdPath = path.join(envVerDirPath, 'npm.cmd');
+    var npmCmd = File(npmCmdPath);
+    var npmCacheDirPath = getNpmCacheDirectory();
+    var npmCacheDir = Directory(npmCacheDirPath);
+    if (!await npmCacheDir.exists()) {
+      await npmCacheDir.create(recursive: true);
+    }
+    if (await npmCmd.exists()) {
+      var exe = npmCmdPath;
+      var args = <String>[
+        'config',
+        'set',
+        'cache',
+        npmCacheDirPath,
+        '--global'
+      ];
+      var envVers = {
+        'NPM_CONFIG_USERCONFIG': npmrcPath,
+      };
+      ProcessResult result;
+      anyvm_util.logger.d(exe);
+      for (var arg in args) {
+        anyvm_util.logger.d(arg);
+      }
+      result = await Process.run(exe, args, environment: envVers);
+      if (result.exitCode != 0) {
+        anyvm_util.logger.e('Failed to execute command: ${result.stderr}');
+        return;
+      } else {
+        anyvm_util.logger.i('execute: $exe');
+      }
     }
   }
 }
