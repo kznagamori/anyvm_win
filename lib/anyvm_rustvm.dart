@@ -10,6 +10,9 @@ const String vmName = 'RustVm';
 const String langName = 'RustLang';
 const String vmActivate = 'RustVmActivate';
 const String vmDeactivate = 'RustVmDeactivate';
+const String peazipPortable =
+    'https://github.com/peazip/PeaZip/releases/download/9.5.0/peazip_portable-9.5.0.WIN64.zip';
+const String peazipPortableDirPath = 'peazip_portable-9.5.0.WIN64';
 
 String getEnvDirectory() {
   String appDir = anyvm_util.getApplicationDirectory();
@@ -38,6 +41,11 @@ String getRustUpHomePath() {
 
 String getCargoHomePath() {
   return path.join(getEnvDirectory(), '.cargo');
+}
+
+String get7ZipPath() {
+  return path.join(getEnvCacheDirectory(), peazipPortableDirPath, 'res', 'bin',
+      '7z', '7z.exe');
 }
 
 List<String> getVersionDirectory() {
@@ -454,9 +462,49 @@ class RustVmInstall extends Command {
 
   Future<void> install(
       Map<String, dynamic> mingw, Map<String, dynamic> llvm) async {
+    await install7z();
     await installMingw(mingw);
     await installLLVM(llvm);
     await installRust();
+  }
+
+  Future<void> install7z() async {
+    var envCacheDirPath = getEnvCacheDirectory();
+    anyvm_util.logger.d(envCacheDirPath);
+    var envCacheDir = Directory(envCacheDirPath);
+
+    if (!(await envCacheDir.exists())) {
+      await envCacheDir.create(recursive: true);
+      anyvm_util.logger.i('$envCacheDirPath creatred');
+    }
+
+    var peazipDirPath = path.join(envCacheDirPath, peazipPortableDirPath);
+    anyvm_util.logger.d(peazipDirPath);
+    var peazipDir = Directory(peazipDirPath);
+    if (await peazipDir.exists()) {
+      anyvm_util.logger.i('7Zip already installed');
+      return;
+    }
+
+    var filePath = path.join(envCacheDirPath, 'peazip.zip');
+    var file = File(filePath);
+    if (!await file.exists()) {
+      try {
+        await anyvm_util.downloadFileWithProgress(peazipPortable, filePath);
+      } catch (e) {
+        anyvm_util.logger.e('Error during downloading: $e');
+        return;
+      }
+    }
+    try {
+      await anyvm_util.unzipWithProgress(filePath, envCacheDirPath);
+    } catch (e) {
+      anyvm_util.logger.e('Error during unzipping: $e');
+    }
+    if (await file.exists()) {
+      await file.delete();
+      anyvm_util.logger.i('File deleted successfully.: $filePath');
+    }
   }
 
   Future<void> installMingw(Map<String, dynamic> item) async {
@@ -500,7 +548,7 @@ class RustVmInstall extends Command {
     var mingwExtractDir = Directory(mingwExtractDirPath);
     try {
       var result = await Process.start(
-          '7z', ['x', filePath, '-o$envCacheDirPath', '-y']);
+          get7ZipPath(), ['x', filePath, '-o$envCacheDirPath', '-y']);
       if (await result.exitCode != 0) {
         anyvm_util.logger.e('Failed to delete 7z extract: ${result.stderr}');
       }
@@ -561,7 +609,7 @@ class RustVmInstall extends Command {
     var llvmExtractDir = Directory(llvmExtractDirPath);
     try {
       var result = await Process.start(
-          '7z', ['x', filePath, '-o$llvmExtractDirPath', '-y']);
+          get7ZipPath(), ['x', filePath, '-o$llvmExtractDirPath', '-y']);
       if (await result.exitCode != 0) {
         anyvm_util.logger.e('Failed to delete 7z extract: ${result.stderr}');
       }
