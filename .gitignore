@@ -26,3 +26,4 @@ doc/api/
 # 
 scripts/
 envs/
+bin/anyvm_win.json
