@@ -530,6 +530,11 @@
     "file": "go1.20.10.windows-amd64.zip"
   },
   {
+    "version": "1.20.11",
+    "url": "https://go.dev/dl/go1.20.11.windows-amd64.zip",
+    "file": "go1.20.11.windows-amd64.zip"
+  },
+  {
     "version": "1.21.0",
     "url": "https://go.dev/dl/go1.21.0.windows-amd64.zip",
     "file": "go1.21.0.windows-amd64.zip"
@@ -548,5 +553,10 @@
     "version": "1.21.3",
     "url": "https://go.dev/dl/go1.21.3.windows-amd64.zip",
     "file": "go1.21.3.windows-amd64.zip"
+  },
+  {
+    "version": "1.21.4",
+    "url": "https://go.dev/dl/go1.21.4.windows-amd64.zip",
+    "file": "go1.21.4.windows-amd64.zip"
   }
 ]

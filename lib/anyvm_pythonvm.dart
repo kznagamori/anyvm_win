@@ -414,15 +414,29 @@ class PythonVmInstall extends Command {
             }
           }
           if (!exclude) {
-            final exe =
-                'msiexec.exe /quiet /a "${entity.path}" targetdir="$envVerDirPath"';
-            var args = <String>[];
-            anyvm_util.logger.d(exe);
-            ProcessResult result = await Process.run(exe, args);
-            if (result.exitCode != 0) {
-              anyvm_util.logger
-                  .e('Failed to extract $wixDirPath: ${result.stderr}');
-              return;
+            try {
+              var msiFilePath = entity.path;
+              var msiFile = await File(msiFilePath).resolveSymbolicLinks();
+
+              if (!await envVerDir.exists()) {
+                await envVerDir.create(recursive: true);
+                anyvm_util.logger.i('$envVerDirPath creatred');
+              }
+              var dirPath = await Directory(envVerDirPath).resolveSymbolicLinks();
+              final exe = 'msiexec.exe /quiet /a "$msiFile" targetdir="$dirPath"';
+              var args = <String>[];
+              anyvm_util.logger.d(exe);
+              ProcessResult result = await Process.run(exe, args);
+              if (result.exitCode != 0) {
+                anyvm_util.logger
+                    .e('Failed to extract $wixDirPath: ${result.stderr}');
+                throw Exception('Failed to extract $wixDirPath');
+              }
+            } catch (e) {
+              if (await envVerDir.exists()) {
+                await envVerDir.delete(recursive: true);
+                anyvm_util.logger.i('Directory deleted successfully.: $envVerDirPath');
+              }
             }
           }
         }
