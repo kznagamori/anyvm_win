@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:args/command_runner.dart';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as parser;
 import 'package:path/path.dart' as path;
 
 const String versionCacheJsonName = 'rust_vm_version_cache.json';
@@ -10,9 +12,10 @@ const String vmName = 'RustVm';
 const String langName = 'RustLang';
 const String vmActivate = 'RustVmActivate';
 const String vmDeactivate = 'RustVmDeactivate';
-const String peazipPortable =
-    'https://github.com/peazip/PeaZip/releases/download/9.5.0/peazip_portable-9.5.0.WIN64.zip';
-const String peazipPortableDirPath = 'peazip_portable-9.5.0.WIN64';
+const String sevenZipConsoleURL = 'https://www.7-zip.org/a/7zr.exe';
+const String sevenZipConsoleName = '7zr.exe';
+const String sevenZipURL = 'https://www.7-zip.org/download.html';
+const String sevenZipLinkURL = 'https://www.7-zip.org/a/';
 
 String getEnvDirectory() {
   String appDir = anyvm_util.getApplicationDirectory();
@@ -44,8 +47,7 @@ String getCargoHomePath() {
 }
 
 String get7ZipPath() {
-  return path.join(getEnvCacheDirectory(), peazipPortableDirPath, 'res', 'bin',
-      '7z', '7z.exe');
+  return path.join(getEnvCacheDirectory(), '7z', '7z.exe');
 }
 
 List<String> getVersionDirectory() {
@@ -478,28 +480,71 @@ class RustVmInstall extends Command {
       anyvm_util.logger.i('$envCacheDirPath creatred');
     }
 
-    var peazipDirPath = path.join(envCacheDirPath, peazipPortableDirPath);
-    anyvm_util.logger.d(peazipDirPath);
-    var peazipDir = Directory(peazipDirPath);
-    if (await peazipDir.exists()) {
+    var sevenZipDirPath = path.join(envCacheDirPath, '7z');
+    anyvm_util.logger.d(sevenZipDirPath);
+    var sevenZipDir = Directory(sevenZipDirPath);
+    if (await sevenZipDir.exists()) {
       anyvm_util.logger.i('7Zip already installed');
       return;
     }
 
-    var filePath = path.join(envCacheDirPath, 'peazip.zip');
-    var file = File(filePath);
-    if (!await file.exists()) {
+    var sevenZipConsolePath = path.join(envCacheDirPath, sevenZipConsoleName);
+    anyvm_util.logger.d(envCacheDirPath);
+    var sevenZipConsole = File(sevenZipConsolePath);
+    if (!await sevenZipConsole.exists()) {
       try {
-        await anyvm_util.downloadFileWithProgress(peazipPortable, filePath);
+        await anyvm_util.downloadFileWithProgress(
+            sevenZipConsoleURL, sevenZipConsolePath);
       } catch (e) {
         anyvm_util.logger.e('Error during downloading: $e');
         return;
       }
     }
+    String? fileName;
+    String? href;
+    bool isFound = false;
+    final response = await http.get(Uri.parse(sevenZipURL));
+    if (response.statusCode == 200) {
+      var document = parser.parse(response.body);
+      // ディレクトリリストを含むaタグを取得
+      var links = document.querySelectorAll('a');
+      for (final link in links) {
+        href = link.attributes['href'];
+        if (href != null) {
+          fileName = href.replaceAll(sevenZipLinkURL, '').replaceAll('a/', '');
+          if (fileName.endsWith('-x64.exe')) {
+            isFound = true;
+            break;
+          }
+        }
+      }
+    }
+    if (!isFound || fileName == null) {
+      anyvm_util.logger.e('Error not found 7zip');
+      return;
+    }
+
+    var filePath = path.join(envCacheDirPath, fileName);
+    var file = File(filePath);
+    if (!await file.exists()) {
+      try {
+        var baseUrl = Uri.parse(sevenZipLinkURL);
+        var fullUrl = baseUrl.resolve(fileName);
+        await anyvm_util.downloadFileWithProgress(fullUrl.toString(), filePath);
+      } catch (e) {
+        anyvm_util.logger.e('Error during downloading: $e');
+        return;
+      }
+    }
+
     try {
-      await anyvm_util.unzipWithProgress(filePath, envCacheDirPath);
+      var result = await Process.start(
+          sevenZipConsolePath, ['x', filePath, '-o$sevenZipDirPath', '-y']);
+      if (await result.exitCode != 0) {
+        anyvm_util.logger.e('Failed to delete 7z extract: ${result.stderr}');
+      }
     } catch (e) {
-      anyvm_util.logger.e('Error during unzipping: $e');
+      anyvm_util.logger.e('Failed to delete 7z extract: $e');
     }
     if (await file.exists()) {
       await file.delete();
