@@ -27,6 +27,9 @@ String getEnvCacheDirectory() {
 List<String> getVersionDirectory() {
   List<String> versionDir = <String>[];
   var directory = Directory(getEnvDirectory());
+  if (!directory.existsSync()) {
+    directory.createSync(recursive: true);
+  }
   List<FileSystemEntity> entities = directory.listSync();
   for (var entity in entities) {
     if (entity is Directory) {

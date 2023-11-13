@@ -35,6 +35,9 @@ String getEnvCacheDirectory() {
 List<String> getVersionDirectory() {
   List<String> versionDir = <String>[];
   var directory = Directory(getEnvDirectory());
+  if (!directory.existsSync()) {
+    directory.createSync(recursive: true);
+  }
   List<FileSystemEntity> entities = directory.listSync();
   for (var entity in entities) {
     if (entity is Directory) {
@@ -422,8 +425,10 @@ class PythonVmInstall extends Command {
                 await envVerDir.create(recursive: true);
                 anyvm_util.logger.i('$envVerDirPath creatred');
               }
-              var dirPath = await Directory(envVerDirPath).resolveSymbolicLinks();
-              final exe = 'msiexec.exe /quiet /a "$msiFile" targetdir="$dirPath"';
+              var dirPath =
+                  await Directory(envVerDirPath).resolveSymbolicLinks();
+              final exe =
+                  'msiexec.exe /quiet /a "$msiFile" targetdir="$dirPath"';
               var args = <String>[];
               anyvm_util.logger.d(exe);
               ProcessResult result = await Process.run(exe, args);
@@ -435,7 +440,8 @@ class PythonVmInstall extends Command {
             } catch (e) {
               if (await envVerDir.exists()) {
                 await envVerDir.delete(recursive: true);
-                anyvm_util.logger.i('Directory deleted successfully.: $envVerDirPath');
+                anyvm_util.logger
+                    .i('Directory deleted successfully.: $envVerDirPath');
               }
             }
           }

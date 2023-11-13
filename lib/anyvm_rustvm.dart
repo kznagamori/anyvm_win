@@ -52,9 +52,16 @@ String get7ZipPath() {
 
 List<String> getVersionDirectory() {
   List<String> versionDir = <String>[];
+
   var mingwDirectory = Directory(getMingwEnvPath());
+  if (!mingwDirectory.existsSync()) {
+    mingwDirectory.createSync(recursive: true);
+  }
   List<FileSystemEntity> mingwEntities = mingwDirectory.listSync();
   var llvmDirectory = Directory(getLLVMEnvPath());
+  if (!llvmDirectory.existsSync()) {
+    llvmDirectory.createSync(recursive: true);
+  }
   List<FileSystemEntity> llvmEntities = llvmDirectory.listSync();
 
   for (var mingwEntity in mingwEntities) {
