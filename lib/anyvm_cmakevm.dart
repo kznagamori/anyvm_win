@@ -53,9 +53,6 @@ Future<void> setVersion(String version) async {
   anyvm_util.logger.d(cmakeVersionDirPath);
   var cmakeVersionDir = Directory(cmakeVersionDirPath);
 
-  var cmakePubCacheDirPath = path.join(getEnvDirectory(), '.pub-cache');
-  anyvm_util.logger.d(cmakePubCacheDirPath);
-
   if (!await cmakeVersionDir.exists()) {
     anyvm_util.logger.w('version does not exist');
     return;
@@ -89,7 +86,7 @@ Future<void> setVersion(String version) async {
 
   var cmakeBinPath = path.join(cmakeCurrentDirPath, 'bin');
 
-  var setPath = '$cmakeBinPath;${path.join(cmakePubCacheDirPath, "bin")};';
+  var setPath = '$cmakeBinPath;';
   anyvm_util.logger.d(setPath);
 
   var scriptsDir = anyvm_util.getScriptsDirectory();
@@ -101,8 +98,6 @@ Future<void> setVersion(String version) async {
   scriptText += 'IF DEFINED _${vmName}_ENV_VAL GOTO END_SET_ENV_VAL\n';
   scriptText += 'SET _${vmName}_ENV_VAL="yes"\n';
   scriptText += 'SET PATH=$setPath%PATH%\n';
-  scriptText += 'SET _OLD_PUB_CACHE=%PUB_CACHE%\n';
-  scriptText += 'SET PUB_CACHE=$cmakePubCacheDirPath\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(activateScriptBat, scriptText);
@@ -113,8 +108,6 @@ Future<void> setVersion(String version) async {
   scriptText += 'if([string]::IsNullOrEmpty(\$env:_${vmName}_ENV_VAL)) {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "yes";\n';
   scriptText += '    \$env:Path = "$setPath" + \$env:Path;\n';
-  scriptText += '    \$env:_OLD_PUB_CACHE = \$env:PUB_CACHE;\n';
-  scriptText += '    \$env:PUB_CACHE = "$cmakePubCacheDirPath";\n';
   scriptText += '} else {\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
@@ -127,8 +120,6 @@ Future<void> setVersion(String version) async {
   scriptText += 'IF NOT DEFINED _${vmName}_ENV_VAL GOTO END_SET_ENV_VAL\n';
   scriptText += 'SET _${vmName}_ENV_VAL=\n';
   scriptText += 'SET PATH=%PATH:$setPath=%\n';
-  scriptText += 'SET PUB_CACHE=%_OLD_PUB_CACHE%\n';
-  scriptText += 'SET _OLD_PUB_CACHE=\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptBat, scriptText);
@@ -140,8 +131,6 @@ Future<void> setVersion(String version) async {
   scriptText += '} else {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "";\n';
   scriptText += '    Set-Item ENV:Path \$ENV:Path.Replace("$setPath", "");\n';
-  scriptText += '    \$env:PUB_CACHE = \$env:_OLD_PUB_CACHE;\n';
-  scriptText += '    \$env:_OLD_PUB_CACHE = "";\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);
@@ -315,7 +304,9 @@ class CMakeVmInstall extends Command {
     } catch (e) {
       anyvm_util.logger.e('Error during unzipping: $e');
     }
-    var cmakeSDKDirPath = path.join(getEnvCacheDirectory(), 'cmake-sdk');
+    var cmakeSDKDirPath = path.join(
+        getEnvCacheDirectory(), 'cmake-${item['version']}-windows-x86_64');
+
     var cmakeSDKDir = Directory(cmakeSDKDirPath);
     if (await cmakeSDKDir.exists()) {
       await cmakeSDKDir.rename(envVerDirPath);
@@ -376,8 +367,8 @@ class CMakeVmUpdate extends Command {
         Map<String, dynamic> versionMap = {
           'version': version,
           'url':
-              'https://github.com/Kitware/CMake/releases/download/v$version/cmake-$version-windows-arm64.zip',
-          'file': 'cmake-$version-windows-arm64.zip'
+              'https://github.com/Kitware/CMake/releases/download/v$version/cmake-$version-windows-x86_64.zip',
+          'file': 'cmake-$version-windows-x86_64.zip'
         };
         versionList.add(versionMap);
       }
