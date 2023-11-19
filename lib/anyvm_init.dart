@@ -8,6 +8,8 @@ import 'package:anyvm_win/anyvm_ninjavm.dart' as anyvm_ninjavm;
 import 'package:anyvm_win/anyvm_nodejsvm.dart' as anyvm_nodejsvm;
 import 'package:anyvm_win/anyvm_pythonvm.dart' as anyvm_pythonvm;
 import 'package:anyvm_win/anyvm_rustvm.dart' as anyvm_rustvm;
+import 'package:anyvm_win/anyvm_mingwvm.dart' as anyvm_mingwvm;
+import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
 import 'package:path/path.dart' as path;
 
 class InitVm extends Command {
@@ -39,6 +41,8 @@ class InitVm extends Command {
     activates.add(anyvm_nodejsvm.vmActivate);
     activates.add(anyvm_pythonvm.vmActivate);
     activates.add(anyvm_rustvm.vmActivate);
+    activates.add(anyvm_mingwvm.vmActivate);
+    activates.add(anyvm_cmakevm.vmActivate);
 
     deactivates.add(anyvm_dartvm.vmDeactivate);
     deactivates.add(anyvm_fluttervm.vmDeactivate);
@@ -47,6 +51,8 @@ class InitVm extends Command {
     deactivates.add(anyvm_nodejsvm.vmDeactivate);
     deactivates.add(anyvm_pythonvm.vmDeactivate);
     deactivates.add(anyvm_rustvm.vmDeactivate);
+    deactivates.add(anyvm_mingwvm.vmDeactivate);
+    deactivates.add(anyvm_cmakevm.vmDeactivate);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.bat');
     scriptText = '';

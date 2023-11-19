@@ -236,17 +236,6 @@ Future<void> setVersion(String version) async {
   await anyvm_util.writeStringWithSjisEncoding(activateScriptPs1, scriptText);
   anyvm_util.logger.i('$activateScriptPs1 creatred');
 
-  scriptText += 'SET _OLD_RUSTUP_HOME=%RUSTUP_HOME%\n';
-  scriptText += 'SET RUSTUP_HOME=${getRustUpHomePath()}\n';
-  scriptText += 'SET _OLD_CARGO_HOME=%CARGO_HOME%\n';
-  scriptText += 'SET CARGO_HOME=${getCargoHomePath()}\n';
-  scriptText += 'SET _OLD_RUSTUP_DIST_SERVER=%RUSTUP_DIST_SERVER%\n';
-  scriptText += 'SET RUSTUP_DIST_SERVER=https://static.rust-lang.org\n';
-  scriptText += 'SET _OLD_RUSTUP_DIST_ROOT=%RUSTUP_DIST_ROOT%\n';
-  scriptText += 'SET RUSTUP_DIST_ROOT=https://static.rust-lang.org/rustup\n';
-  scriptText += 'SET _OLD_LIBCLANG_PATH=%LIBCLANG_PATH%\n';
-  scriptText += 'SET LIBCLANG_PATH=$llvmBinPath\n';
-
   var deActivateScriptBat = path.join(scriptsDir, '$vmDeactivate.bat');
   scriptText = '';
   scriptText += '@ECHO OFF\n';

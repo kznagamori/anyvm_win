@@ -1,0 +1,220 @@
+[
+  {
+    "mingw64": [
+      {
+        "version": "8.5.0-rt_v10-rev0",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/8.5.0-rt_v10-rev0/x86_64-8.5.0-release-posix-seh-ucrt-rt_v10-rev0.7z",
+        "file": "x86_64-8.5.0-release-posix-seh-ucrt-rt_v10-rev0.7z"
+      },
+      {
+        "version": "11.2.0-rt_v9-rev0",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/11.2.0-rt_v9-rev0/x86_64-11.2.0-release-posix-seh-ucrt-rt_v9-rev0.7z",
+        "file": "x86_64-11.2.0-release-posix-seh-ucrt-rt_v9-rev0.7z"
+      },
+      {
+        "version": "11.2.0-rt_v9-rev1",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/11.2.0-rt_v9-rev1/x86_64-11.2.0-release-posix-seh-ucrt-rt_v9-rev1.7z",
+        "file": "x86_64-11.2.0-release-posix-seh-ucrt-rt_v9-rev1.7z"
+      },
+      {
+        "version": "12.1.0-rt_v10-rev0",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev0/x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev0.7z",
+        "file": "x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev0.7z"
+      },
+      {
+        "version": "12.1.0-rt_v10-rev1",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev1/x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev1.7z",
+        "file": "x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev1.7z"
+      },
+      {
+        "version": "12.1.0-rt_v10-rev2",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev2/x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev2.7z",
+        "file": "x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev2.7z"
+      },
+      {
+        "version": "12.1.0-rt_v10-rev3",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.1.0-rt_v10-rev3/x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev3.7z",
+        "file": "x86_64-12.1.0-release-posix-seh-ucrt-rt_v10-rev3.7z"
+      },
+      {
+        "version": "12.2.0-rt_v10-rev0",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev0/x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev0.7z",
+        "file": "x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev0.7z"
+      },
+      {
+        "version": "12.2.0-rt_v10-rev1",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev1/x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev1.7z",
+        "file": "x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev1.7z"
+      },
+      {
+        "version": "12.2.0-rt_v10-rev2",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev2/x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z",
+        "file": "x86_64-12.2.0-release-posix-seh-ucrt-rt_v10-rev2.7z"
+      },
+      {
+        "version": "13.1.0-rt_v11-rev0",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/13.1.0-rt_v11-rev0/x86_64-13.1.0-release-posix-seh-ucrt-rt_v11-rev0.7z",
+        "file": "x86_64-13.1.0-release-posix-seh-ucrt-rt_v11-rev0.7z"
+      },
+      {
+        "version": "13.1.0-rt_v11-rev1",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/13.1.0-rt_v11-rev1/x86_64-13.1.0-release-posix-seh-ucrt-rt_v11-rev1.7z",
+        "file": "x86_64-13.1.0-release-posix-seh-ucrt-rt_v11-rev1.7z"
+      },
+      {
+        "version": "13.2.0-rt_v11-rev0",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/13.2.0-rt_v11-rev0/x86_64-13.2.0-release-posix-seh-ucrt-rt_v11-rev0.7z",
+        "file": "x86_64-13.2.0-release-posix-seh-ucrt-rt_v11-rev0.7z"
+      },
+      {
+        "version": "13.2.0-rt_v11-rev1",
+        "url": "https://github.com/niXman/mingw-builds-binaries/releases/download/13.2.0-rt_v11-rev1/x86_64-13.2.0-release-posix-seh-ucrt-rt_v11-rev1.7z",
+        "file": "x86_64-13.2.0-release-posix-seh-ucrt-rt_v11-rev1.7z"
+      }
+    ]
+  },
+  {
+    "llvm": [
+      {
+        "version": "14.0.0",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.0/LLVM-14.0.0-win64.exe",
+        "file": "LLVM-14.0.0-win64.exe"
+      },
+      {
+        "version": "14.0.1",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.1/LLVM-14.0.1-win64.exe",
+        "file": "LLVM-14.0.1-win64.exe"
+      },
+      {
+        "version": "14.0.2",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.2/LLVM-14.0.2-win64.exe",
+        "file": "LLVM-14.0.2-win64.exe"
+      },
+      {
+        "version": "14.0.3",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.3/LLVM-14.0.3-win64.exe",
+        "file": "LLVM-14.0.3-win64.exe"
+      },
+      {
+        "version": "14.0.4",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.4/LLVM-14.0.4-win64.exe",
+        "file": "LLVM-14.0.4-win64.exe"
+      },
+      {
+        "version": "14.0.5",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.5/LLVM-14.0.5-win64.exe",
+        "file": "LLVM-14.0.5-win64.exe"
+      },
+      {
+        "version": "14.0.6",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.6/LLVM-14.0.6-win64.exe",
+        "file": "LLVM-14.0.6-win64.exe"
+      },
+      {
+        "version": "15.0.0",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.0/LLVM-15.0.0-win64.exe",
+        "file": "LLVM-15.0.0-win64.exe"
+      },
+      {
+        "version": "15.0.1",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.1/LLVM-15.0.1-win64.exe",
+        "file": "LLVM-15.0.1-win64.exe"
+      },
+      {
+        "version": "15.0.2",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.2/LLVM-15.0.2-win64.exe",
+        "file": "LLVM-15.0.2-win64.exe"
+      },
+      {
+        "version": "15.0.3",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.3/LLVM-15.0.3-win64.exe",
+        "file": "LLVM-15.0.3-win64.exe"
+      },
+      {
+        "version": "15.0.4",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.4/LLVM-15.0.4-win64.exe",
+        "file": "LLVM-15.0.4-win64.exe"
+      },
+      {
+        "version": "15.0.5",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.5/LLVM-15.0.5-win64.exe",
+        "file": "LLVM-15.0.5-win64.exe"
+      },
+      {
+        "version": "15.0.6",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.6/LLVM-15.0.6-win64.exe",
+        "file": "LLVM-15.0.6-win64.exe"
+      },
+      {
+        "version": "15.0.7",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/LLVM-15.0.7-win64.exe",
+        "file": "LLVM-15.0.7-win64.exe"
+      },
+      {
+        "version": "16.0.0",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/LLVM-16.0.0-win64.exe",
+        "file": "LLVM-16.0.0-win64.exe"
+      },
+      {
+        "version": "16.0.1",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.1/LLVM-16.0.1-win64.exe",
+        "file": "LLVM-16.0.1-win64.exe"
+      },
+      {
+        "version": "16.0.2",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.2/LLVM-16.0.2-win64.exe",
+        "file": "LLVM-16.0.2-win64.exe"
+      },
+      {
+        "version": "16.0.3",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.3/LLVM-16.0.3-win64.exe",
+        "file": "LLVM-16.0.3-win64.exe"
+      },
+      {
+        "version": "16.0.4",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.4/LLVM-16.0.4-win64.exe",
+        "file": "LLVM-16.0.4-win64.exe"
+      },
+      {
+        "version": "16.0.5",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.5/LLVM-16.0.5-win64.exe",
+        "file": "LLVM-16.0.5-win64.exe"
+      },
+      {
+        "version": "16.0.6",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.6/LLVM-16.0.6-win64.exe",
+        "file": "LLVM-16.0.6-win64.exe"
+      },
+      {
+        "version": "17.0.0",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.0/LLVM-17.0.0-win64.exe",
+        "file": "LLVM-17.0.0-win64.exe"
+      },
+      {
+        "version": "17.0.1",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.1/LLVM-17.0.1-win64.exe",
+        "file": "LLVM-17.0.1-win64.exe"
+      },
+      {
+        "version": "17.0.2",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.2/LLVM-17.0.2-win64.exe",
+        "file": "LLVM-17.0.2-win64.exe"
+      },
+      {
+        "version": "17.0.3",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.3/LLVM-17.0.3-win64.exe",
+        "file": "LLVM-17.0.3-win64.exe"
+      },
+      {
+        "version": "17.0.4",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.4/LLVM-17.0.4-win64.exe",
+        "file": "LLVM-17.0.4-win64.exe"
+      },
+      {
+        "version": "17.0.5",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.5/LLVM-17.0.5-win64.exe",
+        "file": "LLVM-17.0.5-win64.exe"
+      }
+    ]
+  }
+]

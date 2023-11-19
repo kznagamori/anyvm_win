@@ -9,6 +9,8 @@ import 'package:anyvm_win/anyvm_ninjavm.dart' as anyvm_ninjavm;
 import 'package:anyvm_win/anyvm_nodejsvm.dart' as anyvm_nodejsvm;
 import 'package:anyvm_win/anyvm_pythonvm.dart' as anyvm_pythonvm;
 import 'package:anyvm_win/anyvm_rustvm.dart' as anyvm_rustvm;
+import 'package:anyvm_win/anyvm_mingwvm.dart' as anyvm_mingwvm;
+import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
 import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
 
@@ -38,6 +40,8 @@ void main(List<String> args) async {
   runner.addCommand(anyvm_nodejsvm.NodejsVm());
   runner.addCommand(anyvm_pythonvm.PythonVm());
   runner.addCommand(anyvm_rustvm.RustVm());
+  runner.addCommand(anyvm_mingwvm.MingwLLVMVm());
+  runner.addCommand(anyvm_cmakevm.CMakeVm());
 
   await runner.run(args).catchError((error) {
     if (error is! UsageException) throw error;
