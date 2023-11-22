@@ -858,5 +858,10 @@
     "version": "21.1.0",
     "url": "https://nodejs.org/dist/v21.1.0/node-v21.1.0-win-x64.zip",
     "file": "node-v21.1.0-win-x64.zip"
+  },
+  {
+    "version": "21.2.0",
+    "url": "https://nodejs.org/dist/v21.2.0/node-v21.2.0-win-x64.zip",
+    "file": "node-v21.2.0-win-x64.zip"
   }
 ]
