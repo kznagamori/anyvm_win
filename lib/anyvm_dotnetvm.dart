@@ -142,7 +142,7 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET DOTNET_ROOT=$dotnetCurrentDirPath\n';
   scriptText += 'SET _OLD_DOTNET_ROOT(x86)=%_OLD_DOTNET_ROOT(x86)%\n';
   scriptText += 'SET DOTNET_ROOT(x86)=$dotnetCurrentDirPath\n';
-  scriptText += 'ET _OLD_DOTNET_CLI_HOME=%DOTNET_CLI_HOME%\n';
+  scriptText += 'SET _OLD_DOTNET_CLI_HOME=%DOTNET_CLI_HOME%\n';
   scriptText += 'SET DOTNET_CLI_HOME=$envDirPath\n';
   scriptText +=
       'SET _OLD_DOTNET_ADD_GLOBAL_TOOLS_TO_PATH=%DOTNET_ADD_GLOBAL_TOOLS_TO_PATH%\n';
