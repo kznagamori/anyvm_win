@@ -181,7 +181,7 @@ Future<void> setVersion(String version) async {
   scriptText += 'if([string]::IsNullOrEmpty(\$env:_${vmName}_ENV_VAL)) {\n';
   scriptText += '} else {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "";\n';
-  scriptText += '    Set-Item ENV:Path \$ENV:Path.Replace("$setPath", "");\n';
+  scriptText += '    Set-Item ENV:Path \$env:Path.Replace("$setPath", "");\n';
   scriptText += '    \$env:GOROOT = \$env:_OLD_GOROOT;\n';
   scriptText += '    \$env:_OLD_GOROOT = "";\n';
   scriptText += '    \$env:GOPATH = \$env:_OLD_GOPATH;\n';

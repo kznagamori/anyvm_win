@@ -262,7 +262,7 @@ Future<void> setVersion(String version) async {
   scriptText += 'if([string]::IsNullOrEmpty(\$env:_${vmName}_ENV_VAL)) {\n';
   scriptText += '} else {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "";\n';
-  scriptText += '    Set-Item ENV:Path \$ENV:Path.Replace("$setPath", "");\n';
+  scriptText += '    Set-Item ENV:Path \$env:Path.Replace("$setPath", "");\n';
   scriptText += '    \$env:RUSTUP_HOME = \$env:_OLD_RUSTUP_HOME;\n';
   scriptText += '    \$env:_OLD_RUSTUP_HOME = "";\n';
   scriptText += '    \$env:CARGO_HOME = \$env:_OLD_CARGO_HOME;\n';

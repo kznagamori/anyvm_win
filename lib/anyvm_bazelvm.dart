@@ -131,7 +131,7 @@ Future<void> setVersion(String version) async {
   scriptText += 'if([string]::IsNullOrEmpty(\$env:_${vmName}_ENV_VAL)) {\n';
   scriptText += '} else {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "";\n';
-  scriptText += '    Set-Item ENV:Path \$ENV:Path.Replace("$setPath", "");\n';
+  scriptText += '    Set-Item ENV:Path \$env:Path.Replace("$setPath", "");\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);

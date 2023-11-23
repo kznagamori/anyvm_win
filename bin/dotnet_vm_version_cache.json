@@ -1,0 +1,492 @@
+[
+  {
+    "version": "6.0.100",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.100-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.100-win-x64.zip"
+  },
+  {
+    "version": "6.0.101",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.101-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.101-win-x64.zip"
+  },
+  {
+    "version": "6.0.102",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.102-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.102-win-x64.zip"
+  },
+  {
+    "version": "6.0.103",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.103-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.103-win-x64.zip"
+  },
+  {
+    "version": "6.0.104",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.104-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.104-win-x64.zip"
+  },
+  {
+    "version": "6.0.105",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.105-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.105-win-x64.zip"
+  },
+  {
+    "version": "6.0.106",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.106-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.106-win-x64.zip"
+  },
+  {
+    "version": "6.0.107",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.107-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.107-win-x64.zip"
+  },
+  {
+    "version": "6.0.108",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.108-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.108-win-x64.zip"
+  },
+  {
+    "version": "6.0.109",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.109-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.109-win-x64.zip"
+  },
+  {
+    "version": "6.0.110",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.110-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.110-win-x64.zip"
+  },
+  {
+    "version": "6.0.111",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.111-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.111-win-x64.zip"
+  },
+  {
+    "version": "6.0.112",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.112-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.112-win-x64.zip"
+  },
+  {
+    "version": "6.0.113",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.113-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.113-win-x64.zip"
+  },
+  {
+    "version": "6.0.114",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.114-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.114-win-x64.zip"
+  },
+  {
+    "version": "6.0.115",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.115-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.115-win-x64.zip"
+  },
+  {
+    "version": "6.0.116",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.116-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.116-win-x64.zip"
+  },
+  {
+    "version": "6.0.118",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.118-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.118-win-x64.zip"
+  },
+  {
+    "version": "6.0.119",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.119-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.119-win-x64.zip"
+  },
+  {
+    "version": "6.0.120",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.120-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.120-win-x64.zip"
+  },
+  {
+    "version": "6.0.121",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.121-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.121-win-x64.zip"
+  },
+  {
+    "version": "6.0.122",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.122-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.122-win-x64.zip"
+  },
+  {
+    "version": "6.0.123",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.123-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.123-win-x64.zip"
+  },
+  {
+    "version": "6.0.124",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.124-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.124-win-x64.zip"
+  },
+  {
+    "version": "6.0.125",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.125-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.125-win-x64.zip"
+  },
+  {
+    "version": "6.0.200",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.200-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.200-win-x64.zip"
+  },
+  {
+    "version": "6.0.201",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.201-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.201-win-x64.zip"
+  },
+  {
+    "version": "6.0.202",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.202-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.202-win-x64.zip"
+  },
+  {
+    "version": "6.0.203",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.203-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.203-win-x64.zip"
+  },
+  {
+    "version": "6.0.300",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.300-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.300-win-x64.zip"
+  },
+  {
+    "version": "6.0.301",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.301-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.301-win-x64.zip"
+  },
+  {
+    "version": "6.0.302",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.302-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.302-win-x64.zip"
+  },
+  {
+    "version": "6.0.303",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.303-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.303-win-x64.zip"
+  },
+  {
+    "version": "6.0.304",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.304-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.304-win-x64.zip"
+  },
+  {
+    "version": "6.0.305",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.305-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.305-win-x64.zip"
+  },
+  {
+    "version": "6.0.306",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.306-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.306-win-x64.zip"
+  },
+  {
+    "version": "6.0.307",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.307-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.307-win-x64.zip"
+  },
+  {
+    "version": "6.0.308",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.308-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.308-win-x64.zip"
+  },
+  {
+    "version": "6.0.309",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.309-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.309-win-x64.zip"
+  },
+  {
+    "version": "6.0.310",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.310-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.310-win-x64.zip"
+  },
+  {
+    "version": "6.0.311",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.311-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.311-win-x64.zip"
+  },
+  {
+    "version": "6.0.313",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.313-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.313-win-x64.zip"
+  },
+  {
+    "version": "6.0.314",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.314-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.314-win-x64.zip"
+  },
+  {
+    "version": "6.0.315",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.315-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.315-win-x64.zip"
+  },
+  {
+    "version": "6.0.316",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.316-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.316-win-x64.zip"
+  },
+  {
+    "version": "6.0.317",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.317-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.317-win-x64.zip"
+  },
+  {
+    "version": "6.0.318",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.318-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.318-win-x64.zip"
+  },
+  {
+    "version": "6.0.319",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.319-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.319-win-x64.zip"
+  },
+  {
+    "version": "6.0.320",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.320-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.320-win-x64.zip"
+  },
+  {
+    "version": "6.0.400",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.400-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.400-win-x64.zip"
+  },
+  {
+    "version": "6.0.401",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.401-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.401-win-x64.zip"
+  },
+  {
+    "version": "6.0.402",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.402-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.402-win-x64.zip"
+  },
+  {
+    "version": "6.0.403",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.403-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.403-win-x64.zip"
+  },
+  {
+    "version": "6.0.404",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.404-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.404-win-x64.zip"
+  },
+  {
+    "version": "6.0.405",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.405-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.405-win-x64.zip"
+  },
+  {
+    "version": "6.0.406",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.406-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.406-win-x64.zip"
+  },
+  {
+    "version": "6.0.407",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.407-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.407-win-x64.zip"
+  },
+  {
+    "version": "6.0.408",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.408-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.408-win-x64.zip"
+  },
+  {
+    "version": "6.0.410",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.410-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.410-win-x64.zip"
+  },
+  {
+    "version": "6.0.411",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.411-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.411-win-x64.zip"
+  },
+  {
+    "version": "6.0.412",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.412-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.412-win-x64.zip"
+  },
+  {
+    "version": "6.0.413",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.413-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.413-win-x64.zip"
+  },
+  {
+    "version": "6.0.414",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.414-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.414-win-x64.zip"
+  },
+  {
+    "version": "6.0.415",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.415-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.415-win-x64.zip"
+  },
+  {
+    "version": "6.0.416",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.416-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.416-win-x64.zip"
+  },
+  {
+    "version": "6.0.417",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.417-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.417-win-x64.zip"
+  },
+  {
+    "version": "7.0.101",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.101-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.101-win-x64.zip"
+  },
+  {
+    "version": "7.0.102",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.102-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.102-win-x64.zip"
+  },
+  {
+    "version": "7.0.103",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.103-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.103-win-x64.zip"
+  },
+  {
+    "version": "7.0.104",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.104-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.104-win-x64.zip"
+  },
+  {
+    "version": "7.0.105",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.105-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.105-win-x64.zip"
+  },
+  {
+    "version": "7.0.107",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.107-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.107-win-x64.zip"
+  },
+  {
+    "version": "7.0.108",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.108-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.108-win-x64.zip"
+  },
+  {
+    "version": "7.0.109",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.109-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.109-win-x64.zip"
+  },
+  {
+    "version": "7.0.110",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.110-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.110-win-x64.zip"
+  },
+  {
+    "version": "7.0.111",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.111-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.111-win-x64.zip"
+  },
+  {
+    "version": "7.0.112",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.112-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.112-win-x64.zip"
+  },
+  {
+    "version": "7.0.113",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.113-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.113-win-x64.zip"
+  },
+  {
+    "version": "7.0.114",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.114-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.114-win-x64.zip"
+  },
+  {
+    "version": "7.0.200",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.200-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.200-win-x64.zip"
+  },
+  {
+    "version": "7.0.201",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.201-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.201-win-x64.zip"
+  },
+  {
+    "version": "7.0.202",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.202-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.202-win-x64.zip"
+  },
+  {
+    "version": "7.0.203",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.203-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.203-win-x64.zip"
+  },
+  {
+    "version": "7.0.302",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.302-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.302-win-x64.zip"
+  },
+  {
+    "version": "7.0.304",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.304-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.304-win-x64.zip"
+  },
+  {
+    "version": "7.0.305",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.305-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.305-win-x64.zip"
+  },
+  {
+    "version": "7.0.306",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.306-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.306-win-x64.zip"
+  },
+  {
+    "version": "7.0.307",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.307-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.307-win-x64.zip"
+  },
+  {
+    "version": "7.0.308",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.308-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.308-win-x64.zip"
+  },
+  {
+    "version": "7.0.309",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.309-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.309-win-x64.zip"
+  },
+  {
+    "version": "7.0.310",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.310-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.310-win-x64.zip"
+  },
+  {
+    "version": "7.0.311",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.311-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.311-win-x64.zip"
+  },
+  {
+    "version": "7.0.400",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.400-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.400-win-x64.zip"
+  },
+  {
+    "version": "7.0.401",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.401-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.401-win-x64.zip"
+  },
+  {
+    "version": "7.0.402",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.402-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.402-win-x64.zip"
+  },
+  {
+    "version": "7.0.403",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.403-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.403-win-x64.zip"
+  },
+  {
+    "version": "7.0.404",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-7.0.404-windows-x64-binaries",
+    "file": "dotnet-sdk-7.0.404-win-x64.zip"
+  },
+  {
+    "version": "8.0.100",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.100-windows-x64-binaries",
+    "file": "dotnet-sdk-8.0.100-win-x64.zip"
+  }
+]
