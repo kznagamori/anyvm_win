@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
+import 'package:anyvm_win/anyvm_bazelvm.dart' as anyvm_bazelvm;
 import 'package:anyvm_win/anyvm_dartvm.dart' as anyvm_dartvm;
 import 'package:anyvm_win/anyvm_fluttervm.dart' as anyvm_fluttervm;
 import 'package:anyvm_win/anyvm_govm.dart' as anyvm_govm;
@@ -43,6 +44,7 @@ class InitVm extends Command {
     activates.add(anyvm_rustvm.vmActivate);
     activates.add(anyvm_mingwvm.vmActivate);
     activates.add(anyvm_cmakevm.vmActivate);
+    activates.add(anyvm_bazelvm.vmActivate);
 
     deactivates.add(anyvm_dartvm.vmDeactivate);
     deactivates.add(anyvm_fluttervm.vmDeactivate);
@@ -53,6 +55,7 @@ class InitVm extends Command {
     deactivates.add(anyvm_rustvm.vmDeactivate);
     deactivates.add(anyvm_mingwvm.vmDeactivate);
     deactivates.add(anyvm_cmakevm.vmDeactivate);
+    deactivates.add(anyvm_bazelvm.vmDeactivate);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.bat');
     scriptText = '';

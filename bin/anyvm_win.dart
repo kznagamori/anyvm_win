@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'dart:io';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
+import 'package:anyvm_win/anyvm_bazelvm.dart' as anyvm_bazelvm;
 import 'package:anyvm_win/anyvm_dartvm.dart' as anyvm_dartvm;
 import 'package:anyvm_win/anyvm_fluttervm.dart' as anyvm_fluttervm;
 import 'package:anyvm_win/anyvm_govm.dart' as anyvm_govm;
@@ -42,6 +43,7 @@ void main(List<String> args) async {
   runner.addCommand(anyvm_rustvm.RustVm());
   runner.addCommand(anyvm_mingwvm.MingwLLVMVm());
   runner.addCommand(anyvm_cmakevm.CMakeVm());
+  runner.addCommand(anyvm_bazelvm.BazelVm());
 
   await runner.run(args).catchError((error) {
     if (error is! UsageException) throw error;

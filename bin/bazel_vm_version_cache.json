@@ -1,0 +1,52 @@
+[
+  {
+    "version": "6.0.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.0.0/bazel-6.0.0-windows-x86_64.zip",
+    "file": "bazel-6.0.0-windows-x86_64.zip"
+  },
+  {
+    "version": "6.1.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.1.0/bazel-6.1.0-windows-x86_64.zip",
+    "file": "bazel-6.1.0-windows-x86_64.zip"
+  },
+  {
+    "version": "6.1.1",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.1.1/bazel-6.1.1-windows-x86_64.zip",
+    "file": "bazel-6.1.1-windows-x86_64.zip"
+  },
+  {
+    "version": "6.1.2",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.1.2/bazel-6.1.2-windows-x86_64.zip",
+    "file": "bazel-6.1.2-windows-x86_64.zip"
+  },
+  {
+    "version": "6.2.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.2.0/bazel-6.2.0-windows-x86_64.zip",
+    "file": "bazel-6.2.0-windows-x86_64.zip"
+  },
+  {
+    "version": "6.2.1",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.2.1/bazel-6.2.1-windows-x86_64.zip",
+    "file": "bazel-6.2.1-windows-x86_64.zip"
+  },
+  {
+    "version": "6.3.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.3.0/bazel-6.3.0-windows-x86_64.zip",
+    "file": "bazel-6.3.0-windows-x86_64.zip"
+  },
+  {
+    "version": "6.3.1",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.3.1/bazel-6.3.1-windows-x86_64.zip",
+    "file": "bazel-6.3.1-windows-x86_64.zip"
+  },
+  {
+    "version": "6.3.2",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.3.2/bazel-6.3.2-windows-x86_64.zip",
+    "file": "bazel-6.3.2-windows-x86_64.zip"
+  },
+  {
+    "version": "6.4.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.4.0/bazel-6.4.0-windows-x86_64.zip",
+    "file": "bazel-6.4.0-windows-x86_64.zip"
+  }
+]
