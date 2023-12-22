@@ -130,6 +130,34 @@ Future<void> setVersion() async {
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);
   anyvm_util.logger.i('$deActivateScriptPs1 creatred');
+
+  try {
+    var cargoHomePath = getCargoHomePath();
+    var rustUpHomePath = getRustUpHomePath();
+    var exe = path.join(cargoHomePath, 'bin', 'rustc.exe');
+    var args = <String>['--version'];
+    var envVers = {
+      'CARGO_HOME': cargoHomePath,
+      'RUSTUP_HOME': rustUpHomePath,
+      'RUSTUP_DIST_SERVER': 'https://static.rust-lang.org',
+      'RUSTUP_DIST_ROOT': 'https://static.rust-lang.org/rustup'
+    };
+    ProcessResult result;
+    anyvm_util.logger.d(exe);
+    for (var arg in args) {
+      anyvm_util.logger.d(arg);
+    }
+    result = await Process.run(exe, args, environment: envVers);
+    if (result.exitCode != 0) {
+      anyvm_util.logger.e('Failed to execute command: ${result.stderr}');
+      return;
+    } else {
+      anyvm_util.logger.i('execute: $exe');
+      anyvm_util.setVmVersion(vmName, result.stdout);
+    }
+  } catch (e) {
+    anyvm_util.logger.e('Failed to ecute command: $e');
+  }
 }
 
 Future<void> unSetVersion() async {
@@ -328,7 +356,12 @@ class RustVmVersion extends Command {
 
   @override
   Future<void> run() async {
-    anyvm_util.logger.i('Use rustup command');
+    var currentVersion = await anyvm_util.getVmVersion(vmName);
+    if (currentVersion == null) {
+      anyvm_util.logger.i('No version found');
+    } else {
+      anyvm_util.logger.i(currentVersion);
+    }
   }
 }
 
