@@ -31,16 +31,17 @@ String getCargoHomePath() {
   return path.join(getEnvDirectory(), '.cargo');
 }
 
+String getCargoTargetPath() {
+  return path.join(getEnvDirectory(), 'target');
+}
+
 Future<void> setVersion() async {
   await unSetVersion();
 
-  var rustCurrentDirPath = path.join(getEnvDirectory(), 'current');
-  anyvm_util.logger.d(rustCurrentDirPath);
-  var rustCurrentDir = Directory(rustCurrentDirPath);
-
-  if (!await rustCurrentDir.exists()) {
-    await rustCurrentDir.create(recursive: true);
-    anyvm_util.logger.i('$rustCurrentDirPath creatred');
+  var cargoTargetDir = Directory(getCargoTargetPath());
+  if (!await cargoTargetDir.exists()) {
+    await cargoTargetDir.create(recursive: true);
+    anyvm_util.logger.i('${getCargoTargetPath()} creatred');
   }
 
   var cargoBinPath = path.join(getCargoHomePath(), 'bin');
@@ -60,6 +61,8 @@ Future<void> setVersion() async {
   scriptText += 'SET RUSTUP_HOME=${getRustUpHomePath()}\n';
   scriptText += 'SET _OLD_CARGO_HOME=%CARGO_HOME%\n';
   scriptText += 'SET CARGO_HOME=${getCargoHomePath()}\n';
+  scriptText += 'SET _OLD_CARGO_TARGET_DIR=%CARGO_TARGET_DIR%\n';
+  scriptText += 'SET CARGO_TARGET_DIR=${getCargoTargetPath()}\n';
   scriptText += 'SET _OLD_RUSTUP_DIST_SERVER=%RUSTUP_DIST_SERVER%\n';
   scriptText += 'SET RUSTUP_DIST_SERVER=https://static.rust-lang.org\n';
   scriptText += 'SET _OLD_RUSTUP_DIST_ROOT=%RUSTUP_DIST_ROOT%\n';
@@ -79,6 +82,8 @@ Future<void> setVersion() async {
   scriptText += '    \$env:RUSTUP_HOME = "${getRustUpHomePath()}";\n';
   scriptText += '    \$env:_OLD_CARGO_HOME = \$env:CARGO_HOME;\n';
   scriptText += '    \$env:CARGO_HOME = "${getCargoHomePath()}";\n';
+  scriptText += '    \$env:_OLD_CARGO_TARGET_DIR=\$env:CARGO_TARGET_DIR;\n';
+  scriptText += '    \$env:CARGO_TARGET_DIR="${getCargoTargetPath()}"\n';
   scriptText +=
       '    \$env:_OLD_RUSTUP_DIST_SERVER = \$env:RUSTUP_DIST_SERVER;\n';
   scriptText +=
@@ -102,6 +107,8 @@ Future<void> setVersion() async {
   scriptText += 'SET _OLD_RUSTUP_HOME=';
   scriptText += 'SET CARGO_HOME=%_OLD_CARGO_HOME%\n';
   scriptText += 'SET _OLD_CARGO_HOME=';
+  scriptText += 'SET CARGO_TARGET_DIR=%_OLD_CARGO_TARGET_DIR%\n';
+  scriptText += 'SET _OLD_CARGO_TARGET_DIR=';
   scriptText += 'SET RUSTUP_DIST_SERVER=%_OLD_RUSTUP_DIST_SERVER%\n';
   scriptText += 'SET _OLD_RUSTUP_DIST_SERVER=\n';
   scriptText += 'SET RUSTUP_DIST_ROOT=%_OLD_RUSTUP_DIST_ROOT%\n';
@@ -121,6 +128,8 @@ Future<void> setVersion() async {
   scriptText += '    \$env:_OLD_RUSTUP_HOME = "";\n';
   scriptText += '    \$env:CARGO_HOME = \$env:_OLD_CARGO_HOME;\n';
   scriptText += '    \$env:_OLD_CARGO_HOME = "";\n';
+  scriptText += '    \$env:CARGO_TARGET_DIR = \$env:_OLD_CARGO_TARGET_DIR;\n';
+  scriptText += '    \$env:_OLD_CARGO_TARGET_DIR = "";\n';
   scriptText +=
       '    \$env:RUSTUP_DIST_SERVER = \$env:_OLD_RUSTUP_DIST_SERVER;\n';
   scriptText += '    \$env:_OLD_RUSTUP_DIST_SERVER = ""\n';
@@ -415,12 +424,20 @@ class RustVmUnInstall extends Command {
     var cargoHomeDir = Directory(getCargoHomePath());
     if (await cargoHomeDir.exists()) {
       await cargoHomeDir.delete(recursive: true);
+      anyvm_util.logger
+          .i('Directory renamed/moved successfully.: ${getCargoHomePath()} ');
+    }
+    var cargoTargetDir = Directory(getCargoTargetPath());
+    if (await cargoTargetDir.exists()) {
+      await cargoTargetDir.delete(recursive: true);
+      anyvm_util.logger
+          .i('Directory renamed/moved successfully.: ${getCargoTargetPath()} ');
     }
     var rustUpHomeDir = Directory(getRustUpHomePath());
     if (await rustUpHomeDir.exists()) {
       await rustUpHomeDir.delete(recursive: true);
+      anyvm_util.logger
+          .i('Directory renamed/moved successfully.: ${getRustUpHomePath()} ');
     }
-    anyvm_util.logger.i(
-        'Directory renamed/moved successfully.: ${getCargoHomePath()} and ${getRustUpHomePath()}');
   }
 }
