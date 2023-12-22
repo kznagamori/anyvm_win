@@ -11,6 +11,7 @@ import 'package:anyvm_win/anyvm_nodejsvm.dart' as anyvm_nodejsvm;
 import 'package:anyvm_win/anyvm_pythonvm.dart' as anyvm_pythonvm;
 import 'package:anyvm_win/anyvm_rustvm.dart' as anyvm_rustvm;
 import 'package:anyvm_win/anyvm_mingwvm.dart' as anyvm_mingwvm;
+import 'package:anyvm_win/anyvm_llvmvm.dart' as anyvm_llvmvm;
 import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
 import 'package:path/path.dart' as path;
 
@@ -44,6 +45,7 @@ class InitVm extends Command {
     activates.add(anyvm_pythonvm.vmActivate);
     activates.add(anyvm_rustvm.vmActivate);
     activates.add(anyvm_mingwvm.vmActivate);
+    activates.add(anyvm_llvmvm.vmActivate);
     activates.add(anyvm_cmakevm.vmActivate);
     activates.add(anyvm_bazelvm.vmActivate);
     activates.add(anyvm_dotnetvm.vmActivate);
@@ -56,6 +58,7 @@ class InitVm extends Command {
     deactivates.add(anyvm_pythonvm.vmDeactivate);
     deactivates.add(anyvm_rustvm.vmDeactivate);
     deactivates.add(anyvm_mingwvm.vmDeactivate);
+    deactivates.add(anyvm_llvmvm.vmDeactivate);
     deactivates.add(anyvm_cmakevm.vmDeactivate);
     deactivates.add(anyvm_bazelvm.vmDeactivate);
     deactivates.add(anyvm_dotnetvm.vmDeactivate);

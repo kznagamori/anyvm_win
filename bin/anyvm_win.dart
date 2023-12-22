@@ -12,6 +12,7 @@ import 'package:anyvm_win/anyvm_nodejsvm.dart' as anyvm_nodejsvm;
 import 'package:anyvm_win/anyvm_pythonvm.dart' as anyvm_pythonvm;
 import 'package:anyvm_win/anyvm_rustvm.dart' as anyvm_rustvm;
 import 'package:anyvm_win/anyvm_mingwvm.dart' as anyvm_mingwvm;
+import 'package:anyvm_win/anyvm_llvmvm.dart' as anyvm_llvmvm;
 import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
 import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
@@ -42,7 +43,8 @@ void main(List<String> args) async {
   runner.addCommand(anyvm_nodejsvm.NodejsVm());
   runner.addCommand(anyvm_pythonvm.PythonVm());
   runner.addCommand(anyvm_rustvm.RustVm());
-  runner.addCommand(anyvm_mingwvm.MingwLLVMVm());
+  runner.addCommand(anyvm_mingwvm.MinGWVm());
+  runner.addCommand(anyvm_llvmvm.LLVMVm());
   runner.addCommand(anyvm_cmakevm.CMakeVm());
   runner.addCommand(anyvm_bazelvm.BazelVm());
   runner.addCommand(anyvm_dotnetvm.DotnetVm());

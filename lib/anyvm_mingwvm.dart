@@ -7,11 +7,11 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:path/path.dart' as path;
 
-const String versionCacheJsonName = 'mingw_llvm_vm_version_cache.json';
-const String vmName = 'MingwLLVMVm';
-const String langName = 'MingwLLVMLang';
-const String vmActivate = 'MingwLLVMVmActivate';
-const String vmDeactivate = 'MingwLLVMVmDeactivate';
+const String versionCacheJsonName = 'mingw_vm_version_cache.json';
+const String vmName = 'MinGWVm';
+const String langName = 'MinGW';
+const String vmActivate = 'MinGWVmActivate';
+const String vmDeactivate = 'MinGWVmDeactivate';
 const String sevenZipConsoleURL = 'https://www.7-zip.org/a/7zr.exe';
 const String sevenZipConsoleName = '7zr.exe';
 const String sevenZipURL = 'https://www.7-zip.org/download.html';
@@ -20,8 +20,8 @@ const String sevenZipLinkURL = 'https://www.7-zip.org/a/';
 String getEnvDirectory() {
   String appDir = anyvm_util.getApplicationDirectory();
   String anyvmDir = Directory(appDir).parent.path;
-  anyvm_util.logger.d(path.join(anyvmDir, 'envs', 'mingw_llvm'));
-  return path.join(anyvmDir, 'envs', 'mingw_llvm');
+  anyvm_util.logger.d(path.join(anyvmDir, 'envs', 'mingw'));
+  return path.join(anyvmDir, 'envs', 'mingw');
 }
 
 String getEnvCacheDirectory() {
@@ -30,44 +30,22 @@ String getEnvCacheDirectory() {
   return path.join(envDir, 'install-cache');
 }
 
-String getMingwEnvPath() {
-  return path.join(getEnvDirectory(), 'mingw64');
-}
-
-String getLLVMEnvPath() {
-  return path.join(getEnvDirectory(), 'llvm');
-}
-
 String get7ZipPath() {
   return path.join(getEnvCacheDirectory(), '7z', '7z.exe');
 }
 
 List<String> getVersionDirectory() {
   List<String> versionDir = <String>[];
-
-  var mingwDirectory = Directory(getMingwEnvPath());
-  if (!mingwDirectory.existsSync()) {
-    mingwDirectory.createSync(recursive: true);
+  var directory = Directory(getEnvDirectory());
+  if (!directory.existsSync()) {
+    directory.createSync(recursive: true);
   }
-  List<FileSystemEntity> mingwEntities = mingwDirectory.listSync();
-  var llvmDirectory = Directory(getLLVMEnvPath());
-  if (!llvmDirectory.existsSync()) {
-    llvmDirectory.createSync(recursive: true);
-  }
-  List<FileSystemEntity> llvmEntities = llvmDirectory.listSync();
-
-  for (var mingwEntity in mingwEntities) {
-    if (mingwEntity is Directory) {
-      RegExp pattern = RegExp(r'^\d+\.\d+\.\d+');
-      if (pattern.hasMatch(path.basename(mingwEntity.path))) {
-        for (var llvmEntity in llvmEntities) {
-          if (llvmEntity is Directory) {
-            if (pattern.hasMatch(path.basename(llvmEntity.path))) {
-              versionDir.add(
-                  '${path.basename(mingwEntity.path)}:${path.basename(llvmEntity.path)}');
-            }
-          }
-        }
+  List<FileSystemEntity> entities = directory.listSync();
+  for (var entity in entities) {
+    if (entity is Directory) {
+      RegExp pattern = RegExp(r'^\d+\.\d+\.\d+.*$');
+      if (pattern.hasMatch(path.basename(entity.path))) {
+        versionDir.add(path.basename(entity.path));
       }
     }
   }
@@ -77,20 +55,17 @@ List<String> getVersionDirectory() {
 
 Future<void> setVersion(String version) async {
   await unSetVersion();
-  var parts = version.split(':');
-  var mingwVesion = parts[0];
-  var llvmVesion = parts[1];
 
-  var mingwLLVMCurrentDirPath = path.join(getEnvDirectory(), 'current');
-  anyvm_util.logger.d(mingwLLVMCurrentDirPath);
-  var mingwLLVMCurrentDir = Directory(mingwLLVMCurrentDirPath);
+  var mingwCurrentDirPath = path.join(getEnvDirectory(), 'current');
+  anyvm_util.logger.d(mingwCurrentDirPath);
+  var mingwCurrentDir = Directory(mingwCurrentDirPath);
 
-  if (!await mingwLLVMCurrentDir.exists()) {
-    await mingwLLVMCurrentDir.create(recursive: true);
-    anyvm_util.logger.i('$mingwLLVMCurrentDirPath creatred');
+  if (!await mingwCurrentDir.exists()) {
+    await mingwCurrentDir.create(recursive: true);
+    anyvm_util.logger.i('$mingwCurrentDirPath creatred');
   }
 
-  var mingwVersionDirPath = path.join(getMingwEnvPath(), mingwVesion);
+  var mingwVersionDirPath = path.join(getEnvDirectory(), version);
   anyvm_util.logger.d(mingwVersionDirPath);
   var mingwVersionDir = Directory(mingwVersionDirPath);
 
@@ -98,21 +73,6 @@ Future<void> setVersion(String version) async {
     anyvm_util.logger.w('mingw version does not exist');
     return;
   }
-
-  var llvmVersionDirPath = path.join(getLLVMEnvPath(), llvmVesion);
-  anyvm_util.logger.d(llvmVersionDirPath);
-  var llvmVersionDir = Directory(llvmVersionDirPath);
-
-  if (!await llvmVersionDir.exists()) {
-    anyvm_util.logger.w('llvm version does not exist');
-    return;
-  }
-
-  var mingwCurrentDirPath = path.join(mingwLLVMCurrentDirPath, 'mingw64');
-  var mingwCurrentDir = Directory(mingwCurrentDirPath);
-
-  var llvmCurrentDirPath = path.join(mingwLLVMCurrentDirPath, 'llvm');
-  var llvmCurrentDir = Directory(llvmCurrentDirPath);
 
   if (await mingwCurrentDir.exists()) {
     var args = ['/C', 'RMDIR', mingwCurrentDirPath];
@@ -143,52 +103,21 @@ Future<void> setVersion(String version) async {
         .i('Junction created: $mingwCurrentDirPath -> $mingwVersionDirPath');
   }
 
-  if (await llvmCurrentDir.exists()) {
-    var args = ['/C', 'RMDIR', llvmCurrentDirPath];
-    anyvm_util.logger.d('cmd.exe');
-    for (var arg in args) {
-      anyvm_util.logger.d(arg);
-    }
-    ProcessResult result = await Process.run('cmd.exe', args);
-    if (result.exitCode != 0) {
-      anyvm_util.logger.e('Failed to delete junction: ${result.stderr}');
-      return;
-    } else {
-      anyvm_util.logger.i('Derectory deleted: $llvmCurrentDirPath');
-    }
-  }
-
-  args = ['/C', 'MKLINK', '/J', llvmCurrentDirPath, llvmVersionDirPath];
-  anyvm_util.logger.d('cmd.exe');
-  for (var arg in args) {
-    anyvm_util.logger.d(arg);
-  }
-  result = await Process.run('cmd.exe', args);
-  if (result.exitCode != 0) {
-    anyvm_util.logger.e('${result.stderr}');
-  } else {
-    anyvm_util.logger
-        .i('Junction created: $mingwCurrentDirPath -> $mingwVersionDirPath');
-  }
   var mingwBinPath = path.join(mingwCurrentDirPath, 'bin');
   var mingw32BinPath =
       path.join(mingwCurrentDirPath, 'x86_64-w64-mingw32', 'bin');
-  var llvmBinPath = path.join(llvmCurrentDirPath, 'bin');
 
-  var setPath = '$mingwBinPath;$mingw32BinPath;$llvmBinPath;';
+  var setPath = '$mingwBinPath;$mingw32BinPath;';
   anyvm_util.logger.d(setPath);
 
   var scriptsDir = anyvm_util.getScriptsDirectory();
   String scriptText;
-  //LIBCLANG_PATH
   var activateScriptBat = path.join(scriptsDir, '$vmActivate.bat');
   scriptText = '';
   scriptText += '@ECHO OFF\n';
   scriptText += 'IF DEFINED _${vmName}_ENV_VAL GOTO END_SET_ENV_VAL\n';
   scriptText += 'SET _${vmName}_ENV_VAL={"yes"}\n';
   scriptText += 'SET PATH=$setPath%PATH%\n';
-  scriptText += 'SET _OLD_LIBCLANG_PATH=%LIBCLANG_PATH%\n';
-  scriptText += 'SET LIBCLANG_PATH=$llvmBinPath\n';
   scriptText += ':END_SET_ENV_VAL\n';
 
   anyvm_util.logger.d(scriptText);
@@ -200,7 +129,6 @@ Future<void> setVersion(String version) async {
   scriptText += 'if([string]::IsNullOrEmpty(\$env:_${vmName}_ENV_VAL)) {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "yes";\n';
   scriptText += '    \$env:Path = "$setPath" + \$env:Path;\n';
-  scriptText += '    \$env:LIBCLANG_PATH = "$llvmBinPath";\n';
   scriptText += '} else {\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
@@ -213,8 +141,6 @@ Future<void> setVersion(String version) async {
   scriptText += 'IF NOT DEFINED _${vmName}_ENV_VAL GOTO END_SET_ENV_VAL\n';
   scriptText += 'SET _${vmName}_ENV_VAL=\n';
   scriptText += 'SET PATH=%PATH:$setPath=%\n';
-  scriptText += 'SET LIBCLANG_PATH=%_OLD_LIBCLANG_PATH%\n';
-  scriptText += 'SET _OLD_LIBCLANG_PATH=\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptBat, scriptText);
@@ -226,8 +152,6 @@ Future<void> setVersion(String version) async {
   scriptText += '} else {\n';
   scriptText += '    \$env:_${vmName}_ENV_VAL = "";\n';
   scriptText += '    Set-Item ENV:Path \$env:Path.Replace("$setPath", "");\n';
-  scriptText += '    \$env:LIBCLANG_PATH = \$env:_OLD_LIBCLANG_PATH;\n';
-  scriptText += '    \$env:_OLD_LIBCLANG_PATH = "";\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);
@@ -242,14 +166,10 @@ Future<void> unSetVersion() async {
     return;
   }
 
-  var mingwLLVMvmCurrentDirPath = path.join(getEnvDirectory(), 'current');
-  anyvm_util.logger.d(mingwLLVMvmCurrentDirPath);
+  var mingwCurrentDirPath = path.join(getEnvDirectory(), 'current');
+  anyvm_util.logger.d(mingwCurrentDirPath);
 
-  var mingwCurrentDirPath = path.join(mingwLLVMvmCurrentDirPath, 'mingw64');
   var mingwCurrentDir = Directory(mingwCurrentDirPath);
-
-  var llvmCurrentDirPath = path.join(mingwLLVMvmCurrentDirPath, 'llvm');
-  var llvmCurrentDir = Directory(llvmCurrentDirPath);
 
   if (await mingwCurrentDir.exists()) {
     var args = ['/C', 'RMDIR', mingwCurrentDirPath];
@@ -264,21 +184,6 @@ Future<void> unSetVersion() async {
     }
     anyvm_util.logger
         .i('Directory renamed/moved successfully.:$mingwCurrentDirPath');
-  }
-
-  if (await llvmCurrentDir.exists()) {
-    var args = ['/C', 'RMDIR', llvmCurrentDirPath];
-    anyvm_util.logger.d('cmd.exe');
-    for (var arg in args) {
-      anyvm_util.logger.d(arg);
-    }
-    ProcessResult result = await Process.run('cmd.exe', args);
-    if (result.exitCode != 0) {
-      anyvm_util.logger.e('Failed to delete junction: ${result.stderr}');
-      return;
-    }
-    anyvm_util.logger
-        .i('Directory renamed/moved successfully.:$llvmCurrentDirPath');
   }
 
   var scriptsDir = anyvm_util.getScriptsDirectory();
@@ -324,20 +229,20 @@ int compareVersion(String version1, String version2) {
   return 0; // versions are equal
 }
 
-class MingwLLVMVm extends Command {
+class MinGWVm extends Command {
   @override
   final name = vmName;
   @override
-  final description = 'MingwLLVM version manager.';
+  final description = 'MinGW version manager.';
 
-  MingwLLVMVm() {
-    addSubcommand(MingwLLVMVmInstall());
-    addSubcommand(MingwLLVMVmUpdate());
-    addSubcommand(MingwLLVMVmVersions());
-    addSubcommand(MingwLLVMVmVersion());
-    addSubcommand(MingwLLVMVmSet());
-    addSubcommand(MingwLLVMVmUnset());
-    addSubcommand(MingwLLVMVmUnInstall());
+  MinGWVm() {
+    addSubcommand(MinGWVmInstall());
+    addSubcommand(MinGWVmUpdate());
+    addSubcommand(MinGWVmVersions());
+    addSubcommand(MinGWVmVersion());
+    addSubcommand(MinGWVmSet());
+    addSubcommand(MinGWVmUnset());
+    addSubcommand(MinGWVmUnInstall());
   }
   @override
   void run() {
@@ -345,13 +250,13 @@ class MingwLLVMVm extends Command {
   }
 }
 
-class MingwLLVMVmInstall extends Command {
+class MinGWVmInstall extends Command {
   @override
   final name = 'install';
   @override
   final description = 'see $vmName install -h';
 
-  MingwLLVMVmInstall() {
+  MinGWVmInstall() {
     argParser.addFlag('list', abbr: 'l', help: 'List all available versions.');
     argParser.addFlag('lastest', help: 'Lastest version to install.');
     argParser.addOption('version', abbr: 'v', help: 'Version to install.');
@@ -363,13 +268,9 @@ class MingwLLVMVmInstall extends Command {
         path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
     File file = File(jsonPath);
     String jsonString = await file.readAsString();
-    List<Map<String, dynamic>> mingwLLVMVVmVersionList =
-        (jsonDecode(jsonString) as List)
-            .map((item) => item as Map<String, dynamic>)
-            .toList();
-
-    var mingwVersionList = mingwLLVMVVmVersionList[0]['mingw64'];
-    var llvmVersionList = mingwLLVMVVmVersionList[1]['llvm'];
+    List<Map<String, dynamic>> versionList = (jsonDecode(jsonString) as List)
+        .map((item) => item as Map<String, dynamic>)
+        .toList();
 
     final isList = argResults?['list'] ?? false;
     if (isList) {
@@ -377,11 +278,8 @@ class MingwLLVMVmInstall extends Command {
         printUsage();
         return;
       }
-      anyvm_util.logger.i('<Mingw64Vesion>:<LLVMVesion>');
-      for (var mingw in mingwVersionList) {
-        for (var llvm in llvmVersionList) {
-          anyvm_util.logger.i('${mingw['version']}:${llvm['version']}');
-        }
+      for (var item in versionList) {
+        anyvm_util.logger.i(item['version']);
       }
       return;
     }
@@ -391,20 +289,16 @@ class MingwLLVMVmInstall extends Command {
         printUsage();
         return;
       }
-
-      await install(mingwVersionList.last, llvmVersionList.last);
+      await install(versionList.last);
       return;
     }
 
     final version = argResults?['version'];
     if (version != null) {
       try {
-        var parts = version.split(':');
-        Map<String, dynamic> mingw =
-            mingwVersionList.firstWhere((map) => map['version'] == parts[0]);
-        Map<String, dynamic> llvm =
-            llvmVersionList.firstWhere((map) => map['version'] == parts[1]);
-        await install(mingw, llvm);
+        Map<String, dynamic> foundMap =
+            versionList.firstWhere((map) => map['version'] == version);
+        await install(foundMap);
       } catch (e) {
         anyvm_util.logger.i('No version found');
       }
@@ -412,11 +306,9 @@ class MingwLLVMVmInstall extends Command {
     }
   }
 
-  Future<void> install(
-      Map<String, dynamic> mingw, Map<String, dynamic> llvm) async {
+  Future<void> install(Map<String, dynamic> item) async {
     await install7z();
-    await installMingw(mingw);
-    await installLLVM(llvm);
+    await installMinGW(item);
   }
 
   Future<void> install7z() async {
@@ -501,20 +393,13 @@ class MingwLLVMVmInstall extends Command {
     }
   }
 
-  Future<void> installMingw(Map<String, dynamic> item) async {
-    var mingwEnvPath = getMingwEnvPath();
-    var mingwEnv = Directory(mingwEnvPath);
-    if (!await mingwEnv.exists()) {
-      await mingwEnv.create(recursive: true);
-      anyvm_util.logger.i('$mingwEnvPath creatred');
-    }
+  Future<void> installMinGW(Map<String, dynamic> item) async {
+    var envVerDirPath = path.join(getEnvDirectory(), item['version']);
+    anyvm_util.logger.d(envVerDirPath);
+    var envVerDir = Directory(envVerDirPath);
 
-    var mingwVerDirPath = path.join(mingwEnvPath, item['version']);
-    anyvm_util.logger.d(mingwVerDirPath);
-    var mingwVerDir = Directory(mingwVerDirPath);
-
-    if (await mingwVerDir.exists()) {
-      anyvm_util.logger.i('Mingw64 already installed');
+    if (await envVerDir.exists()) {
+      anyvm_util.logger.i('Already installed');
       return;
     }
 
@@ -551,70 +436,9 @@ class MingwLLVMVmInstall extends Command {
     }
 
     if (await mingwExtractDir.exists()) {
-      await mingwExtractDir.rename(mingwVerDirPath);
+      await mingwExtractDir.rename(envVerDirPath);
       anyvm_util.logger
-          .i('Directory renamed/moved successfully.: $mingwVerDirPath');
-    }
-
-    if (await file.exists()) {
-      await file.delete();
-      anyvm_util.logger.i('File deleted successfully.: $filePath');
-    }
-  }
-
-  Future<void> installLLVM(Map<String, dynamic> item) async {
-    var llvmEnvPath = getLLVMEnvPath();
-
-    var llvmEnv = Directory(llvmEnvPath);
-    if (!await llvmEnv.exists()) {
-      await llvmEnv.create(recursive: true);
-      anyvm_util.logger.i('$llvmEnvPath creatred');
-    }
-
-    var llvmVerDirPath = path.join(llvmEnvPath, item['version']);
-    anyvm_util.logger.d(llvmVerDirPath);
-    var llvmVerDir = Directory(llvmVerDirPath);
-
-    if (await llvmVerDir.exists()) {
-      anyvm_util.logger.i('LLVM already installed');
-      return;
-    }
-
-    var envCacheDirPath = getEnvCacheDirectory();
-    anyvm_util.logger.d(envCacheDirPath);
-    var envCacheDir = Directory(envCacheDirPath);
-
-    if (!(await envCacheDir.exists())) {
-      await envCacheDir.create(recursive: true);
-      anyvm_util.logger.i('$envCacheDirPath creatred');
-    }
-
-    var filePath = path.join(envCacheDirPath, item['file']);
-    var file = File(filePath);
-    if (!await file.exists()) {
-      try {
-        await anyvm_util.downloadFileWithProgress(item['url'], filePath);
-      } catch (e) {
-        anyvm_util.logger.e('Error during downloading: $e');
-        return;
-      }
-    }
-    var llvmExtractDirPath = path.join(envCacheDirPath, 'llvm');
-    var llvmExtractDir = Directory(llvmExtractDirPath);
-    try {
-      var result = await Process.start(
-          get7ZipPath(), ['x', filePath, '-o$llvmExtractDirPath', '-y']);
-      if (await result.exitCode != 0) {
-        anyvm_util.logger.e('Failed to delete 7z extract: ${result.stderr}');
-      }
-    } catch (e) {
-      anyvm_util.logger.e('Failed to delete 7z extract: $e');
-    }
-
-    if (await llvmExtractDir.exists()) {
-      await llvmExtractDir.rename(llvmVerDirPath);
-      anyvm_util.logger
-          .i('Directory renamed/moved successfully.: $llvmVerDirPath');
+          .i('Directory renamed/moved successfully.: $envVerDirPath');
     }
 
     if (await file.exists()) {
@@ -624,20 +448,19 @@ class MingwLLVMVmInstall extends Command {
   }
 }
 
-class MingwLLVMVmUpdate extends Command {
+class MinGWVmUpdate extends Command {
   @override
   final name = 'update';
   @override
   final description = 'Update the list of installable $langName versions';
 
-  MingwLLVMVmUpdate();
+  MinGWVmUpdate();
 
   @override
   Future<void> run() async {
     final exe = 'git';
     var args = <String>[];
 
-    List<Map<String, dynamic>> mingw_llvmVersionList = <Map<String, dynamic>>[];
     //mingw64
     args.clear();
     args.add('ls-remote');
@@ -687,72 +510,28 @@ class MingwLLVMVmUpdate extends Command {
         };
         versionList.add(versionMap);
       }
-      mingw_llvmVersionList.add({'mingw64': versionList});
-    }
-    //llvm
-    args.clear();
-    args.add('ls-remote');
-    args.add('--tags');
-    args.add('https://github.com/llvm/llvm-project.git');
+      String jsonString =
+          const JsonEncoder.withIndent('  ').convert(versionList);
+      anyvm_util.logger.d(jsonString);
 
-    anyvm_util.logger.d(exe);
-    for (var arg in args) {
-      anyvm_util.logger.d(arg);
-    }
-    result = await Process.run(exe, args);
-    if (result.exitCode != 0) {
-      anyvm_util.logger.e('Failed to git: ${result.stderr}');
-      return;
-    } else {
-      var versions = <String>[];
-      var tags = result.stdout.split('\n');
-      anyvm_util.logger.d(tags);
-      for (var tag in tags) {
-        var tagInfo = tag.split('\t');
-        if (tagInfo.length > 1) {
-          var version = tagInfo[1].replaceAll('refs/tags/llvmorg-', '');
-          RegExp pattern = RegExp(r'^\d+\.\d+\.\d+$');
-          if (pattern.hasMatch(version)) {
-            if (anyvm_util.compareVersion(version, '14.0.0') >= 0) {
-              versions.add(version);
-            }
-          }
-        }
-      }
-      versions.sort(anyvm_util.compareVersion);
-      List<Map<String, dynamic>> versionList = <Map<String, dynamic>>[];
-      for (var version in versions) {
-        Map<String, dynamic> versionMap = {
-          'version': version,
-          'url':
-              'https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/LLVM-$version-win64.exe',
-          'file': 'LLVM-$version-win64.exe'
-        };
-        versionList.add(versionMap);
-      }
-      mingw_llvmVersionList.add({'llvm': versionList});
-    }
-    String jsonString =
-        const JsonEncoder.withIndent('  ').convert(mingw_llvmVersionList);
-    anyvm_util.logger.d(jsonString);
+      var jsonPath =
+          path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
+      anyvm_util.logger.d(jsonPath);
 
-    var jsonPath =
-        path.join(anyvm_util.getApplicationDirectory(), versionCacheJsonName);
-    anyvm_util.logger.d(jsonPath);
-
-    File file = File(jsonPath);
-    await file.writeAsString(jsonString);
-    anyvm_util.logger.i('$jsonPath creatred');
+      File file = File(jsonPath);
+      await file.writeAsString(jsonString);
+      anyvm_util.logger.i('$jsonPath creatred');
+    }
   }
 }
 
-class MingwLLVMVmVersions extends Command {
+class MinGWVmVersions extends Command {
   @override
   final name = 'versions';
   @override
   final description = 'Install a $langName version';
 
-  MingwLLVMVmVersions();
+  MinGWVmVersions();
 
   @override
   Future<void> run() async {
@@ -772,13 +551,13 @@ class MingwLLVMVmVersions extends Command {
   }
 }
 
-class MingwLLVMVmVersion extends Command {
+class MinGWVmVersion extends Command {
   @override
   final name = 'version';
   @override
   final description = 'Show the current $langName version';
 
-  MingwLLVMVmVersion();
+  MinGWVmVersion();
 
   @override
   Future<void> run() async {
@@ -791,13 +570,13 @@ class MingwLLVMVmVersion extends Command {
   }
 }
 
-class MingwLLVMVmSet extends Command {
+class MinGWVmSet extends Command {
   @override
   final name = 'set';
   @override
   final description = 'see $vmName set -h';
 
-  MingwLLVMVmSet() {
+  MinGWVmSet() {
     argParser.addOption('version', abbr: 'v', help: 'Version to set.');
   }
 
@@ -818,13 +597,13 @@ class MingwLLVMVmSet extends Command {
   }
 }
 
-class MingwLLVMVmUnset extends Command {
+class MinGWVmUnset extends Command {
   @override
   final name = 'unset';
   @override
   final description = 'Unset the $langName version';
 
-  MingwLLVMVmUnset();
+  MinGWVmUnset();
 
   @override
   Future<void> run() async {
@@ -832,13 +611,13 @@ class MingwLLVMVmUnset extends Command {
   }
 }
 
-class MingwLLVMVmUnInstall extends Command {
+class MinGWVmUnInstall extends Command {
   @override
   final name = 'uninstall';
   @override
   final description = 'see $vmName uninstall -h';
 
-  MingwLLVMVmUnInstall() {
+  MinGWVmUnInstall() {
     argParser.addOption('version', abbr: 'v', help: 'Version to uninstall.');
   }
 
