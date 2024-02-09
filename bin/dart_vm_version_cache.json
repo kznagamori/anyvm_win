@@ -453,5 +453,10 @@
     "version": "3.2.5",
     "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.2.5/sdk/dartsdk-windows-x64-release.zip",
     "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.2.6",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.2.6/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
   }
 ]

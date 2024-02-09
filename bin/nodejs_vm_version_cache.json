@@ -898,5 +898,10 @@
     "version": "21.6.0",
     "url": "https://nodejs.org/dist/v21.6.0/node-v21.6.0-win-x64.zip",
     "file": "node-v21.6.0-win-x64.zip"
+  },
+  {
+    "version": "21.6.1",
+    "url": "https://nodejs.org/dist/v21.6.1/node-v21.6.1-win-x64.zip",
+    "file": "node-v21.6.1-win-x64.zip"
   }
 ]

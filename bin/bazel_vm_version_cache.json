@@ -50,8 +50,23 @@
     "file": "bazel-6.4.0-windows-x86_64.zip"
   },
   {
+    "version": "6.5.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/6.5.0/bazel-6.5.0-windows-x86_64.zip",
+    "file": "bazel-6.5.0-windows-x86_64.zip"
+  },
+  {
     "version": "7.0.0",
     "url": "https://github.com/bazelbuild/bazel/releases/download/7.0.0/bazel-7.0.0-windows-x86_64.zip",
     "file": "bazel-7.0.0-windows-x86_64.zip"
+  },
+  {
+    "version": "7.0.1",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.0.1/bazel-7.0.1-windows-x86_64.zip",
+    "file": "bazel-7.0.1-windows-x86_64.zip"
+  },
+  {
+    "version": "7.0.2",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.0.2/bazel-7.0.2-windows-x86_64.zip",
+    "file": "bazel-7.0.2-windows-x86_64.zip"
   }
 ]
