@@ -953,5 +953,15 @@
     "version": "3.28.3",
     "url": "https://github.com/Kitware/CMake/releases/download/v3.28.3/cmake-3.28.3-windows-x86_64.zip",
     "file": "cmake-3.28.3-windows-x86_64.zip"
+  },
+  {
+    "version": "3.28.4",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.28.4/cmake-3.28.4-windows-x86_64.zip",
+    "file": "cmake-3.28.4-windows-x86_64.zip"
+  },
+  {
+    "version": "3.29.0",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.29.0/cmake-3.29.0-windows-x86_64.zip",
+    "file": "cmake-3.29.0-windows-x86_64.zip"
   }
 ]
