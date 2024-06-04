@@ -185,6 +185,11 @@
     "file": "python-3.11.8-amd64.exe"
   },
   {
+    "version": "3.11.9",
+    "url": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe",
+    "file": "python-3.11.9-amd64.exe"
+  },
+  {
     "version": "3.12.0",
     "url": "https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe",
     "file": "python-3.12.0-amd64.exe"
@@ -198,5 +203,10 @@
     "version": "3.12.2",
     "url": "https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe",
     "file": "python-3.12.2-amd64.exe"
+  },
+  {
+    "version": "3.12.3",
+    "url": "https://www.python.org/ftp/python/3.12.3/python-3.12.3-amd64.exe",
+    "file": "python-3.12.3-amd64.exe"
   }
 ]

@@ -438,5 +438,25 @@
     "version": "3.19.4",
     "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.19.4-stable.zip",
     "file": "flutter_windows_3.19.4-stable.zip"
+  },
+  {
+    "version": "3.19.5",
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.19.5-stable.zip",
+    "file": "flutter_windows_3.19.5-stable.zip"
+  },
+  {
+    "version": "3.19.6",
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.19.6-stable.zip",
+    "file": "flutter_windows_3.19.6-stable.zip"
+  },
+  {
+    "version": "3.22.0",
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.22.0-stable.zip",
+    "file": "flutter_windows_3.22.0-stable.zip"
+  },
+  {
+    "version": "3.22.1",
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.22.1-stable.zip",
+    "file": "flutter_windows_3.22.1-stable.zip"
   }
 ]
