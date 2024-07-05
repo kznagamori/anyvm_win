@@ -703,5 +703,10 @@
     "version": "8.0.301",
     "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.301-windows-x64-binaries",
     "file": "dotnet-sdk-8.0.301-win-x64.zip"
+  },
+  {
+    "version": "8.0.302",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.302-windows-x64-binaries",
+    "file": "dotnet-sdk-8.0.302-win-x64.zip"
   }
 ]
