@@ -176,7 +176,7 @@ PS C:\> anyvm PythonVm versions
 | FlutterVm    | Flutter    | https://flutter.dev/                                         |
 | GoVm         | Go         | https://go.dev/                                              |
 | LLVMVm       | LLVM       | https://github.com/llvm/llvm-project                         |
-| MinGWVm      | MinGW      | https://github.com/niXman/mingw-builds-binaries              |
+| MinGWVm      | MinGW      | https://github.com/niXman/mingw-builds-binaries<br>MinGWを使用する場合は、anyvm_winを日本語やスペースを含まないパスに配置する必要があります。 |
 | NinjaVm      | Ninja      | https://ninja-build.org/                                     |
 | NodejsVm     | Node.js    | https://nodejs.org/                                          |
 | PythonVm     | Python     | https://www.python.org/                                      |
