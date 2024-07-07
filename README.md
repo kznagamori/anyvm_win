@@ -18,6 +18,7 @@
 
 - 開発ツールは、**Powershell（pwsh）**や**コマンドプロンプト**で使用することを想定しています。
 - **VSCode**は、**Powershell（pwsh）**や**コマンドプロンプト**から起動することで、本ツールの機能を使用できます。
+- **anyenv**は`global`、localの概念があったが、set/unsetでバージョン切り替えのみ。
 - **Powershell（pwsh）**は、起動時に自動実行するスクリプトがあり、そこから本ツールのスクリプトを実行することで本ツールの機能を使用できます。
 - **コマンドプロンプト**はレジストリに起動時に自動実行するバッチファイルを設定することができます。そのバッチファイルから本ツールのバッチファイルを実行することで本ツールの機能を使用できます。
 - 使い方でWindows環境への影響度が決められます。
@@ -167,20 +168,20 @@ PS C:\> anyvm PythonVm versions
 
 現在サポートする開発ツールは以下となります。
 
-| 開発ツール名 | 開発ツール | 備考                                            |
-| ------------ | ---------- | ----------------------------------------------- |
-| BazelVm      | Bazel      | https://bazel.build/?hl=ja                      |
-| CMakeVm      | CMake      | https://cmake.org/                              |
-| DartVm       | Dart       | https://dart.dev/                               |
-| FlutterVm    | Flutter    | https://flutter.dev/                            |
-| GoVm         | Go         | https://go.dev/                                 |
-| LLVMVm       | LLVM       | https://github.com/llvm/llvm-project            |
-| MinGWVm      | MinGW      | https://github.com/niXman/mingw-builds-binaries |
-| NinjaVm      | Ninja      | https://ninja-build.org/                        |
-| NodejsVm     | Node.js    | https://nodejs.org/                             |
-| PythonVm     | Python     | https://www.python.org/                         |
-| RustVm       | Rust       | https://www.rust-lang.org/                      |
-| dotnetVm     | .NET       | https://dotnet.microsoft.com/                   |
+| 開発ツール名 | 開発ツール | 備考                                                         |
+| ------------ | ---------- | ------------------------------------------------------------ |
+| BazelVm      | Bazel      | https://bazel.build/?hl=ja                                   |
+| CMakeVm      | CMake      | https://cmake.org/                                           |
+| DartVm       | Dart       | https://dart.dev/                                            |
+| FlutterVm    | Flutter    | https://flutter.dev/                                         |
+| GoVm         | Go         | https://go.dev/                                              |
+| LLVMVm       | LLVM       | https://github.com/llvm/llvm-project                         |
+| MinGWVm      | MinGW      | https://github.com/niXman/mingw-builds-binaries              |
+| NinjaVm      | Ninja      | https://ninja-build.org/                                     |
+| NodejsVm     | Node.js    | https://nodejs.org/                                          |
+| PythonVm     | Python     | https://www.python.org/                                      |
+| RustVm       | Rust       | https://www.rust-lang.org/<br>Rustはrustupでのバージョン管理を想定しているため、anyvm_winではバージョンの設定はできません。 |
+| dotnetVm     | .NET       | https://dotnet.microsoft.com/                                |
 
 ### 4.2. コマンド
 
@@ -329,4 +330,39 @@ D:\repos\anyvm_win\scripts\PythonVmActivate.ps1 creatred
 ```bat
 @ECHO OFF
 ```
+
+
+
+## Appendex： Rust
+
+### Rustのインストール
+
+Rustのインストールは以下のコマンドで行っています。
+
+```
+rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-gnu --default-toolchain stable
+```
+
+Rustのツールチェインはgcc(MinGW)を使用する設定でインストールを行っています。
+
+
+
+### Rustのツールチェイン
+
+Rustのツールチェインは、Rustでクレート（外部パッケージ）をビルドする際に使用されるコンパイラです。
+本ツールでMinGWのインストール、有効化することでクレートのビルドをすることができます。
+しかし標準はVisualC++のため、一部のクレートのビルドに失敗します。
+
+VisualStudioをインストールしている場合は、以下のコマンドでVisualStudioのコンパイラを使用することができます。
+
+```
+rustup toolchain install stable-msvc
+rustup default stable-msvc
+```
+
+
+
+
+
+
 
