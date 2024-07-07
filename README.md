@@ -5,6 +5,7 @@
 
 ## 1. コンセプト
 
+- Windowsでプログラミングがしたい。
 - Linuxで使用される**anyenv**のように開発ツールのバージョン管理を行いたい。
 - Windowsの環境（レジストリやインストールアプリケーションなど）に影響を与えないようにしたい。
 - **anyenv**が起動シェル（`.bashrc`など）でバージョンを管理しているように、Windowsでも起動シェルで管理したい。
@@ -28,10 +29,18 @@
 #### 2.1.1. 影響度: 低
 
 開発ツールを使用する前に、本ツールのスクリプトもしくはバッチファイルを毎回実行することで、開発ツールを使用できる状態にします。
+
+本ツールを使用する場合は、展開した先のスクリプトを呼び出して使用します。
+
+- Powershell(pwsh)： `<anyvm_winフォルダーのパス>\bin\ anyvm.ps1`
+- コマンドプロンプト：`<anyvm_winフォルダーのパス>\bin\anyvm.bat`
+
+
+
 本ツールのスクリプトもしくはバッチファイルを実行しない限り開発ツールを使用できる状態にならないため、Windows環境への影響度は低く（ほとんどなし）となります。実行するスクリプトは以下となります。
 
-- Powershell(pwsh)： `<anyvm_winフォルダーのパス>\scripts\PythonVmActivate.ps1`
-- コマンドプロンプト：`<anyvm_winフォルダーのパス>\scripts\PythonVmActivate.bat`
+- Powershell(pwsh)： `<anyvm_winフォルダーのパス>\scripts\AnyVmActivate.ps1`
+- コマンドプロンプト：`<anyvm_winフォルダーのパス>\scripts\AnyVmActivate.bat`
 
 
 
@@ -75,7 +84,6 @@ anyvm_win
 │   ├── nodejs_vm_version_cache.json
 │   ├── python_vm_version_cache.json
 │   └── rust_vm_version_cache.json
-├── scripts
 ├── setup_jp.bat
 └── tools
     └── symexe.exe
