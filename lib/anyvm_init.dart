@@ -13,6 +13,8 @@ import 'package:anyvm_win/anyvm_rustvm.dart' as anyvm_rustvm;
 import 'package:anyvm_win/anyvm_mingwvm.dart' as anyvm_mingwvm;
 import 'package:anyvm_win/anyvm_llvmvm.dart' as anyvm_llvmvm;
 import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
+import 'package:anyvm_win/anyvm_androidsdkvm.dart' as anyvm_androidsdkvm;
+import 'package:anyvm_win/anyvm_gradlevm.dart' as anyvm_gradlevm;
 import 'package:path/path.dart' as path;
 
 class InitVm extends Command {
@@ -49,6 +51,8 @@ class InitVm extends Command {
     activates.add(anyvm_cmakevm.vmActivate);
     activates.add(anyvm_bazelvm.vmActivate);
     activates.add(anyvm_dotnetvm.vmActivate);
+    activates.add(anyvm_androidsdkvm.vmActivate);
+    activates.add(anyvm_gradlevm.vmActivate);
 
     deactivates.add(anyvm_dartvm.vmDeactivate);
     deactivates.add(anyvm_fluttervm.vmDeactivate);
@@ -62,6 +66,8 @@ class InitVm extends Command {
     deactivates.add(anyvm_cmakevm.vmDeactivate);
     deactivates.add(anyvm_bazelvm.vmDeactivate);
     deactivates.add(anyvm_dotnetvm.vmDeactivate);
+    deactivates.add(anyvm_androidsdkvm.vmDeactivate);
+    deactivates.add(anyvm_gradlevm.vmDeactivate);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.bat');
     scriptText = '';
