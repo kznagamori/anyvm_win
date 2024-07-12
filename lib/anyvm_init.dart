@@ -15,6 +15,7 @@ import 'package:anyvm_win/anyvm_llvmvm.dart' as anyvm_llvmvm;
 import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
 import 'package:anyvm_win/anyvm_androidsdkvm.dart' as anyvm_androidsdkvm;
 import 'package:anyvm_win/anyvm_gradlevm.dart' as anyvm_gradlevm;
+import 'package:anyvm_win/anyvm_jdkvm.dart' as anyvm_jdkvm;
 import 'package:path/path.dart' as path;
 
 class InitVm extends Command {
@@ -53,6 +54,7 @@ class InitVm extends Command {
     activates.add(anyvm_dotnetvm.vmActivate);
     activates.add(anyvm_androidsdkvm.vmActivate);
     activates.add(anyvm_gradlevm.vmActivate);
+    activates.add(anyvm_jdkvm.vmActivate);
 
     deactivates.add(anyvm_dartvm.vmDeactivate);
     deactivates.add(anyvm_fluttervm.vmDeactivate);
@@ -68,6 +70,7 @@ class InitVm extends Command {
     deactivates.add(anyvm_dotnetvm.vmDeactivate);
     deactivates.add(anyvm_androidsdkvm.vmDeactivate);
     deactivates.add(anyvm_gradlevm.vmDeactivate);
+    deactivates.add(anyvm_jdkvm.vmDeactivate);
 
     scriptPath = path.join(scriptDirPath, 'AnyVmActivate.bat');
     scriptText = '';
