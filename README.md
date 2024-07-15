@@ -69,25 +69,35 @@ anyvm_winは以下のファイルから構成されています。
 
 ```
 anyvm_win
-├── bin
-│   ├── anyvm.bat
-│   ├── anyvm.ps1
-│   ├── anyvm_win.exe
-│   ├── bazel_vm_version_cache.json
-│   ├── cmake_vm_version_cache.json
-│   ├── dart_vm_version_cache.json
-│   ├── dotnet_vm_version_cache.json
-│   ├── flutter_vm_version_cache.json
-│   ├── go_vm_version_cache.json
-│   ├── llvm_vm_version_cache.json
-│   ├── mingw_vm_version_cache.json
-│   ├── ninja_vm_version_cache.json
-│   ├── nodejs_vm_version_cache.json
-│   ├── python_vm_version_cache.json
-│   └── rust_vm_version_cache.json
-├── setup_jp.bat
-└── tools
-    └── symexe.exe
+├─ setup_jp.bat
+│  
+├─bin
+│      anyvm.bat
+│      anyvm.ps1
+│      anyvm_win.exe
+│      bazel_vm_version_cache.json
+│      cmake_vm_version_cache.json
+│      dart_vm_version_cache.json
+│      dotnet_vm_version_cache.json
+│      flutter_vm_version_cache.json
+│      go_vm_version_cache.json
+│      gradle_vm_version_cache.json
+│      jdk_vm_version_cache.json
+│      llvm_vm_version_cache.json
+│      mingw_vm_version_cache.json
+│      ninja_vm_version_cache.json
+│      nodejs_vm_version_cache.json
+│      python_vm_version_cache.json
+│      rust_vm_version_cache.json
+│      
+├─scripts
+│      AnyVmActivate.bat
+│      AnyVmActivate.ps1
+│      AnyVmDeactivate.bat
+│      AnyVmDeactivate.ps1
+│      
+└─tools
+        symexe.exe
 ```
 
 
@@ -182,6 +192,9 @@ PS C:\> anyvm PythonVm versions
 | PythonVm     | Python     | https://www.python.org/                                      |
 | RustVm       | Rust       | https://www.rust-lang.org/<br>Rustはrustupでのバージョン管理を想定しているため、anyvm_winではバージョンの設定はできません。 |
 | dotnetVm     | .NET       | https://dotnet.microsoft.com/                                |
+| AndroidSDKVm     | Android Studio<br>コマンドライン ツール       | https://developer.android.com/studio<br>最新版のインストールのみ対応                                |
+| JDKVm     | OpenJDK       | https://adoptium.net/                               |
+| GradleVm     | Gradle       | https://gradle.org/                                |
 
 ### 4.2. コマンド
 
@@ -198,9 +211,17 @@ PS C:\> anyvm PythonVm versions
 | versions |                 |              | インストールされているバージョンの一覧を表示します。         |
 | update   |                 |              | インストール可能なバージョンの検索を行います。<br>実行する場合はgitコマンドにパスが通っている必要があります。 |
 
-### 4.3. 例
+#### 4.3. 全体コマンド
+| コマンド | 説明                                                         |
+| -------- | ------------------------------------------------------------ |
+| init     | インストールやanyvm自身の更新時に行うコマンド         |
+| rehash   | 開発ツールの環境変数を更新します。<br> setやunsetを行った後に実行する必要があります。|
+| unset    | すべての開発ツールのunsetを実行します。             |
 
-#### 4.3.1. インストール可能なPythonのバージョン一覧を表示する
+
+### 4.4. 例
+
+#### 4.4.1. インストール可能なPythonのバージョン一覧を表示する
 
 ```powershell
 PS C:\> anyvm PythonVm install -l
@@ -251,7 +272,7 @@ PS C:\> anyvm PythonVm install -l
 
 
 
-#### 4.3.2. バージョン3.9.13のPythonをインストールする。
+#### 4.4.2. バージョン3.9.13のPythonをインストールする。
 
 ```powershell
 PS C:\> anyvm PythonVm install --version 3.9.13
@@ -265,7 +286,7 @@ File deleted successfully.: D:\repos\anyvm_win\envs\python\install-cache\python-
 
 
 
-#### 4.3.3. インストールされているバージョンを確認する。
+#### 4.4.3. インストールされているバージョンを確認する。
 
 ```powershell
 PS C:\> anyvm PythonVm versions
@@ -280,7 +301,7 @@ PS C:\> anyvm PythonVm versions
 
 
 
-#### 4.3.4. バージョン3.9.13のPythonを有効する。
+#### 4.4.4. バージョン3.9.13のPythonを有効する。
 
 ```powershell
 PS C:\> anyvm PythonVm set --version 3.9.13
@@ -295,7 +316,7 @@ PS C:\>
 
 
 
-#### 4.3.5. 指定したバージョンのPythonが有効になっているか確認する。
+#### 4.4.5. 指定したバージョンのPythonが有効になっているか確認する。
 
 ```powershell
 PS C:\> anyvm PythonVm version
@@ -307,7 +328,7 @@ PS C:\>
 
 
 
-#### 4.3.6. 開発ツールのPythonを無効化する。
+#### 4.4.6. 開発ツールのPythonを無効化する。
 
 ```powershell
 PS C:\> anyvm PythonVm unset
@@ -320,9 +341,15 @@ D:\repos\anyvm_win\scripts\PythonVmActivate.ps1 creatred
 
 ## 5. アンインストール
 
-**anyvm_win**を展開ディレクトリを削除することでアンインストールすることができます。
+1. 以下のコマンドで開発ルールを無効にします。
+```
+anyvm unset
+```
 
-**3.3. 起動時自動実行スクリプトの設定**を行った場合は、以下の作業を行う必要があります。
+2. **anyvm_win**を展開ディレクトリを削除することでアンインストールすることができます。
+
+
+3. **3.3. 起動時自動実行スクリプトの設定**を行った場合は、以下の作業を行う必要があります。
 
 - Powershell（pwsh）の起動時自動実行スクリプトの削除
 - コマンドプロンプトの起動バッチファイルを以下に変更する。
@@ -330,6 +357,10 @@ D:\repos\anyvm_win\scripts\PythonVmActivate.ps1 creatred
 ```bat
 @ECHO OFF
 ```
+
+4. NodeJSを使用した場合は、npmやyarnのキャッシュを削除する必要があります。
+- npm: `C:\Users\<YourUsername>\AppData\Local\npm-cache`
+- yarn: `C:\Users\<YourUsername>\AppData\Local\Yarn\Cache`
 
 
 
