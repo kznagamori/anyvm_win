@@ -19,7 +19,7 @@
 - 開発ツールは、**Powershell（pwsh）**や**コマンドプロンプト**で使用することを想定しています。
 - **VSCode**は、**Powershell（pwsh）**や**コマンドプロンプト**から起動することで、本ツールの機能を使用できます。
 - **anyenv**は`global`、localの概念があったが、set/unsetでバージョン切り替えのみ。
-- **Powershell（pwsh）**は、起動時に自動実行するスクリプトがあり、そこから本ツールのスクリプトを実行することで本ツールの機能を使用できます。
+- **Powershell（pwsh）** は、起動時に自動実行するスクリプトがあり、そこから本ツールのスクリプトを実行することで本ツールの機能を使用できます。
 - **コマンドプロンプト**はレジストリに起動時に自動実行するバッチファイルを設定することができます。そのバッチファイルから本ツールのバッチファイルを実行することで本ツールの機能を使用できます。
 - 使い方でWindows環境への影響度が決められます。
 
@@ -341,7 +341,7 @@ D:\repos\anyvm_win\scripts\PythonVmActivate.ps1 creatred
 
 ## 5. アンインストール
 
-1. 以下のコマンドで開発ルールを無効にします。
+1. 以下のコマンドですべて開発ツールを無効にします。
 ```
 anyvm unset
 ```
@@ -359,6 +359,7 @@ anyvm unset
 ```
 
 4. NodeJSを使用した場合は、npmやyarnのキャッシュを削除する必要があります。
+   npmやyarnのキャッシュディレクトリは以下となります。
 - npm: `C:\Users\<YourUsername>\AppData\Local\npm-cache`
 - yarn: `C:\Users\<YourUsername>\AppData\Local\Yarn\Cache`
 
