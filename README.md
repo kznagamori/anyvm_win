@@ -64,7 +64,7 @@ anyvm_winは有効化したツールは以下のディレクトリにジャン�
 
 ### 3.1. anyvm_winの取得
 
-[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0_RC2/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
+[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0_RC3/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
 anyvm_winは以下のファイルから構成されています。
 
 ```
@@ -162,7 +162,7 @@ D:\anyvm_win>.\bin\anyvm.bat init
 
 ## 4. 使用方法
 
-anyvm_winは`anyvm <開発ツール名> <コマンド> <オプション>`で使用します。
+anyvm_winは`anyvm <開発ツール名> <コマンド> <オプション> ...`で使用します。
 
 以下はanyvm_winでインストールしたPythonのバージョン一覧を表示する例です。
 
@@ -191,9 +191,10 @@ PS C:\> anyvm PythonVm versions
 | PythonVm     | Python     | https://www.python.org/                                      |
 | RustVm       | Rust       | https://www.rust-lang.org/<br>Rustはrustupでのバージョン管理を想定しているため、anyvm_winではバージョンの設定はできません。 |
 | dotnetVm     | .NET       | https://dotnet.microsoft.com/                                |
-| AndroidSDKVm     | Android Studio<br>コマンドライン ツール       | https://developer.android.com/studio<br>最新版のインストールのみ対応                                |
-| JDKVm     | OpenJDK       | https://adoptium.net/                               |
-| GradleVm     | Gradle       | https://gradle.org/                                |
+| AndroidSDKVm | Android Studio<br>コマンドライン ツール       | https://developer.android.com/studio<br>最新版のインストールのみ対応                                |
+| JDKVm        | OpenJDK    | https://adoptium.net/                                        |
+| GradleVm     | Gradle     | https://gradle.org/                                          |
+| KotlinVm     | Kotlin     | https://kotlinlang.org/                                      |
 
 ### 4.2. コマンド
 `anyvm <開発ツール名> <コマンド> <オプション> ...` で実行を行います。
@@ -202,7 +203,7 @@ PS C:\> anyvm PythonVm versions
 | -------- | --------------- | ------------ | ------------------------------------------------------------ |
 | install  | -l or --list    |              | インストール可能なバージョンの一覧を表示する。（※1）         |
 | install  | -v or --version | バージョン   | 指定されたバージョンの開発ツールをインストールする。 <br>バージョンには※1で表示されるバージョンを指定する必要がある。 |
-| install  | --lastest       |              | 最後のバージョンの開発ツールをインストールする。             |
+| install  | --latest       |              | 最後のバージョンの開発ツールをインストールする。             |
 | uinstall | -v or --version | バージョン   | 指定したバージョンの開発ツールをアンインストールします。     |
 | set      | -v or --version | バージョン   | 指定したバージョンの開発ツールを有効化します。               |
 | unset    |                 |              | 開発ツールを無効化します。                                   |

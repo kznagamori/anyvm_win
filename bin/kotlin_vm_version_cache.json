@@ -1,0 +1,392 @@
+[
+  {
+    "version": "1.0.3",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.0.3/kotlin-compiler-1.0.3.zip",
+    "file": "kotlin-compiler-1.0.3.zip"
+  },
+  {
+    "version": "1.0.4",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.0.4/kotlin-compiler-1.0.4.zip",
+    "file": "kotlin-compiler-1.0.4.zip"
+  },
+  {
+    "version": "1.0.5",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.0.5/kotlin-compiler-1.0.5.zip",
+    "file": "kotlin-compiler-1.0.5.zip"
+  },
+  {
+    "version": "1.0.6",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.0.6/kotlin-compiler-1.0.6.zip",
+    "file": "kotlin-compiler-1.0.6.zip"
+  },
+  {
+    "version": "1.0.7",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.0.7/kotlin-compiler-1.0.7.zip",
+    "file": "kotlin-compiler-1.0.7.zip"
+  },
+  {
+    "version": "1.1.1",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.1/kotlin-compiler-1.1.1.zip",
+    "file": "kotlin-compiler-1.1.1.zip"
+  },
+  {
+    "version": "1.1.2",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.2/kotlin-compiler-1.1.2.zip",
+    "file": "kotlin-compiler-1.1.2.zip"
+  },
+  {
+    "version": "1.1.3",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.3/kotlin-compiler-1.1.3.zip",
+    "file": "kotlin-compiler-1.1.3.zip"
+  },
+  {
+    "version": "1.1.4",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.4/kotlin-compiler-1.1.4.zip",
+    "file": "kotlin-compiler-1.1.4.zip"
+  },
+  {
+    "version": "1.1.50",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.50/kotlin-compiler-1.1.50.zip",
+    "file": "kotlin-compiler-1.1.50.zip"
+  },
+  {
+    "version": "1.1.51",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.51/kotlin-compiler-1.1.51.zip",
+    "file": "kotlin-compiler-1.1.51.zip"
+  },
+  {
+    "version": "1.1.60",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.60/kotlin-compiler-1.1.60.zip",
+    "file": "kotlin-compiler-1.1.60.zip"
+  },
+  {
+    "version": "1.1.61",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.1.61/kotlin-compiler-1.1.61.zip",
+    "file": "kotlin-compiler-1.1.61.zip"
+  },
+  {
+    "version": "1.2.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.0/kotlin-compiler-1.2.0.zip",
+    "file": "kotlin-compiler-1.2.0.zip"
+  },
+  {
+    "version": "1.2.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.10/kotlin-compiler-1.2.10.zip",
+    "file": "kotlin-compiler-1.2.10.zip"
+  },
+  {
+    "version": "1.2.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.20/kotlin-compiler-1.2.20.zip",
+    "file": "kotlin-compiler-1.2.20.zip"
+  },
+  {
+    "version": "1.2.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.21/kotlin-compiler-1.2.21.zip",
+    "file": "kotlin-compiler-1.2.21.zip"
+  },
+  {
+    "version": "1.2.30",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.30/kotlin-compiler-1.2.30.zip",
+    "file": "kotlin-compiler-1.2.30.zip"
+  },
+  {
+    "version": "1.2.31",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.31/kotlin-compiler-1.2.31.zip",
+    "file": "kotlin-compiler-1.2.31.zip"
+  },
+  {
+    "version": "1.2.40",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.40/kotlin-compiler-1.2.40.zip",
+    "file": "kotlin-compiler-1.2.40.zip"
+  },
+  {
+    "version": "1.2.41",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.41/kotlin-compiler-1.2.41.zip",
+    "file": "kotlin-compiler-1.2.41.zip"
+  },
+  {
+    "version": "1.2.50",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.50/kotlin-compiler-1.2.50.zip",
+    "file": "kotlin-compiler-1.2.50.zip"
+  },
+  {
+    "version": "1.2.51",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.51/kotlin-compiler-1.2.51.zip",
+    "file": "kotlin-compiler-1.2.51.zip"
+  },
+  {
+    "version": "1.2.60",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.60/kotlin-compiler-1.2.60.zip",
+    "file": "kotlin-compiler-1.2.60.zip"
+  },
+  {
+    "version": "1.2.61",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.61/kotlin-compiler-1.2.61.zip",
+    "file": "kotlin-compiler-1.2.61.zip"
+  },
+  {
+    "version": "1.2.70",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.70/kotlin-compiler-1.2.70.zip",
+    "file": "kotlin-compiler-1.2.70.zip"
+  },
+  {
+    "version": "1.2.71",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.2.71/kotlin-compiler-1.2.71.zip",
+    "file": "kotlin-compiler-1.2.71.zip"
+  },
+  {
+    "version": "1.3.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.0/kotlin-compiler-1.3.0.zip",
+    "file": "kotlin-compiler-1.3.0.zip"
+  },
+  {
+    "version": "1.3.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.10/kotlin-compiler-1.3.10.zip",
+    "file": "kotlin-compiler-1.3.10.zip"
+  },
+  {
+    "version": "1.3.11",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.11/kotlin-compiler-1.3.11.zip",
+    "file": "kotlin-compiler-1.3.11.zip"
+  },
+  {
+    "version": "1.3.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.20/kotlin-compiler-1.3.20.zip",
+    "file": "kotlin-compiler-1.3.20.zip"
+  },
+  {
+    "version": "1.3.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.21/kotlin-compiler-1.3.21.zip",
+    "file": "kotlin-compiler-1.3.21.zip"
+  },
+  {
+    "version": "1.3.30",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.30/kotlin-compiler-1.3.30.zip",
+    "file": "kotlin-compiler-1.3.30.zip"
+  },
+  {
+    "version": "1.3.31",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.31/kotlin-compiler-1.3.31.zip",
+    "file": "kotlin-compiler-1.3.31.zip"
+  },
+  {
+    "version": "1.3.40",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.40/kotlin-compiler-1.3.40.zip",
+    "file": "kotlin-compiler-1.3.40.zip"
+  },
+  {
+    "version": "1.3.41",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.41/kotlin-compiler-1.3.41.zip",
+    "file": "kotlin-compiler-1.3.41.zip"
+  },
+  {
+    "version": "1.3.50",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.50/kotlin-compiler-1.3.50.zip",
+    "file": "kotlin-compiler-1.3.50.zip"
+  },
+  {
+    "version": "1.3.60",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.60/kotlin-compiler-1.3.60.zip",
+    "file": "kotlin-compiler-1.3.60.zip"
+  },
+  {
+    "version": "1.3.61",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.61/kotlin-compiler-1.3.61.zip",
+    "file": "kotlin-compiler-1.3.61.zip"
+  },
+  {
+    "version": "1.3.70",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.70/kotlin-compiler-1.3.70.zip",
+    "file": "kotlin-compiler-1.3.70.zip"
+  },
+  {
+    "version": "1.3.71",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.71/kotlin-compiler-1.3.71.zip",
+    "file": "kotlin-compiler-1.3.71.zip"
+  },
+  {
+    "version": "1.3.72",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.3.72/kotlin-compiler-1.3.72.zip",
+    "file": "kotlin-compiler-1.3.72.zip"
+  },
+  {
+    "version": "1.4.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.0/kotlin-compiler-1.4.0.zip",
+    "file": "kotlin-compiler-1.4.0.zip"
+  },
+  {
+    "version": "1.4.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.10/kotlin-compiler-1.4.10.zip",
+    "file": "kotlin-compiler-1.4.10.zip"
+  },
+  {
+    "version": "1.4.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.20/kotlin-compiler-1.4.20.zip",
+    "file": "kotlin-compiler-1.4.20.zip"
+  },
+  {
+    "version": "1.4.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.21/kotlin-compiler-1.4.21.zip",
+    "file": "kotlin-compiler-1.4.21.zip"
+  },
+  {
+    "version": "1.4.30",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.30/kotlin-compiler-1.4.30.zip",
+    "file": "kotlin-compiler-1.4.30.zip"
+  },
+  {
+    "version": "1.4.31",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.31/kotlin-compiler-1.4.31.zip",
+    "file": "kotlin-compiler-1.4.31.zip"
+  },
+  {
+    "version": "1.4.32",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.4.32/kotlin-compiler-1.4.32.zip",
+    "file": "kotlin-compiler-1.4.32.zip"
+  },
+  {
+    "version": "1.5.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.0/kotlin-compiler-1.5.0.zip",
+    "file": "kotlin-compiler-1.5.0.zip"
+  },
+  {
+    "version": "1.5.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.10/kotlin-compiler-1.5.10.zip",
+    "file": "kotlin-compiler-1.5.10.zip"
+  },
+  {
+    "version": "1.5.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.20/kotlin-compiler-1.5.20.zip",
+    "file": "kotlin-compiler-1.5.20.zip"
+  },
+  {
+    "version": "1.5.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.21/kotlin-compiler-1.5.21.zip",
+    "file": "kotlin-compiler-1.5.21.zip"
+  },
+  {
+    "version": "1.5.30",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.30/kotlin-compiler-1.5.30.zip",
+    "file": "kotlin-compiler-1.5.30.zip"
+  },
+  {
+    "version": "1.5.31",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.31/kotlin-compiler-1.5.31.zip",
+    "file": "kotlin-compiler-1.5.31.zip"
+  },
+  {
+    "version": "1.5.32",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.5.32/kotlin-compiler-1.5.32.zip",
+    "file": "kotlin-compiler-1.5.32.zip"
+  },
+  {
+    "version": "1.6.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.6.0/kotlin-compiler-1.6.0.zip",
+    "file": "kotlin-compiler-1.6.0.zip"
+  },
+  {
+    "version": "1.6.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.6.10/kotlin-compiler-1.6.10.zip",
+    "file": "kotlin-compiler-1.6.10.zip"
+  },
+  {
+    "version": "1.6.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.6.20/kotlin-compiler-1.6.20.zip",
+    "file": "kotlin-compiler-1.6.20.zip"
+  },
+  {
+    "version": "1.6.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.6.21/kotlin-compiler-1.6.21.zip",
+    "file": "kotlin-compiler-1.6.21.zip"
+  },
+  {
+    "version": "1.7.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.7.0/kotlin-compiler-1.7.0.zip",
+    "file": "kotlin-compiler-1.7.0.zip"
+  },
+  {
+    "version": "1.7.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.7.10/kotlin-compiler-1.7.10.zip",
+    "file": "kotlin-compiler-1.7.10.zip"
+  },
+  {
+    "version": "1.7.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.7.20/kotlin-compiler-1.7.20.zip",
+    "file": "kotlin-compiler-1.7.20.zip"
+  },
+  {
+    "version": "1.7.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.7.21/kotlin-compiler-1.7.21.zip",
+    "file": "kotlin-compiler-1.7.21.zip"
+  },
+  {
+    "version": "1.7.22",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.7.22/kotlin-compiler-1.7.22.zip",
+    "file": "kotlin-compiler-1.7.22.zip"
+  },
+  {
+    "version": "1.8.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.8.0/kotlin-compiler-1.8.0.zip",
+    "file": "kotlin-compiler-1.8.0.zip"
+  },
+  {
+    "version": "1.8.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.8.10/kotlin-compiler-1.8.10.zip",
+    "file": "kotlin-compiler-1.8.10.zip"
+  },
+  {
+    "version": "1.8.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.8.20/kotlin-compiler-1.8.20.zip",
+    "file": "kotlin-compiler-1.8.20.zip"
+  },
+  {
+    "version": "1.8.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.8.21/kotlin-compiler-1.8.21.zip",
+    "file": "kotlin-compiler-1.8.21.zip"
+  },
+  {
+    "version": "1.8.22",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.8.22/kotlin-compiler-1.8.22.zip",
+    "file": "kotlin-compiler-1.8.22.zip"
+  },
+  {
+    "version": "1.9.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.0/kotlin-compiler-1.9.0.zip",
+    "file": "kotlin-compiler-1.9.0.zip"
+  },
+  {
+    "version": "1.9.10",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.10/kotlin-compiler-1.9.10.zip",
+    "file": "kotlin-compiler-1.9.10.zip"
+  },
+  {
+    "version": "1.9.20",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.20/kotlin-compiler-1.9.20.zip",
+    "file": "kotlin-compiler-1.9.20.zip"
+  },
+  {
+    "version": "1.9.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.21/kotlin-compiler-1.9.21.zip",
+    "file": "kotlin-compiler-1.9.21.zip"
+  },
+  {
+    "version": "1.9.22",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.22/kotlin-compiler-1.9.22.zip",
+    "file": "kotlin-compiler-1.9.22.zip"
+  },
+  {
+    "version": "1.9.23",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.23/kotlin-compiler-1.9.23.zip",
+    "file": "kotlin-compiler-1.9.23.zip"
+  },
+  {
+    "version": "1.9.24",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.24/kotlin-compiler-1.9.24.zip",
+    "file": "kotlin-compiler-1.9.24.zip"
+  },
+  {
+    "version": "2.0.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v2.0.0/kotlin-compiler-2.0.0.zip",
+    "file": "kotlin-compiler-2.0.0.zip"
+  }
+]

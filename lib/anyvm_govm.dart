@@ -287,7 +287,7 @@ class GoVmInstall extends Command {
 
   GoVmInstall() {
     argParser.addFlag('list', abbr: 'l', help: 'List all available versions.');
-    argParser.addFlag('lastest', help: 'Lastest version to install.');
+    argParser.addFlag('latest', help: 'latest version to install.');
     argParser.addOption('version', abbr: 'v', help: 'Version to install.');
   }
 
@@ -312,7 +312,7 @@ class GoVmInstall extends Command {
       }
       return;
     }
-    final isLast = argResults?['lastest'] ?? false;
+    final isLast = argResults?['latest'] ?? false;
     if (isLast) {
       if (argResults?.rest.isNotEmpty == true) {
         printUsage();

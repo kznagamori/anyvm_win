@@ -17,6 +17,7 @@ import 'package:anyvm_win/anyvm_cmakevm.dart' as anyvm_cmakevm;
 import 'package:anyvm_win/anyvm_androidsdkvm.dart' as anyvm_androidsdkvm;
 import 'package:anyvm_win/anyvm_gradlevm.dart' as anyvm_gradlevm;
 import 'package:anyvm_win/anyvm_jdkvm.dart' as anyvm_jdkvm;
+import 'package:anyvm_win/anyvm_kotlinvm.dart' as anyvm_kotlinvm;
 import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
 
@@ -54,6 +55,7 @@ void main(List<String> args) async {
   runner.addCommand(anyvm_androidsdkvm.AndroidSDKVm());
   runner.addCommand(anyvm_gradlevm.GradleVm());
   runner.addCommand(anyvm_jdkvm.JDKVm());
+  runner.addCommand(anyvm_kotlinvm.KotlinVm());
 
   await runner.run(args).catchError((error) {
     if (error is! UsageException) throw error;
