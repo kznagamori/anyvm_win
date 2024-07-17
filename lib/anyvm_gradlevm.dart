@@ -49,6 +49,15 @@ Future<void> setVersion(String version) async {
   anyvm_util.logger.d(gradleCurrentDirPath);
   var gradleCurrentDir = Directory(gradleCurrentDirPath);
 
+  var gradleCacheDirPath = path.join(getEnvDirectory(), 'cache');
+  anyvm_util.logger.d(gradleCacheDirPath);
+  var gradleCacheDir = Directory(gradleCacheDirPath);
+
+  if (!(await gradleCacheDir.exists())) {
+    await gradleCacheDir.create(recursive: true);
+    anyvm_util.logger.i('$gradleCacheDirPath creatred');
+  }
+
   var gradleVersionDirPath = path.join(getEnvDirectory(), version);
   anyvm_util.logger.d(gradleVersionDirPath);
   var gradleVersionDir = Directory(gradleVersionDirPath);
@@ -99,6 +108,8 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET PATH=$setPath%PATH%\n';
   scriptText += 'SET _OLD_GRADLE_HOME=%GRADLE_HOME%\n';
   scriptText += 'SET GRADLE_HOME=$gradleCurrentDirPath\n';
+  scriptText += 'SET _OLD_GRADLE_USER_HOME=%GRADLE_USER_HOME%\n';
+  scriptText += 'SET GRADLE_USER_HOME=$gradleCacheDirPath\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(activateScriptBat, scriptText);
@@ -111,6 +122,8 @@ Future<void> setVersion(String version) async {
   scriptText += '    \$env:Path = "$setPath" + \$env:Path;\n';
   scriptText += '    \$env:_OLD_GRADLE_HOME = \$env:GRADLE_HOME;\n';
   scriptText += '    \$env:GRADLE_HOME = "$gradleCurrentDirPath";\n';
+  scriptText += '    \$env:_OLD_GRADLE_USER_HOME = \$env:GRADLE_USER_HOME;\n';
+  scriptText += '    \$env:GRADLE_USER_HOME = "$gradleCacheDirPath";\n';
   scriptText += '} else {\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
@@ -125,6 +138,8 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET PATH=%PATH:$setPath=%\n';
   scriptText += 'SET GRADLE_HOME=%_OLD_GRADLE_HOME%\n';
   scriptText += 'SET _OLD_GRADLE_HOME=\n';
+  scriptText += 'SET GRADLE_USER_HOME=%_OLD_GRADLE_USER_HOME%\n';
+  scriptText += 'SET _OLD_GRADLE_USER_HOME=\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptBat, scriptText);
@@ -138,6 +153,8 @@ Future<void> setVersion(String version) async {
   scriptText += '    Set-Item ENV:Path \$env:Path.Replace("$setPath", "");\n';
   scriptText += '    \$env:GRADLE_HOME = \$env:_OLD_GRADLE_HOME;\n';
   scriptText += '    \$env:_OLD_GRADLE_HOME = "";\n';
+  scriptText += '    \$env:GRADLE_USER_HOME = \$env:_OLD_GRADLE_USER_HOME;\n';
+  scriptText += '    \$env:_OLD_GRADLE_USER_HOME = "";\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);
