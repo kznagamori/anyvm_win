@@ -145,12 +145,17 @@ Future<void> setVersion() async {
       anyvm_util.logger.i('execute: $exe');
       anyvm_util.setVmVersion(vmName, result.stdout);
     }
+    anyvm_util.setVmVersion(vmName, '1.0');
   } catch (e) {
-    anyvm_util.logger.e('Failed to ecute command: $e');
+    anyvm_util.logger.e('Failed to execute command: $e');
   }
 }
 
 Future<void> unSetVersion() async {
+  var currentVersion = await anyvm_util.getVmVersion(vmName);
+  if (currentVersion == null) {
+    return;
+  }
   var scriptsDir = anyvm_util.getScriptsDirectory();
   String scriptText;
 
