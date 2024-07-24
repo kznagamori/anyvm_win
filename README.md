@@ -366,7 +366,7 @@ anyvm unset
 
 
 
-## Appendex： Rust
+## Appendix： Rust
 
 ### Rustのインストール
 
