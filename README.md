@@ -64,40 +64,38 @@ anyvm_winは有効化したツールは以下のディレクトリにジャン�
 
 ### 3.1. anyvm_winの取得
 
-[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0_RC3/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
+[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0_RC4/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
 anyvm_winは以下のファイルから構成されています。
 
 ```
 anyvm_win
-├─ setup_jp.bat
-│  
-├─bin
-│      anyvm.bat
-│      anyvm.ps1
-│      anyvm_win.exe
-│      bazel_vm_version_cache.json
-│      cmake_vm_version_cache.json
-│      dart_vm_version_cache.json
-│      dotnet_vm_version_cache.json
-│      flutter_vm_version_cache.json
-│      go_vm_version_cache.json
-│      gradle_vm_version_cache.json
-│      jdk_vm_version_cache.json
-│      llvm_vm_version_cache.json
-│      mingw_vm_version_cache.json
-│      ninja_vm_version_cache.json
-│      nodejs_vm_version_cache.json
-│      python_vm_version_cache.json
-│      rust_vm_version_cache.json
-│      
-├─scripts
-│      AnyVmActivate.bat
-│      AnyVmActivate.ps1
-│      AnyVmDeactivate.bat
-│      AnyVmDeactivate.ps1
-│      
-└─tools
-        symexe.exe
+├── bin
+│   ├── anyvm.bat
+│   ├── anyvm.ps1
+│   ├── anyvm_win.exe
+│   ├── bazel_vm_version_cache.json
+│   ├── cmake_vm_version_cache.json
+│   ├── dart_vm_version_cache.json
+│   ├── dotnet_vm_version_cache.json
+│   ├── flutter_vm_version_cache.json
+│   ├── go_vm_version_cache.json
+│   ├── gradle_vm_version_cache.json
+│   ├── jdk_vm_version_cache.json
+│   ├── kotlin_vm_version_cache.json
+│   ├── llvm_vm_version_cache.json
+│   ├── mingw_vm_version_cache.json
+│   ├── ninja_vm_version_cache.json
+│   ├── nodejs_vm_version_cache.json
+│   ├── python_vm_version_cache.json
+│   └── rust_vm_version_cache.json
+├── scripts
+│   ├── AnyVmActivate.bat
+│   ├── AnyVmActivate.ps1
+│   ├── AnyVmDeactivate.bat
+│   └── AnyVmDeactivate.ps1
+├── setup_jp.bat
+└── tools
+    └── symexe.exe
 ```
 
 
