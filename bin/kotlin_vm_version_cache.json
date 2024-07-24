@@ -385,6 +385,11 @@
     "file": "kotlin-compiler-1.9.24.zip"
   },
   {
+    "version": "1.9.25",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v1.9.25/kotlin-compiler-1.9.25.zip",
+    "file": "kotlin-compiler-1.9.25.zip"
+  },
+  {
     "version": "2.0.0",
     "url": "https://github.com/JetBrains/kotlin/releases/download/v2.0.0/kotlin-compiler-2.0.0.zip",
     "file": "kotlin-compiler-2.0.0.zip"
