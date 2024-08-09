@@ -1048,5 +1048,10 @@
     "version": "22.5.1",
     "url": "https://nodejs.org/dist/v22.5.1/node-v22.5.1-win-x64.zip",
     "file": "node-v22.5.1-win-x64.zip"
+  },
+  {
+    "version": "22.6.0",
+    "url": "https://nodejs.org/dist/v22.6.0/node-v22.6.0-win-x64.zip",
+    "file": "node-v22.6.0-win-x64.zip"
   }
 ]
