@@ -673,5 +673,10 @@
     "version": "8.9.0",
     "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.9.0/gradle-8.9-bin.zip",
     "file": "gradle-8.9-windows-x86_64.zip"
+  },
+  {
+    "version": "8.10.0",
+    "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.10.0/gradle-8.10-bin.zip",
+    "file": "gradle-8.10-windows-x86_64.zip"
   }
 ]

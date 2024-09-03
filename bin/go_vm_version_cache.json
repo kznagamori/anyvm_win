@@ -653,5 +653,10 @@
     "version": "1.22.6",
     "url": "https://go.dev/dl/go1.22.6.windows-amd64.zip",
     "file": "go1.22.6.windows-amd64.zip"
+  },
+  {
+    "version": "1.23.0",
+    "url": "https://go.dev/dl/go1.23.0.windows-amd64.zip",
+    "file": "go1.23.0.windows-amd64.zip"
   }
 ]

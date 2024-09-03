@@ -98,5 +98,10 @@
     "version": "7.3.0",
     "url": "https://github.com/bazelbuild/bazel/releases/download/7.3.0/bazel-7.3.0-windows-x86_64.zip",
     "file": "bazel-7.3.0-windows-x86_64.zip"
+  },
+  {
+    "version": "7.3.1",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/7.3.1/bazel-7.3.1-windows-x86_64.zip",
+    "file": "bazel-7.3.1-windows-x86_64.zip"
   }
 ]

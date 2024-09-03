@@ -160,6 +160,11 @@
     "file": "dotnet-sdk-6.0.132-win-x64.zip"
   },
   {
+    "version": "6.0.133",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.133-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.133-win-x64.zip"
+  },
+  {
     "version": "6.0.200",
     "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.200-windows-x64-binaries",
     "file": "dotnet-sdk-6.0.200-win-x64.zip"
@@ -403,6 +408,11 @@
     "version": "6.0.424",
     "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.424-windows-x64-binaries",
     "file": "dotnet-sdk-6.0.424-win-x64.zip"
+  },
+  {
+    "version": "6.0.425",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-6.0.425-windows-x64-binaries",
+    "file": "dotnet-sdk-6.0.425-win-x64.zip"
   },
   {
     "version": "7.0.101",
@@ -680,6 +690,11 @@
     "file": "dotnet-sdk-8.0.107-win-x64.zip"
   },
   {
+    "version": "8.0.108",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.108-windows-x64-binaries",
+    "file": "dotnet-sdk-8.0.108-win-x64.zip"
+  },
+  {
     "version": "8.0.200",
     "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.200-windows-x64-binaries",
     "file": "dotnet-sdk-8.0.200-win-x64.zip"
@@ -728,5 +743,20 @@
     "version": "8.0.303",
     "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.303-windows-x64-binaries",
     "file": "dotnet-sdk-8.0.303-win-x64.zip"
+  },
+  {
+    "version": "8.0.304",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.304-windows-x64-binaries",
+    "file": "dotnet-sdk-8.0.304-win-x64.zip"
+  },
+  {
+    "version": "8.0.400",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.400-windows-x64-binaries",
+    "file": "dotnet-sdk-8.0.400-win-x64.zip"
+  },
+  {
+    "version": "8.0.401",
+    "url": "https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-8.0.401-windows-x64-binaries",
+    "file": "dotnet-sdk-8.0.401-win-x64.zip"
   }
 ]
