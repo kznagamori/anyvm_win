@@ -1,0 +1,227 @@
+[
+  {
+    "version": "3.8.7",
+    "url": "https://www.python.org/ftp/python/3.8.7/python-3.8.7-amd64.exe",
+    "file": "python-3.8.7-amd64.exe"
+  },
+  {
+    "version": "3.8.8",
+    "url": "https://www.python.org/ftp/python/3.8.8/python-3.8.8-amd64.exe",
+    "file": "python-3.8.8-amd64.exe"
+  },
+  {
+    "version": "3.8.9",
+    "url": "https://www.python.org/ftp/python/3.8.9/python-3.8.9-amd64.exe",
+    "file": "python-3.8.9-amd64.exe"
+  },
+  {
+    "version": "3.8.10",
+    "url": "https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe",
+    "file": "python-3.8.10-amd64.exe"
+  },
+  {
+    "version": "3.9.1",
+    "url": "https://www.python.org/ftp/python/3.9.1/python-3.9.1-amd64.exe",
+    "file": "python-3.9.1-amd64.exe"
+  },
+  {
+    "version": "3.9.2",
+    "url": "https://www.python.org/ftp/python/3.9.2/python-3.9.2-amd64.exe",
+    "file": "python-3.9.2-amd64.exe"
+  },
+  {
+    "version": "3.9.4",
+    "url": "https://www.python.org/ftp/python/3.9.4/python-3.9.4-amd64.exe",
+    "file": "python-3.9.4-amd64.exe"
+  },
+  {
+    "version": "3.9.5",
+    "url": "https://www.python.org/ftp/python/3.9.5/python-3.9.5-amd64.exe",
+    "file": "python-3.9.5-amd64.exe"
+  },
+  {
+    "version": "3.9.6",
+    "url": "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe",
+    "file": "python-3.9.6-amd64.exe"
+  },
+  {
+    "version": "3.9.7",
+    "url": "https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe",
+    "file": "python-3.9.7-amd64.exe"
+  },
+  {
+    "version": "3.9.8",
+    "url": "https://www.python.org/ftp/python/3.9.8/python-3.9.8-amd64.exe",
+    "file": "python-3.9.8-amd64.exe"
+  },
+  {
+    "version": "3.9.9",
+    "url": "https://www.python.org/ftp/python/3.9.9/python-3.9.9-amd64.exe",
+    "file": "python-3.9.9-amd64.exe"
+  },
+  {
+    "version": "3.9.10",
+    "url": "https://www.python.org/ftp/python/3.9.10/python-3.9.10-amd64.exe",
+    "file": "python-3.9.10-amd64.exe"
+  },
+  {
+    "version": "3.9.11",
+    "url": "https://www.python.org/ftp/python/3.9.11/python-3.9.11-amd64.exe",
+    "file": "python-3.9.11-amd64.exe"
+  },
+  {
+    "version": "3.9.12",
+    "url": "https://www.python.org/ftp/python/3.9.12/python-3.9.12-amd64.exe",
+    "file": "python-3.9.12-amd64.exe"
+  },
+  {
+    "version": "3.9.13",
+    "url": "https://www.python.org/ftp/python/3.9.13/python-3.9.13-amd64.exe",
+    "file": "python-3.9.13-amd64.exe"
+  },
+  {
+    "version": "3.10.0",
+    "url": "https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe",
+    "file": "python-3.10.0-amd64.exe"
+  },
+  {
+    "version": "3.10.1",
+    "url": "https://www.python.org/ftp/python/3.10.1/python-3.10.1-amd64.exe",
+    "file": "python-3.10.1-amd64.exe"
+  },
+  {
+    "version": "3.10.2",
+    "url": "https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe",
+    "file": "python-3.10.2-amd64.exe"
+  },
+  {
+    "version": "3.10.3",
+    "url": "https://www.python.org/ftp/python/3.10.3/python-3.10.3-amd64.exe",
+    "file": "python-3.10.3-amd64.exe"
+  },
+  {
+    "version": "3.10.4",
+    "url": "https://www.python.org/ftp/python/3.10.4/python-3.10.4-amd64.exe",
+    "file": "python-3.10.4-amd64.exe"
+  },
+  {
+    "version": "3.10.5",
+    "url": "https://www.python.org/ftp/python/3.10.5/python-3.10.5-amd64.exe",
+    "file": "python-3.10.5-amd64.exe"
+  },
+  {
+    "version": "3.10.6",
+    "url": "https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe",
+    "file": "python-3.10.6-amd64.exe"
+  },
+  {
+    "version": "3.10.7",
+    "url": "https://www.python.org/ftp/python/3.10.7/python-3.10.7-amd64.exe",
+    "file": "python-3.10.7-amd64.exe"
+  },
+  {
+    "version": "3.10.8",
+    "url": "https://www.python.org/ftp/python/3.10.8/python-3.10.8-amd64.exe",
+    "file": "python-3.10.8-amd64.exe"
+  },
+  {
+    "version": "3.10.9",
+    "url": "https://www.python.org/ftp/python/3.10.9/python-3.10.9-amd64.exe",
+    "file": "python-3.10.9-amd64.exe"
+  },
+  {
+    "version": "3.10.10",
+    "url": "https://www.python.org/ftp/python/3.10.10/python-3.10.10-amd64.exe",
+    "file": "python-3.10.10-amd64.exe"
+  },
+  {
+    "version": "3.10.11",
+    "url": "https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe",
+    "file": "python-3.10.11-amd64.exe"
+  },
+  {
+    "version": "3.11.0",
+    "url": "https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe",
+    "file": "python-3.11.0-amd64.exe"
+  },
+  {
+    "version": "3.11.1",
+    "url": "https://www.python.org/ftp/python/3.11.1/python-3.11.1-amd64.exe",
+    "file": "python-3.11.1-amd64.exe"
+  },
+  {
+    "version": "3.11.2",
+    "url": "https://www.python.org/ftp/python/3.11.2/python-3.11.2-amd64.exe",
+    "file": "python-3.11.2-amd64.exe"
+  },
+  {
+    "version": "3.11.3",
+    "url": "https://www.python.org/ftp/python/3.11.3/python-3.11.3-amd64.exe",
+    "file": "python-3.11.3-amd64.exe"
+  },
+  {
+    "version": "3.11.4",
+    "url": "https://www.python.org/ftp/python/3.11.4/python-3.11.4-amd64.exe",
+    "file": "python-3.11.4-amd64.exe"
+  },
+  {
+    "version": "3.11.5",
+    "url": "https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe",
+    "file": "python-3.11.5-amd64.exe"
+  },
+  {
+    "version": "3.11.6",
+    "url": "https://www.python.org/ftp/python/3.11.6/python-3.11.6-amd64.exe",
+    "file": "python-3.11.6-amd64.exe"
+  },
+  {
+    "version": "3.11.7",
+    "url": "https://www.python.org/ftp/python/3.11.7/python-3.11.7-amd64.exe",
+    "file": "python-3.11.7-amd64.exe"
+  },
+  {
+    "version": "3.11.8",
+    "url": "https://www.python.org/ftp/python/3.11.8/python-3.11.8-amd64.exe",
+    "file": "python-3.11.8-amd64.exe"
+  },
+  {
+    "version": "3.11.9",
+    "url": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe",
+    "file": "python-3.11.9-amd64.exe"
+  },
+  {
+    "version": "3.12.0",
+    "url": "https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe",
+    "file": "python-3.12.0-amd64.exe"
+  },
+  {
+    "version": "3.12.1",
+    "url": "https://www.python.org/ftp/python/3.12.1/python-3.12.1-amd64.exe",
+    "file": "python-3.12.1-amd64.exe"
+  },
+  {
+    "version": "3.12.2",
+    "url": "https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe",
+    "file": "python-3.12.2-amd64.exe"
+  },
+  {
+    "version": "3.12.3",
+    "url": "https://www.python.org/ftp/python/3.12.3/python-3.12.3-amd64.exe",
+    "file": "python-3.12.3-amd64.exe"
+  },
+  {
+    "version": "3.12.4",
+    "url": "https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe",
+    "file": "python-3.12.4-amd64.exe"
+  },
+  {
+    "version": "3.12.5",
+    "url": "https://www.python.org/ftp/python/3.12.5/python-3.12.5-amd64.exe",
+    "file": "python-3.12.5-amd64.exe"
+  },
+  {
+    "version": "3.12.6",
+    "url": "https://www.python.org/ftp/python/3.12.6/python-3.12.6-amd64.exe",
+    "file": "python-3.12.6-amd64.exe"
+  }
+]
