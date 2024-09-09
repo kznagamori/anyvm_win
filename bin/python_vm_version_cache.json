@@ -218,5 +218,10 @@
     "version": "3.12.5",
     "url": "https://www.python.org/ftp/python/3.12.5/python-3.12.5-amd64.exe",
     "file": "python-3.12.5-amd64.exe"
+  },
+  {
+    "version": "3.12.6",
+    "url": "https://www.python.org/ftp/python/3.12.6/python-3.12.6-amd64.exe",
+    "file": "python-3.12.6-amd64.exe"
   }
 ]
