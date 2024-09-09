@@ -64,7 +64,7 @@ anyvm_winは有効化したツールは以下のディレクトリにジャン�
 
 ### 3.1. anyvm_winの取得
 
-[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0_RC4/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
+[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
 anyvm_winは以下のファイルから構成されています。
 
 ```
