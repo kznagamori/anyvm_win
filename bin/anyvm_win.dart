@@ -27,7 +27,7 @@ void main(List<String> args) async {
       help: 'Display the version of the tool.',
       negatable: false, callback: (version) {
     if (version) {
-      print('version 1.0.0');
+      print('version 1.0.1');
       exit(0);
     }
   });

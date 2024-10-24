@@ -188,5 +188,20 @@
     "version": "18.1.8",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/LLVM-18.1.8-win64.exe",
     "file": "LLVM-18.1.8-win64.exe"
+  },
+  {
+    "version": "19.1.0",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.0/LLVM-19.1.0-win64.exe",
+    "file": "LLVM-19.1.0-win64.exe"
+  },
+  {
+    "version": "19.1.1",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.1/LLVM-19.1.1-win64.exe",
+    "file": "LLVM-19.1.1-win64.exe"
+  },
+  {
+    "version": "19.1.2",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.2/LLVM-19.1.2-win64.exe",
+    "file": "LLVM-19.1.2-win64.exe"
   }
 ]
