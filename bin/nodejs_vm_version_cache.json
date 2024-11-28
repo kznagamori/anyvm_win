@@ -750,6 +750,11 @@
     "file": "node-v18.20.4-win-x64.zip"
   },
   {
+    "version": "18.20.5",
+    "url": "https://nodejs.org/dist/v18.20.5/node-v18.20.5-win-x64.zip",
+    "file": "node-v18.20.5-win-x64.zip"
+  },
+  {
     "version": "19.0.0",
     "url": "https://nodejs.org/dist/v19.0.0/node-v19.0.0-win-x64.zip",
     "file": "node-v19.0.0-win-x64.zip"
@@ -950,6 +955,16 @@
     "file": "node-v20.17.0-win-x64.zip"
   },
   {
+    "version": "20.18.0",
+    "url": "https://nodejs.org/dist/v20.18.0/node-v20.18.0-win-x64.zip",
+    "file": "node-v20.18.0-win-x64.zip"
+  },
+  {
+    "version": "20.18.1",
+    "url": "https://nodejs.org/dist/v20.18.1/node-v20.18.1-win-x64.zip",
+    "file": "node-v20.18.1-win-x64.zip"
+  },
+  {
     "version": "21.0.0",
     "url": "https://nodejs.org/dist/v21.0.0/node-v21.0.0-win-x64.zip",
     "file": "node-v21.0.0-win-x64.zip"
@@ -1068,5 +1083,40 @@
     "version": "22.8.0",
     "url": "https://nodejs.org/dist/v22.8.0/node-v22.8.0-win-x64.zip",
     "file": "node-v22.8.0-win-x64.zip"
+  },
+  {
+    "version": "22.9.0",
+    "url": "https://nodejs.org/dist/v22.9.0/node-v22.9.0-win-x64.zip",
+    "file": "node-v22.9.0-win-x64.zip"
+  },
+  {
+    "version": "22.10.0",
+    "url": "https://nodejs.org/dist/v22.10.0/node-v22.10.0-win-x64.zip",
+    "file": "node-v22.10.0-win-x64.zip"
+  },
+  {
+    "version": "22.11.0",
+    "url": "https://nodejs.org/dist/v22.11.0/node-v22.11.0-win-x64.zip",
+    "file": "node-v22.11.0-win-x64.zip"
+  },
+  {
+    "version": "23.0.0",
+    "url": "https://nodejs.org/dist/v23.0.0/node-v23.0.0-win-x64.zip",
+    "file": "node-v23.0.0-win-x64.zip"
+  },
+  {
+    "version": "23.1.0",
+    "url": "https://nodejs.org/dist/v23.1.0/node-v23.1.0-win-x64.zip",
+    "file": "node-v23.1.0-win-x64.zip"
+  },
+  {
+    "version": "23.2.0",
+    "url": "https://nodejs.org/dist/v23.2.0/node-v23.2.0-win-x64.zip",
+    "file": "node-v23.2.0-win-x64.zip"
+  },
+  {
+    "version": "23.3.0",
+    "url": "https://nodejs.org/dist/v23.3.0/node-v23.3.0-win-x64.zip",
+    "file": "node-v23.3.0-win-x64.zip"
   }
 ]

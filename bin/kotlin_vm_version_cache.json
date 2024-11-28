@@ -403,5 +403,15 @@
     "version": "2.0.20",
     "url": "https://github.com/JetBrains/kotlin/releases/download/v2.0.20/kotlin-compiler-2.0.20.zip",
     "file": "kotlin-compiler-2.0.20.zip"
+  },
+  {
+    "version": "2.0.21",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v2.0.21/kotlin-compiler-2.0.21.zip",
+    "file": "kotlin-compiler-2.0.21.zip"
+  },
+  {
+    "version": "2.1.0",
+    "url": "https://github.com/JetBrains/kotlin/releases/download/v2.1.0/kotlin-compiler-2.1.0.zip",
+    "file": "kotlin-compiler-2.1.0.zip"
   }
 ]

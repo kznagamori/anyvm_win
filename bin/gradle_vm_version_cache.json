@@ -678,5 +678,25 @@
     "version": "8.10.0",
     "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.10.0/gradle-8.10-bin.zip",
     "file": "gradle-8.10-windows-x86_64.zip"
+  },
+  {
+    "version": "8.10.1",
+    "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.10.1/gradle-8.10.1-bin.zip",
+    "file": "gradle-8.10.1-windows-x86_64.zip"
+  },
+  {
+    "version": "8.10.2",
+    "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.10.2/gradle-8.10.2-bin.zip",
+    "file": "gradle-8.10.2-windows-x86_64.zip"
+  },
+  {
+    "version": "8.11.0",
+    "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.11.0/gradle-8.11-bin.zip",
+    "file": "gradle-8.11-windows-x86_64.zip"
+  },
+  {
+    "version": "8.11.1",
+    "url": "https://github.com/gradle/gradle-distributions/releases/download/v8.11.1/gradle-8.11.1-bin.zip",
+    "file": "gradle-8.11.1-windows-x86_64.zip"
   }
 ]

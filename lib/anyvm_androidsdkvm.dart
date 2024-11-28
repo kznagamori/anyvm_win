@@ -117,6 +117,8 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET PATH=$setPath%PATH%\n';
   scriptText += 'SET _OLD_ANDROID_SDK_ROOT=%ANDROID_SDK_ROOT%\n';
   scriptText += 'SET ANDROID_SDK_ROOT=$androidSDKCurrentDirPath\n';
+  scriptText += 'SET _OLD_ANDROID_HOME=%ANDROID_HOME%\n';
+  scriptText += 'SET ANDROID_HOME=$androidSDKCurrentDirPath\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(activateScriptBat, scriptText);
@@ -129,6 +131,8 @@ Future<void> setVersion(String version) async {
   scriptText += '    \$env:Path = "$setPath" + \$env:Path;\n';
   scriptText += '    \$env:_OLD_ANDROID_SDK_ROOT = \$env:ANDROID_SDK_ROOT;\n';
   scriptText += '    \$env:ANDROID_SDK_ROOT = "$androidSDKCurrentDirPath";\n';
+  scriptText += '    \$env:_OLD_ANDROID_HOME = \$env:ANDROID_HOME;\n';
+  scriptText += '    \$env:ANDROID_HOME = "$androidSDKCurrentDirPath";\n';
   scriptText += '} else {\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
@@ -143,6 +147,8 @@ Future<void> setVersion(String version) async {
   scriptText += 'SET PATH=%PATH:$setPath=%\n';
   scriptText += 'SET ANDROID_SDK_ROOT=%_OLD_ANDROID_SDK_ROOT%\n';
   scriptText += 'SET _OLD_ANDROID_SDK_ROOT=\n';
+  scriptText += 'SET ANDROID_HOME=%_OLD_ANDROID_HOME%\n';
+  scriptText += 'SET _OLD_ANDROID_HOME=\n';
   scriptText += ':END_SET_ENV_VAL\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptBat, scriptText);
@@ -156,6 +162,8 @@ Future<void> setVersion(String version) async {
   scriptText += '    Set-Item ENV:Path \$env:Path.Replace("$setPath", "");\n';
   scriptText += '    \$env:ANDROID_SDK_ROOT = \$env:_OLD_ANDROID_SDK_ROOT;\n';
   scriptText += '    \$env:_OLD_ANDROID_SDK_ROOT = "";\n';
+  scriptText += '    \$env:ANDROID_HOME = \$env:_OLD_ANDROID_HOME;\n';
+  scriptText += '    \$env:_OLD_ANDROID_HOME = "";\n';
   scriptText += '}\n';
   anyvm_util.logger.d(scriptText);
   await anyvm_util.writeStringWithSjisEncoding(deActivateScriptPs1, scriptText);

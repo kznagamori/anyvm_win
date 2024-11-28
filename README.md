@@ -2,7 +2,6 @@
 開発ツールのバージョンを管理するツール
 
 
-
 ## 1. コンセプト
 
 - Windowsでプログラミングがしたい。
@@ -64,7 +63,7 @@ anyvm_winは有効化したツールは以下のディレクトリにジャン�
 
 ### 3.1. anyvm_winの取得
 
-[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.0/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
+[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.1/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
 anyvm_winは以下のファイルから構成されています。
 
 ```
@@ -366,7 +365,7 @@ anyvm unset
 
 
 
-## Appendix： Rust
+## Appendix A： Rust
 
 ### Rustのインストール
 
@@ -394,8 +393,25 @@ rustup default stable-msvc
 ```
 
 
-
-
+## Appendix B： 各開発ツールで一時的に設定される環境変数
+| 開発ツール名 | 環境変数名 | 備考                                                         |
+| ------------ | ---------- | ---------------------------------------------------------- |
+| BazelVm      | PATH      | envs\bazel\current                                         |
+| CMakeVm      | PATH      | envs\cmake\current\bin |
+|  DartVm        |  PATH<br>PUB_CACHE| envs\dart\current\bin;envs\dart\\.pub-cache\bin<br>envs\dart\\.pub-cache |
+| FlutterVm    | PATH<br>PUB_CACHE| envs\flutter\current\bin;envs\flutter\\.pub-cache\bin<br>envs\flutter\\.pub-cache |
+| GoVm         | Path<br>GOROOT<br>GOPATH<br>GOBIN<br>GOCACHE<br>GOENV<br>GO111MODULE<br>GOMODCACHE         | envs\go\current\bin;envs\go\go\bin<br>envs\go\current<br>envs\go\go<br>envs\go\go\bin<br>envs\go\current\go-build<br>envs\go\current\env<br>on<br>envs\go\current\pkg\mod |
+| LLVMVm       | PATH<br>LIBCLANG_PATH | envs\llvm\current\bin<br>envs\llvm\current\bin |
+| MinGWVm      | PATH      | envs\mingw\current\bin;envs\mingw\current\x86_64-w64-mingw32\bin |
+| NinjaVm      | PATH      | envs\ninja\current                                     |
+| NodejsVm     | PATH    | envs\nodejs\current                                          |
+| PythonVm     | PATH     | envs\python\current;envs\python\current\Scripts            |
+| RustVm       | PATH<br>RUSTUP_HOME<br>CARGO_HOME<br>RUSTUP_DIST_SERVER<br>RUSTUP_DIST_ROOT | envs\rust\\.cargo\bin<br>envs\rust\\.rustup<br>envs\rust\\.cargo<br>https://static.rust-lang.org<br>https://static.rust-lang.org/rustup |
+| dotnetVm | PATH<br>DOTNET_ROOT<br>DOTNET_ROOT(x86)<br>DOTNET_CLI_HOME<br>DOTNET_ADD_GLOBAL_TOOLS_TO_PATH<br>DOTNET_CLI_TELEMETRY_OPTOUT<br>NUGET_PACKAGES<br>NUGET_FALLBACK_PACKAGES<br>NUGET_HTTP_CACHE_PATH<br>NUGET_PERSIST_DG | envs\dotnet\current;envs\dotnet\\.dotnet\tools<br>envs\dotnet\current<br>envs\dotnet\current<br>\envs\dotnet<br>false<br>true<br>\envs\dotnet\nuget\packages<br>\envs\dotnet\nuget\fallback_packages<br>envs\dotnet\nuget\http_cache_path<br>\envs\dotnet\nuget\persist_dg|
+| AndroidSDKVm | PATH<br>ANDROID_SDK_ROOT<br>ANDROID_HOME       | envs\AndroidSDK\current\platform-tools;envs\AndroidSDK\current\cmdline-tools\latest\bin;envs\AndroidSDK\current\emulator<br>envs\AndroidSDK\current<br>\envs\AndroidSDK\current                                |
+| JDKVm        | PATH<br>JAVA_HOME | envs\jdk\current\bin<br>envs\jdk\current |
+| GradleVm     | PATH<br>GRADLE_HOME<br>GRADLE_USER_HOME | envs\gradle\current\bin<br>envs\gradle\current<br>envs\gradle\cache  |
+| KotlinVm     | PATH     | envs\kotlin\current\bin                    |
 
 
 

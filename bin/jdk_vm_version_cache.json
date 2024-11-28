@@ -40,6 +40,11 @@
     "file": "OpenJDK11U-jdk_x64_windows_hotspot_11.0.24_8.zip"
   },
   {
+    "version": "11.0.25+9",
+    "url": "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.25%2B9/OpenJDK11U-jdk_x64_windows_hotspot_11.0.25_9.zip",
+    "file": "OpenJDK11U-jdk_x64_windows_hotspot_11.0.25_9.zip"
+  },
+  {
     "version": "17.0.5+8",
     "url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.5%2B8/OpenJDK17U-jdk_x64_windows_hotspot_17.0.5_8.zip",
     "file": "OpenJDK17U-jdk_x64_windows_hotspot_17.0.5_8.zip"
@@ -80,6 +85,11 @@
     "file": "OpenJDK17U-jdk_x64_windows_hotspot_17.0.12_7.zip"
   },
   {
+    "version": "17.0.13+11",
+    "url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%2B11/OpenJDK17U-jdk_x64_windows_hotspot_17.0.13_11.zip",
+    "file": "OpenJDK17U-jdk_x64_windows_hotspot_17.0.13_11.zip"
+  },
+  {
     "version": "21.0.1+12",
     "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.1%2B12/OpenJDK21U-jdk_x64_windows_hotspot_21.0.1_12.zip",
     "file": "OpenJDK21U-jdk_x64_windows_hotspot_21.0.1_12.zip"
@@ -98,5 +108,10 @@
     "version": "21.0.4+7",
     "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.4%2B7/OpenJDK21U-jdk_x64_windows_hotspot_21.0.4_7.zip",
     "file": "OpenJDK21U-jdk_x64_windows_hotspot_21.0.4_7.zip"
+  },
+  {
+    "version": "21.0.5+11",
+    "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.5%2B11/OpenJDK21U-jdk_x64_windows_hotspot_21.0.5_11.zip",
+    "file": "OpenJDK21U-jdk_x64_windows_hotspot_21.0.5_11.zip"
   }
 ]

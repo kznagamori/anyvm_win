@@ -85,7 +85,7 @@ Future<void> setVersion(String version) async {
         .i('Junction created: $bazelCurrentDirPath -> $bazelVersionDirPath');
   }
 
-  var bazelBinPath = path.join(bazelCurrentDirPath, 'bin');
+  var bazelBinPath = bazelCurrentDirPath;
 
   var setPath = '$bazelBinPath;';
   anyvm_util.logger.d(setPath);
