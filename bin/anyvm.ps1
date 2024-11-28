@@ -19,7 +19,7 @@ function Perform-Update {
     & "$PSScriptRoot\anyvm_win.exe"  GradleVm update
     & "$PSScriptRoot\anyvm_win.exe"  JDKVm update
     & "$PSScriptRoot\anyvm_win.exe"  KotlinVm update
-	& "$PSScriptRoot\anyvm_win.exe"  LLVMVm update
+    & "$PSScriptRoot\anyvm_win.exe"  LLVMVm update
     & "$PSScriptRoot\anyvm_win.exe"  MinGWVm update
     & "$PSScriptRoot\anyvm_win.exe"  NinjaVm update
     & "$PSScriptRoot\anyvm_win.exe"  NodejsVm update

@@ -27,6 +27,10 @@ String getEnvCacheDirectory() {
   return path.join(envDir, 'install-cache');
 }
 
+String getNpmCacheDirectory() {
+  return path.join(getEnvDirectory(), 'npm-cache');
+}
+
 List<String> getVersionDirectory() {
   List<String> versionDir = <String>[];
   var directory = Directory(getEnvDirectory());
@@ -359,6 +363,33 @@ class NodejsVmInstall extends Command {
       await file.delete();
       anyvm_util.logger.i('File deleted successfully.: $filePath');
     }
+
+    var npmBatPath = path.join(envVerDirPath, 'npm.bat');
+    var npmPsPath = path.join(envVerDirPath, 'npm.ps1');
+    var npmPs = File(npmPsPath);
+    if (await npmPs.exists()) {
+      try {
+        var realNpmPsPath = path.join(envVerDirPath, '_npm.ps1');
+        await npmPs.rename(realNpmPsPath);
+        anyvm_util.logger.i('File renamed/moved successfully.: $realNpmPsPath');
+        var scriptText = '';
+        scriptText +=
+            '& "$realNpmPsPath" --cache "${getNpmCacheDirectory()}" @args\n';
+        anyvm_util.logger.d(scriptText);
+        await anyvm_util.writeStringWithSjisEncoding(npmPsPath, scriptText);
+      } catch (e) {
+        anyvm_util.logger.e('Error npm.ps1: $e');
+        return;
+      }
+    }
+
+    var npmCmdPath = path.join(envVerDirPath, 'npm.cmd');
+    var scriptText = '';
+    scriptText += '@ECHO OFF\n';
+    scriptText += '"$npmCmdPath" --cache "${getNpmCacheDirectory()}" %*\n';
+    anyvm_util.logger.d(scriptText);
+    await anyvm_util.writeStringWithSjisEncoding(npmBatPath, scriptText);
+    anyvm_util.logger.i('$npmBatPath creatred');
   }
 }
 
