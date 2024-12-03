@@ -18,6 +18,7 @@ import 'package:anyvm_win/anyvm_androidsdkvm.dart' as anyvm_androidsdkvm;
 import 'package:anyvm_win/anyvm_gradlevm.dart' as anyvm_gradlevm;
 import 'package:anyvm_win/anyvm_jdkvm.dart' as anyvm_jdkvm;
 import 'package:anyvm_win/anyvm_kotlinvm.dart' as anyvm_kotlinvm;
+import 'package:anyvm_win/anyvm_winlibs.dart' as anyvm_winlibs;
 import 'package:args/command_runner.dart';
 import 'package:logger/logger.dart';
 
@@ -27,7 +28,7 @@ void main(List<String> args) async {
       help: 'Display the version of the tool.',
       negatable: false, callback: (version) {
     if (version) {
-      print('version 1.0.1');
+      print('version 1.1.0');
       exit(0);
     }
   });
@@ -56,6 +57,7 @@ void main(List<String> args) async {
   runner.addCommand(anyvm_gradlevm.GradleVm());
   runner.addCommand(anyvm_jdkvm.JDKVm());
   runner.addCommand(anyvm_kotlinvm.KotlinVm());
+  runner.addCommand(anyvm_winlibs.WinLibsVm());
 
   await runner.run(args).catchError((error) {
     if (error is! UsageException) throw error;

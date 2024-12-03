@@ -24,6 +24,7 @@ function Perform-Update {
     & "$PSScriptRoot\anyvm_win.exe"  NinjaVm update
     & "$PSScriptRoot\anyvm_win.exe"  NodejsVm update
     & "$PSScriptRoot\anyvm_win.exe"  PythonVm update
+    & "$PSScriptRoot\anyvm_win.exe"  WinLibsVm update
     & "$PSScriptRoot\anyvm_win.exe"  dotnetVm update
 }
 
@@ -43,6 +44,7 @@ function Perform-Unset {
     & "$PSScriptRoot\anyvm_win.exe"  NodejsVm unset
     & "$PSScriptRoot\anyvm_win.exe"  PythonVm unset
     & "$PSScriptRoot\anyvm_win.exe"  RustVm unset
+    & "$PSScriptRoot\anyvm_win.exe"  WinLibsVm unset
     & "$PSScriptRoot\anyvm_win.exe"  dotnetVm unset
 }
 
@@ -62,6 +64,7 @@ function Perform-Version {
     Write-Output "NodejsVm"; & "$PSScriptRoot\anyvm_win.exe"  NodejsVm version
     Write-Output "PythonVm"; & "$PSScriptRoot\anyvm_win.exe"  PythonVm version
     Write-Output "RustVm"; & "$PSScriptRoot\anyvm_win.exe"  RustVm version
+    Write-Output "WinLibsVm"; & "$PSScriptRoot\anyvm_win.exe"  WinLibsVm version
     Write-Output "dotnetVm"; & "$PSScriptRoot\anyvm_win.exe"  dotnetVm version
 }
 
