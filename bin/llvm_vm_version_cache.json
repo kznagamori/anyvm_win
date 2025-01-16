@@ -223,5 +223,10 @@
     "version": "19.1.6",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/LLVM-19.1.6-win64.exe",
     "file": "LLVM-19.1.6-win64.exe"
+  },
+  {
+    "version": "19.1.7",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/LLVM-19.1.7-win64.exe",
+    "file": "LLVM-19.1.7-win64.exe"
   }
 ]
