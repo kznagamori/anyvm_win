@@ -760,6 +760,11 @@
     "file": "node-v18.20.6-win-x64.zip"
   },
   {
+    "version": "18.20.7",
+    "url": "https://nodejs.org/dist/v18.20.7/node-v18.20.7-win-x64.zip",
+    "file": "node-v18.20.7-win-x64.zip"
+  },
+  {
     "version": "19.0.0",
     "url": "https://nodejs.org/dist/v19.0.0/node-v19.0.0-win-x64.zip",
     "file": "node-v19.0.0-win-x64.zip"
@@ -1178,5 +1183,10 @@
     "version": "23.7.0",
     "url": "https://nodejs.org/dist/v23.7.0/node-v23.7.0-win-x64.zip",
     "file": "node-v23.7.0-win-x64.zip"
+  },
+  {
+    "version": "23.8.0",
+    "url": "https://nodejs.org/dist/v23.8.0/node-v23.8.0-win-x64.zip",
+    "file": "node-v23.8.0-win-x64.zip"
   }
 ]
