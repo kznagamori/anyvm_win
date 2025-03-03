@@ -1188,5 +1188,10 @@
     "version": "23.8.0",
     "url": "https://nodejs.org/dist/v23.8.0/node-v23.8.0-win-x64.zip",
     "file": "node-v23.8.0-win-x64.zip"
+  },
+  {
+    "version": "23.9.0",
+    "url": "https://nodejs.org/dist/v23.9.0/node-v23.9.0-win-x64.zip",
+    "file": "node-v23.9.0-win-x64.zip"
   }
 ]
