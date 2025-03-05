@@ -63,7 +63,7 @@ anyvm_winは有効化したツールは以下のディレクトリにジャン�
 
 ### 3.1. anyvm_winの取得
 
-[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.0.1/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
+[anyvm_win.zip](https://github.com/kznagamori/anyvm_win/releases/download/v1.1.0/anyvm_win.zip)をダウンロードし、anyvm_winと環境を保存するディレクトリに展開します。
 anyvm_winは以下のファイルから構成されています。
 
 ```
@@ -86,7 +86,8 @@ anyvm_win
 │   ├── ninja_vm_version_cache.json
 │   ├── nodejs_vm_version_cache.json
 │   ├── python_vm_version_cache.json
-│   └── rust_vm_version_cache.json
+│   ├── rust_vm_version_cache.json
+│   └── winlibs_vm_version_cache.json
 ├── scripts
 │   ├── AnyVmActivate.bat
 │   ├── AnyVmActivate.ps1
@@ -192,6 +193,7 @@ PS C:\> anyvm PythonVm versions
 | JDKVm        | OpenJDK    | https://adoptium.net/                                        |
 | GradleVm     | Gradle     | https://gradle.org/                                          |
 | KotlinVm     | Kotlin     | https://kotlinlang.org/                                      |
+| WinLibsVm    | WinLibs    | https://winlibs.com/                                         |
 
 ### 4.2. コマンド
 `anyvm <開発ツール名> <コマンド> <オプション> ...` で実行を行います。
@@ -412,6 +414,7 @@ rustup default stable-msvc
 | JDKVm        | PATH<br>JAVA_HOME | envs\jdk\current\bin<br>envs\jdk\current |
 | GradleVm     | PATH<br>GRADLE_HOME<br>GRADLE_USER_HOME | envs\gradle\current\bin<br>envs\gradle\current<br>envs\gradle\cache  |
 | KotlinVm     | PATH     | envs\kotlin\current\bin                    |
+|  WinLibsVm     | PATH<br><br>LIBCLANG_PATH | envs\winlibs\current\bin;envs\winlibs\current\x86_64-w64-mingw32\bin<br>envs\winlibs\current\bin |
 
 
 

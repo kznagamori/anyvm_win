@@ -1055,6 +1055,16 @@
     "file": "cmake-3.30.6-windows-x86_64.zip"
   },
   {
+    "version": "3.30.7",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.30.7/cmake-3.30.7-windows-x86_64.zip",
+    "file": "cmake-3.30.7-windows-x86_64.zip"
+  },
+  {
+    "version": "3.30.8",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.30.8/cmake-3.30.8-windows-x86_64.zip",
+    "file": "cmake-3.30.8-windows-x86_64.zip"
+  },
+  {
     "version": "3.31.0",
     "url": "https://github.com/Kitware/CMake/releases/download/v3.31.0/cmake-3.31.0-windows-x86_64.zip",
     "file": "cmake-3.31.0-windows-x86_64.zip"
@@ -1063,5 +1073,30 @@
     "version": "3.31.1",
     "url": "https://github.com/Kitware/CMake/releases/download/v3.31.1/cmake-3.31.1-windows-x86_64.zip",
     "file": "cmake-3.31.1-windows-x86_64.zip"
+  },
+  {
+    "version": "3.31.2",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.31.2/cmake-3.31.2-windows-x86_64.zip",
+    "file": "cmake-3.31.2-windows-x86_64.zip"
+  },
+  {
+    "version": "3.31.3",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.31.3/cmake-3.31.3-windows-x86_64.zip",
+    "file": "cmake-3.31.3-windows-x86_64.zip"
+  },
+  {
+    "version": "3.31.4",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.31.4/cmake-3.31.4-windows-x86_64.zip",
+    "file": "cmake-3.31.4-windows-x86_64.zip"
+  },
+  {
+    "version": "3.31.5",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.31.5/cmake-3.31.5-windows-x86_64.zip",
+    "file": "cmake-3.31.5-windows-x86_64.zip"
+  },
+  {
+    "version": "3.31.6",
+    "url": "https://github.com/Kitware/CMake/releases/download/v3.31.6/cmake-3.31.6-windows-x86_64.zip",
+    "file": "cmake-3.31.6-windows-x86_64.zip"
   }
 ]

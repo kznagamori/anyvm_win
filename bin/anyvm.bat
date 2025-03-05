@@ -19,6 +19,7 @@ IF "%~1"=="update" (
     %~dp0anyvm_win.exe  NinjaVm update
     %~dp0anyvm_win.exe  NodejsVm update
     %~dp0anyvm_win.exe  PythonVm update
+    %~dp0anyvm_win.exe  WinLibsVm update
     %~dp0anyvm_win.exe  dotnetVm update
     GOTO :EOF
 )
@@ -38,6 +39,7 @@ IF "%~1"=="unset" (
     %~dp0anyvm_win.exe  NodejsVm unset
     %~dp0anyvm_win.exe  PythonVm unset
     %~dp0anyvm_win.exe  RustVm unset
+    %~dp0anyvm_win.exe  WinLibsVm unset
     %~dp0anyvm_win.exe  dotnetVm unset
     GOTO :EOF
 )
@@ -57,6 +59,7 @@ IF "%~1"=="version" (
     ECHO NodejsVm && %~dp0anyvm_win.exe  NodejsVm version
     ECHO PythonVm && %~dp0anyvm_win.exe  PythonVm version
     ECHO RustVm && %~dp0anyvm_win.exe  RustVm version
+    ECHO WinLibsVm && %~dp0anyvm_win.exe  WinLibsVm version
     ECHO dotnetVm && %~dp0anyvm_win.exe  dotnetVm version
     GOTO :EOF
 )
