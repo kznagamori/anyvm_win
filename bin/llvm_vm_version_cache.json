@@ -248,5 +248,10 @@
     "version": "20.1.3",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.3/LLVM-20.1.3-win64.exe",
     "file": "LLVM-20.1.3-win64.exe"
+  },
+  {
+    "version": "20.1.4",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.4/LLVM-20.1.4-win64.exe",
+    "file": "LLVM-20.1.4-win64.exe"
   }
 ]
