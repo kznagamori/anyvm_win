@@ -476,12 +476,10 @@ class WinLibsVmUpdate extends Command {
   Future<void> run() async {
     final exe = 'git';
     var args = <String>[];
-
     args.clear();
     args.add('ls-remote');
     args.add('--tags');
     args.add('https://github.com/brechtsanders/winlibs_mingw');
-
     anyvm_util.logger.d(exe);
     for (var arg in args) {
       anyvm_util.logger.d(arg);
@@ -498,18 +496,55 @@ class WinLibsVmUpdate extends Command {
         var tagInfo = tag.split('\t');
         if (tagInfo.length > 1) {
           var version = tagInfo[1].replaceAll('refs/tags/', '');
-          RegExp pattern = RegExp(
+          
+          // パターン1: 旧フォーマット (LLVMバージョンあり) - 13.1.0-16.0.5-11.0.0-ucrt-r5
+          RegExp pattern1 = RegExp(
+              r'^(\d+\.\d+\.\d+)-(\d+\.\d+\.\d+)-(\d+\.\d+\.\d+)-(ucrt|msvcrt)-r(\d+)$');
+          var match1 = pattern1.firstMatch(version);
+          
+          // パターン2: 新フォーマット (LLVMバージョンあり) - 13.2.0posix-17.0.6-11.0.1-ucrt-r5
+          RegExp pattern2 = RegExp(
               r'^(\d+\.\d+\.\d+)(posix|win32|mcf)-(\d+\.\d+\.\d+)-(\d+\.\d+\.\d+)-(ucrt|msvcrt)-r(\d+)$');
-          var match = pattern.firstMatch(version);
-          if (match != null) {
-            var gccVersion = match.group(1)!;
-            var buildType = match.group(2)!; // posix, win32, mcf
-            var llvmVersion = match.group(3)!;
-            var mingwVersion = match.group(4)!;
-            var crtType = match.group(5)!; // ucrt, msvcrt
-            var revision = match.group(6)!;
+          var match2 = pattern2.firstMatch(version);
+          
+          // パターン3: 新フォーマット (LLVMバージョンなし) - 15.1.0posix-12.0.0-ucrt-r1
+          RegExp pattern3 = RegExp(
+              r'^(\d+\.\d+\.\d+)(posix|win32|mcf)-(\d+\.\d+\.\d+)-(ucrt|msvcrt)-r(\d+)$');
+          var match3 = pattern3.firstMatch(version);
+          
+          if (match1 != null) {
+            // 旧フォーマット LLVMバージョンありの場合 (13.1.0-16.0.5-11.0.0-ucrt-r5)
+            var gccVersion = match1.group(1)!;
+            var llvmVersion = match1.group(2)!;
+            var mingwVersion = match1.group(3)!;
+            var crtType = match1.group(4)!;
+            var revision = match1.group(5)!;
+            if (crtType == 'ucrt') {
+              version = '$gccVersion-$llvmVersion-$mingwVersion-$revision';
+              versions.add(version);
+            }
+          } else if (match2 != null) {
+            // 新フォーマット LLVMバージョンありの場合 (13.2.0posix-17.0.6-11.0.1-ucrt-r5)
+            var gccVersion = match2.group(1)!;
+            var buildType = match2.group(2)!;
+            var llvmVersion = match2.group(3)!;
+            var mingwVersion = match2.group(4)!;
+            var crtType = match2.group(5)!;
+            var revision = match2.group(6)!;
             if (buildType == 'posix' && crtType == 'ucrt') {
               version = '$gccVersion-$llvmVersion-$mingwVersion-$revision';
+              versions.add(version);
+            }
+          } else if (match3 != null) {
+            // 新フォーマット LLVMバージョンなしの場合 (15.1.0posix-12.0.0-ucrt-r1)
+            var gccVersion = match3.group(1)!;
+            var buildType = match3.group(2)!;
+            var mingwVersion = match3.group(3)!;
+            var crtType = match3.group(4)!;
+            var revision = match3.group(5)!;
+            if (buildType == 'posix' && crtType == 'ucrt') {
+              // LLVMバージョンがない場合は"0.0.0"をデフォルトとして使用
+              version = '$gccVersion-0.0.0-$mingwVersion-$revision';
               versions.add(version);
             }
           }
@@ -522,13 +557,29 @@ class WinLibsVmUpdate extends Command {
         if (parts.length != 4) {
           continue;
         }
-        var dir = '${parts[0]}posix-${parts[1]}-${parts[2]}-ucrt-r${parts[3]}';
-        var file =
-            'winlibs-x86_64-posix-seh-gcc-${parts[0]}-llvm-${parts[1]}-mingw-w64ucrt-${parts[2]}-r${parts[3]}.7z';
+        
+        var gccVersion = parts[0];
+        var llvmVersion = parts[1];
+        var mingwVersion = parts[2];
+        var revision = parts[3];
+        
+        // LLVMバージョンがある場合とない場合でディレクトリ名とファイル名を分岐
+        String dir;
+        String file;
+        
+        if (llvmVersion == '0.0.0') {
+          // LLVMバージョンがない場合
+          dir = '${gccVersion}posix-${mingwVersion}-ucrt-r${revision}';
+          file = 'winlibs-x86_64-posix-seh-gcc-${gccVersion}-mingw-w64ucrt-${mingwVersion}-r${revision}.7z';
+        } else {
+          // LLVMバージョンがある場合
+          dir = '${gccVersion}posix-${llvmVersion}-${mingwVersion}-ucrt-r${revision}';
+          file = 'winlibs-x86_64-posix-seh-gcc-${gccVersion}-llvm-${llvmVersion}-mingw-w64ucrt-${mingwVersion}-r${revision}.7z';
+        }
+        
         Map<String, dynamic> versionMap = {
           'version': version,
-          'url':
-              'https://github.com/brechtsanders/winlibs_mingw/releases/download/$dir/$file',
+          'url': 'https://github.com/brechtsanders/winlibs_mingw/releases/download/$dir/$file',
           'file': file
         };
         versionList.add(versionMap);
