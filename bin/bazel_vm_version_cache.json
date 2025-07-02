@@ -163,5 +163,15 @@
     "version": "8.2.1",
     "url": "https://github.com/bazelbuild/bazel/releases/download/8.2.1/bazel-8.2.1-windows-x86_64.zip",
     "file": "bazel-8.2.1-windows-x86_64.zip"
+  },
+  {
+    "version": "8.3.0",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/8.3.0/bazel-8.3.0-windows-x86_64.zip",
+    "file": "bazel-8.3.0-windows-x86_64.zip"
+  },
+  {
+    "version": "8.3.1",
+    "url": "https://github.com/bazelbuild/bazel/releases/download/8.3.1/bazel-8.3.1-windows-x86_64.zip",
+    "file": "bazel-8.3.1-windows-x86_64.zip"
   }
 ]
