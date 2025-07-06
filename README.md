@@ -349,17 +349,36 @@ anyvm unset
 
 ## Appendix A： Rust
 
+### Rustのツールチェイン
+
+Rustのツールチェインは、Rustでクレート（外部パッケージ）をビルドする際に使用されるコンパイラです。
+標準はVisualC++のため、**Microsoft C++ Build Tools**のインストールが必要となります。
+
+### Microsoft C++ Build Toolsのインストール
+https://aka.ms/vs/17/release/vs_BuildTools.exe から Microsoft C++ Build Tools（/vs_BuildTools.exe）をダウンロードしてインストールを行います。
+Rustをビルドには以下をインストールする必要があります。
+
+#### 必須コンポーネント
+
+```
+☑ MSVC v143 - VS 2022 C++ x64/x86 ビルド ツール (最新)
+☑ Windows 11 SDK (10.0.22000.0) または最新版
+☑ C++ Build Tools コア機能
+☑ C++ 2022 最新の可再頒布パッケージの更新プログラム
+☑ C++ コア デスクトップ機能
+```
+
+#### 推奨する追加コンポーネント
+
+```
+☑ C++ CMake tools for Visual Studio
+☑ Windows 用 C++ Clang ツール
+☑ C++ AddressSanitizer
+```
+![image-20250707005709174](./assets/image-20250707005709174.png)
+
 ### Rustのインストール
-
-Rustは*Microsoft C++ Build Tools*を`https://aka.ms/vs/17/release/vs_BuildTools.exe`からダウンロードしてインストールを試みます。
-*Microsoft C++ Build Tools*は以下のコマンドでインストールを行います。
-
-```
-vs_BuildTools.exe --quiet --wait --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK.19041
-```
-
 Rustのインストールは以下のコマンドで行っています。
-
 ```
 rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-msvc --default-toolchain stable
 ```
