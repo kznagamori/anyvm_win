@@ -362,7 +362,7 @@ Rustをビルドには以下をインストールする必要があります。
 
 ```
 ☑ MSVC v143 - VS 2022 C++ x64/x86 ビルド ツール (最新)
-☑ Windows 11 SDK (10.0.22000.0) または最新版
+☑ Windows 10 SDK (10.0.19041.0) または最新版
 ☑ C++ Build Tools コア機能
 ☑ C++ 2022 最新の可再頒布パッケージの更新プログラム
 ☑ C++ コア デスクトップ機能
@@ -377,7 +377,13 @@ Rustをビルドには以下をインストールする必要があります。
 ```
 ![image-20250707005709174](./assets/image-20250707005709174.png)
 
+上記は、以下のコマンドでインストール可能です。
+```
+.\vs_BuildTools.exe --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows10SDK.19041 --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest --add Microsoft.VisualStudio.Component.VC.CMake.Project --add Microsoft.VisualStudio.Component.VC.Llvm.Clang --add Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset --add Microsoft.VisualStudio.Component.VC.ASAN
+```
+
 ### Rustのインストール
+
 Rustのインストールは以下のコマンドで行っています。
 ```
 rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-msvc --default-toolchain stable
