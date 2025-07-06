@@ -257,6 +257,36 @@ class RustVmInstall extends Command {
       anyvm_util.logger.i('$envCacheDirPath creatred');
     }
 
+    var vsBuildToolsFilePath = path.join(envCacheDirPath, 'vs_BuildTools.exe');
+    var vsBuildToolsFile = File(vsBuildToolsFilePath);
+    if (!await vsBuildToolsFile.exists()) {
+      try {
+        await anyvm_util.downloadFileWithProgress(
+            'https://aka.ms/vs/17/release/vs_BuildTools.exe',
+            vsBuildToolsFilePath);
+      } catch (e) {
+        anyvm_util.logger.e('Error during downloading: $e');
+        return;
+      }
+    }
+    try {
+      var exe =
+          '"$vsBuildToolsFilePath" --quiet --wait --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK.19041';
+      var args = <String>[];
+      ProcessResult result;
+      anyvm_util.logger.d(exe);
+      for (var arg in args) {
+        anyvm_util.logger.d(arg);
+      }
+      result = await Process.run(exe, args);
+      if (await vsBuildToolsFile.exists()) {
+        await vsBuildToolsFile.delete();
+        anyvm_util.logger.i('File deleted successfully.: $vsBuildToolsFilePath');
+      }
+    } catch (e) {
+      anyvm_util.logger.e('Failed to ecute command: $e');
+    }
+
     var filePath = path.join(envCacheDirPath, 'rustup-init.exe');
     var file = File(filePath);
     if (!await file.exists()) {
@@ -280,7 +310,7 @@ class RustVmInstall extends Command {
     }
     try {
       var exe =
-          '"$filePath" -y --no-modify-path --default-host x86_64-pc-windows-gnu --default-toolchain stable';
+          '"$filePath" -y --no-modify-path --default-host x86_64-pc-windows-msvc --default-toolchain stable';
       var args = <String>[];
       var envVers = {
         'CARGO_HOME': cargoHomePath,

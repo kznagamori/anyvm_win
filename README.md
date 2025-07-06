@@ -351,26 +351,20 @@ anyvm unset
 
 ### Rustのインストール
 
+Rustは*Microsoft C++ Build Tools*を`https://aka.ms/vs/17/release/vs_BuildTools.exe`からダウンロードしてインストールを試みます。
+*Microsoft C++ Build Tools*は以下のコマンドでインストールを行います。
+
+```
+vs_BuildTools.exe --quiet --wait --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.Windows10SDK.19041
+```
+
 Rustのインストールは以下のコマンドで行っています。
 
 ```
-rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-gnu --default-toolchain stable
+rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-msvc --default-toolchain stable
 ```
 
-Rustのツールチェインはgcc(MinGW)を使用する設定でインストールを行っています。
-
-### Rustのツールチェイン
-
-Rustのツールチェインは、Rustでクレート（外部パッケージ）をビルドする際に使用されるコンパイラです。
-本ツールでMinGWのインストール、有効化することでクレートのビルドをすることができます。
-しかし標準はVisualC++のため、一部のクレートのビルドに失敗することがあります。
-
-VisualStudioをインストールしている場合は、以下のコマンドでVisualStudioのコンパイラを使用することができます。
-
-```
-rustup toolchain install stable-msvc
-rustup default stable-msvc
-```
+RustのツールチェインはMSVCを使用する設定でインストールを行っています。
 
 
 ## Appendix B： 各開発ツールで一時的に設定される環境変数
