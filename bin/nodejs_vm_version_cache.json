@@ -1283,5 +1283,10 @@
     "version": "24.3.0",
     "url": "https://nodejs.org/dist/v24.3.0/node-v24.3.0-win-x64.zip",
     "file": "node-v24.3.0-win-x64.zip"
+  },
+  {
+    "version": "24.4.0",
+    "url": "https://nodejs.org/dist/v24.4.0/node-v24.4.0-win-x64.zip",
+    "file": "node-v24.4.0-win-x64.zip"
   }
 ]

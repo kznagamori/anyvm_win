@@ -573,5 +573,10 @@
     "version": "3.32.5",
     "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.32.5-stable.zip",
     "file": "flutter_windows_3.32.5-stable.zip"
+  },
+  {
+    "version": "3.32.6",
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.32.6-stable.zip",
+    "file": "flutter_windows_3.32.6-stable.zip"
   }
 ]
