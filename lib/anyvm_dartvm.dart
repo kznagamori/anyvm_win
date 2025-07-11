@@ -520,6 +520,6 @@ class DartVmUnInstall extends Command {
     }
     await envVerDir.delete(recursive: true);
     anyvm_util.logger
-        .i('Directory renamed/moved successfully.: $envVerDirPath');
+        .i('Directory removed successfully.: $envVerDirPath');
   }
 }
