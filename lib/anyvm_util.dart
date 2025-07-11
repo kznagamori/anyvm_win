@@ -68,7 +68,7 @@ Future<void> setVmVersion(String vmName, String version) async {
     String jsonString = await file.readAsString();
     vmList = jsonDecode(jsonString);
   }
-  vmList[vmName] = version;
+  vmList[vmName] = version.trimRight();
   String jsonString = const JsonEncoder.withIndent('  ').convert(vmList);
   logger.d(jsonString);
   await file.writeAsString(jsonString);

@@ -145,7 +145,6 @@ Future<void> setVersion() async {
       anyvm_util.logger.i('execute: $exe');
       anyvm_util.setVmVersion(vmName, result.stdout);
     }
-    anyvm_util.setVmVersion(vmName, '1.0');
   } catch (e) {
     anyvm_util.logger.e('Failed to execute command: $e');
   }
