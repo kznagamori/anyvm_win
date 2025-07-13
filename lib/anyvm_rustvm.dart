@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 import 'dart:async';
 import 'package:args/command_runner.dart';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
@@ -30,6 +31,10 @@ String getCargoHomePath() {
   return path.join(getEnvDirectory(), '.cargo');
 }
 
+String getCargoBinPath() {
+  return path.join(getCargoHomePath(), 'bin');
+}
+
 String getSCCACHEPath() {
   return path.join(getEnvDirectory(), '.sccache');
 }
@@ -37,10 +42,11 @@ String getSCCACHEPath() {
 Future<void> setVersion() async {
   await unSetVersion();
 
-  var cargoBinPath = path.join(getCargoHomePath(), 'bin');
-
-  var setPath = '$cargoBinPath;';
+  var setPath = '${getCargoBinPath()};';
   anyvm_util.logger.d(setPath);
+
+  var sccacheBinPath = path.join(getCargoBinPath(), 'sccache.exe');
+  var sccacheBin = File(sccacheBinPath);
 
   var scriptsDir = anyvm_util.getScriptsDirectory();
   String scriptText;
@@ -54,12 +60,14 @@ Future<void> setVersion() async {
   scriptText += 'SET RUSTUP_HOME=${getRustUpHomePath()}\n';
   scriptText += 'SET _OLD_CARGO_HOME=%CARGO_HOME%\n';
   scriptText += 'SET CARGO_HOME=${getCargoHomePath()}\n';
-  scriptText += 'SET _OLD_RUSTC_WRAPPER=%RUSTC_WRAPPER%\n';
-  scriptText += 'SET RUSTC_WRAPPER=sccache\n';
-  scriptText += 'SET _OLD_SCCACHE_CACHE_SIZE=%SCCACHE_CACHE_SIZE%\n';
-  scriptText += 'SET SCCACHE_CACHE_SIZE=1G\n';
-  scriptText += 'SET _OLD_SCCACHE_DIR=%SCCACHE_DIR%\n';
-  scriptText += 'SET SCCACHE_DIR=${getSCCACHEPath()}\n';
+  if (await sccacheBin.exists()) {
+    scriptText += 'SET _OLD_RUSTC_WRAPPER=%RUSTC_WRAPPER%\n';
+    scriptText += 'SET RUSTC_WRAPPER=sccache\n';
+    scriptText += 'SET _OLD_SCCACHE_CACHE_SIZE=%SCCACHE_CACHE_SIZE%\n';
+    scriptText += 'SET SCCACHE_CACHE_SIZE=1G\n';
+    scriptText += 'SET _OLD_SCCACHE_DIR=%SCCACHE_DIR%\n';
+    scriptText += 'SET SCCACHE_DIR=${getSCCACHEPath()}\n';
+  }
   scriptText += 'SET _OLD_RUSTUP_DIST_SERVER=%RUSTUP_DIST_SERVER%\n';
   scriptText += 'SET RUSTUP_DIST_SERVER=https://static.rust-lang.org\n';
   scriptText += 'SET _OLD_RUSTUP_DIST_ROOT=%RUSTUP_DIST_ROOT%\n';
@@ -79,12 +87,15 @@ Future<void> setVersion() async {
   scriptText += '    \$env:RUSTUP_HOME = "${getRustUpHomePath()}";\n';
   scriptText += '    \$env:_OLD_CARGO_HOME = \$env:CARGO_HOME;\n';
   scriptText += '    \$env:CARGO_HOME = "${getCargoHomePath()}";\n';
-  scriptText += '    \$env:_OLD_RUSTC_WRAPPER = \$env:RUSTC_WRAPPER;\n';
-  scriptText += '    \$env:RUSTC_WRAPPER = "sccache";\n';
-  scriptText += '    \$env:_OLD_SCCACHE_CACHE_SIZE = \$env:SCCACHE_CACHE_SIZE;\n';
-  scriptText += '    \$env:SCCACHE_CACHE_SIZE = "1G";\n';
-  scriptText += '    \$env:_SCCACHE_DIR = \$env:SCCACHE_DIR;\n';
-  scriptText += '    \$env:SCCACHE_DIR = "${getSCCACHEPath()}";\n';
+  if (await sccacheBin.exists()) {
+    scriptText += '    \$env:_OLD_RUSTC_WRAPPER = \$env:RUSTC_WRAPPER;\n';
+    scriptText += '    \$env:RUSTC_WRAPPER = "sccache";\n';
+    scriptText +=
+        '    \$env:_OLD_SCCACHE_CACHE_SIZE = \$env:SCCACHE_CACHE_SIZE;\n';
+    scriptText += '    \$env:SCCACHE_CACHE_SIZE = "1G";\n';
+    scriptText += '    \$env:_SCCACHE_DIR = \$env:SCCACHE_DIR;\n';
+    scriptText += '    \$env:SCCACHE_DIR = "${getSCCACHEPath()}";\n';
+  }
   scriptText +=
       '    \$env:_OLD_RUSTUP_DIST_SERVER = \$env:RUSTUP_DIST_SERVER;\n';
   scriptText +=
@@ -108,12 +119,14 @@ Future<void> setVersion() async {
   scriptText += 'SET _OLD_RUSTUP_HOME=';
   scriptText += 'SET CARGO_HOME=%_OLD_CARGO_HOME%\n';
   scriptText += 'SET _OLD_CARGO_HOME=';
-  scriptText += 'SET RUSTC_WRAPPER=%_OLD_RUSTC_WRAPPER%\n';
-  scriptText += 'SET _OLD_RUSTC_WRAPPER=';
-  scriptText += 'SET SCCACHE_CACHE_SIZE=%_OLD_SCCACHE_CACHE_SIZE%\n';
-  scriptText += 'SET _OLD_SCCACHE_CACHE_SIZE=';
-  scriptText += 'SET SCCACHE_DIR=%_OLD_SCCACHE_DIR%\n';
-  scriptText += 'SET _OLD_SCCACHE_DIR=';
+  if (await sccacheBin.exists()) {
+    scriptText += 'SET RUSTC_WRAPPER=%_OLD_RUSTC_WRAPPER%\n';
+    scriptText += 'SET _OLD_RUSTC_WRAPPER=';
+    scriptText += 'SET SCCACHE_CACHE_SIZE=%_OLD_SCCACHE_CACHE_SIZE%\n';
+    scriptText += 'SET _OLD_SCCACHE_CACHE_SIZE=';
+    scriptText += 'SET SCCACHE_DIR=%_OLD_SCCACHE_DIR%\n';
+    scriptText += 'SET _OLD_SCCACHE_DIR=';
+  }
   scriptText += 'SET RUSTUP_DIST_SERVER=%_OLD_RUSTUP_DIST_SERVER%\n';
   scriptText += 'SET _OLD_RUSTUP_DIST_SERVER=\n';
   scriptText += 'SET RUSTUP_DIST_ROOT=%_OLD_RUSTUP_DIST_ROOT%\n';
@@ -133,12 +146,15 @@ Future<void> setVersion() async {
   scriptText += '    \$env:_OLD_RUSTUP_HOME = "";\n';
   scriptText += '    \$env:CARGO_HOME = \$env:_OLD_CARGO_HOME;\n';
   scriptText += '    \$env:_OLD_CARGO_HOME = "";\n';
-  scriptText += '    \$env:RUSTC_WRAPPER = \$env:_OLD_RUSTC_WRAPPER;\n';
-  scriptText += '    \$env:_OLD_RUSTC_WRAPPER = "";\n';
-  scriptText += '    \$env:SCCACHE_CACHE_SIZE = \$env:_OLD_SCCACHE_CACHE_SIZE;\n';
-  scriptText += '    \$env:_OLD_SCCACHE_CACHE_SIZE = "";\n';
-  scriptText += '    \$env:SCCACHE_DIR = \$env:_OLD_SCCACHE_DIR;\n';
-  scriptText += '    \$env:_OLD_SCCACHE_DIR = "";\n';
+  if (await sccacheBin.exists()) {
+    scriptText += '    \$env:RUSTC_WRAPPER = \$env:_OLD_RUSTC_WRAPPER;\n';
+    scriptText += '    \$env:_OLD_RUSTC_WRAPPER = "";\n';
+    scriptText +=
+        '    \$env:SCCACHE_CACHE_SIZE = \$env:_OLD_SCCACHE_CACHE_SIZE;\n';
+    scriptText += '    \$env:_OLD_SCCACHE_CACHE_SIZE = "";\n';
+    scriptText += '    \$env:SCCACHE_DIR = \$env:_OLD_SCCACHE_DIR;\n';
+    scriptText += '    \$env:_OLD_SCCACHE_DIR = "";\n';
+  }
   scriptText +=
       '    \$env:RUSTUP_DIST_SERVER = \$env:_OLD_RUSTUP_DIST_SERVER;\n';
   scriptText += '    \$env:_OLD_RUSTUP_DIST_SERVER = ""\n';
@@ -270,9 +286,11 @@ class RustVmInstall extends Command {
     var rustUpHomePath = getRustUpHomePath();
     var rustUpHome = Directory(rustUpHomePath);
 
-
     var rustSCCACHEPath = getSCCACHEPath();
     var rustSCCACHE = Directory(rustSCCACHEPath);
+
+    var cargoConfigPath = path.join(cargoHomePath, 'config.toml');
+    var cargoConfig = File(cargoConfigPath);
 
     if (await cargoHome.exists() && await rustUpHome.exists()) {
       anyvm_util.logger.i('Rust install failed.');
@@ -340,26 +358,27 @@ class RustVmInstall extends Command {
       } else {
         anyvm_util.logger.i('execute: $exe');
       }
+      anyvm_util.logger
+          .i('request: "cargo install sccache" after install rustup.');
 
-      var cargo_bin = path.join(cargoHomePath, 'bin');
-      var cargo_exe = path.join(cargo_bin, 'cargo.exe');
-      exe = '"$cargo_exe" install sccache';
-      result = await Process.run(exe, args, environment: envVers);
-      if (result.exitCode != 0) {
-        anyvm_util.logger.e('Failed to execute command: ${result.stderr}');
-        cargoHome.delete(recursive: true);
-        rustUpHome.delete(recursive: true);
-        return;
-      } else {
-        anyvm_util.logger.i('execute: $exe');
-      }
+      var cargoConfigText = '';
+      cargoConfigText += '[target.x86_64-pc-windows-gnu]\n';
+      cargoConfigText += 'rustflags = [\n';
+      cargoConfigText += '  "-C", "link-arg=-Wl,--exclude-libs=ALL",\n';
+      cargoConfigText += '  "-C", "link-arg=-Wl,--exclude-all-symbols",\n';
+      cargoConfigText +=
+          '  "-C", "link-arg=-Wl,--allow-multiple-definition",\n';
+      cargoConfigText += ']\n';
 
+      await cargoConfig.writeAsString(cargoConfigText,
+          mode: FileMode.write, encoding: utf8);
     } catch (e) {
       anyvm_util.logger.e('Failed to ecute command: $e');
       cargoHome.delete(recursive: true);
       rustUpHome.delete(recursive: true);
+      rustSCCACHE.delete(recursive: true);
+      cargoConfig.delete();
     }
-
     if (await file.exists()) {
       await file.delete();
       anyvm_util.logger.i('File deleted successfully.: $filePath');
@@ -463,13 +482,19 @@ class RustVmUnInstall extends Command {
     if (await cargoHomeDir.exists()) {
       await cargoHomeDir.delete(recursive: true);
       anyvm_util.logger
-          .i('Directory renamed/moved successfully.: ${getCargoHomePath()} ');
+          .i('Directory removed successfully.: ${getCargoHomePath()} ');
     }
     var rustUpHomeDir = Directory(getRustUpHomePath());
     if (await rustUpHomeDir.exists()) {
       await rustUpHomeDir.delete(recursive: true);
       anyvm_util.logger
           .i('Directory removed successfully.: ${getRustUpHomePath()} ');
+    }
+    var rustSCCACHEDir = Directory(getSCCACHEPath());
+    if (await rustSCCACHEDir.exists()) {
+      await rustSCCACHEDir.delete(recursive: true);
+      anyvm_util.logger
+          .i('Directory removed successfully.: ${getSCCACHEPath()} ');
     }
   }
 }

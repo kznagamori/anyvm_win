@@ -349,16 +349,45 @@ anyvm unset
 
 ## Appendix A： Rust
 
+### Rustのインストール
+
+Rustのインストールは以下のコマンドで行っています。
+
+```
+rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-gnu --default-toolchain stable
+```
+Rustのツールチェインはgcc(MinGW)を使用する設定でインストールを行っています。
+※ 本ツールで管理されるWinlibsで動作確認を行っています。
+
+### sccache
+`sscache`がインストールされている場合、`anyvm RustVm set`での設定される環境変数に、sscache関連の環境変数が追加されます。
+
+### ビルド設定
+本ツールでは、Rustのビルド設定(`.cargo/config`)に以下の設定を行っています。
+```
+[target.x86_64-pc-windows-gnu]
+rustflags = [
+  "-C", "link-arg=-Wl,--exclude-libs=ALL",
+  "-C", "link-arg=-Wl,--exclude-all-symbols",
+  "-C", "link-arg=-Wl,--allow-multiple-definition",
+]
+```
+
 ### Rustのツールチェイン
 
-Rustのツールチェインは、Rustでクレート（外部パッケージ）をビルドする際に使用されるコンパイラです。
-標準はVisualC++のため、**Microsoft C++ Build Tools**のインストールが必要となります。
+Rustのツールチェインは、Rustでクレート（外部パッケージ）をビルドする際に使用されるコンパイラです。そのため、
+Windows環境のRustでは、標準はMicrosoft VisualC++となっています。
+そのため、本ツールでクレートをビルドするとgcc(MinGW)のため、一部のクレートのビルドに失敗します。
 
-### Microsoft C++ Build Toolsのインストール
+標準のMicrosoft VisualC++を使用する場合、以下の手順が必要となります。
+
+、**Microsoft C++ Build Tools**のインストールが必要となります。
+
+#### Microsoft C++ Build Toolsのインストール
 https://aka.ms/vs/17/release/vs_BuildTools.exe から Microsoft C++ Build Tools（/vs_BuildTools.exe）をダウンロードしてインストールを行います。
 Rustをビルドには以下をインストールする必要があります。
 
-#### 必須コンポーネント
+**必須コンポーネント**
 
 ```
 ☑ MSVC v143 - VS 2022 C++ x64/x86 ビルド ツール (最新)
@@ -368,7 +397,7 @@ Rustをビルドには以下をインストールする必要があります。
 ☑ C++ コア デスクトップ機能
 ```
 
-#### 推奨する追加コンポーネント
+**推奨する追加コンポーネント**
 
 ```
 ☑ C++ CMake tools for Visual Studio
@@ -382,15 +411,13 @@ Rustをビルドには以下をインストールする必要があります。
 .\vs_BuildTools.exe --add Microsoft.VisualStudio.Workload.VCTools --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows10SDK.19041 --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest --add Microsoft.VisualStudio.Component.VC.CMake.Project --add Microsoft.VisualStudio.Component.VC.Llvm.Clang --add Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset --add Microsoft.VisualStudio.Component.VC.ASAN
 ```
 
-### Rustのインストール
+**MSVCツールチェインのインストール**
+以下のコマンドでMicrosoft VisualC++のコンパイラを使用することができます。
 
-Rustのインストールは以下のコマンドで行っています。
 ```
-rustup-init.exe -y --no-modify-path --default-host x86_64-pc-windows-msvc --default-toolchain stable
+rustup toolchain install stable-msvc
+rustup default stable-msvc
 ```
-
-RustのツールチェインはMSVCを使用する設定でインストールを行っています。
-
 
 ## Appendix B： 各開発ツールで一時的に設定される環境変数
 | 開発ツール名 | 環境変数名 | 設定値 |
