@@ -273,5 +273,15 @@
     "version": "3.13.5",
     "url": "https://www.python.org/ftp/python/3.13.5/python-3.13.5-amd64.exe",
     "file": "python-3.13.5-amd64.exe"
+  },
+  {
+    "version": "3.13.6",
+    "url": "https://www.python.org/ftp/python/3.13.6/python-3.13.6-amd64.exe",
+    "file": "python-3.13.6-amd64.exe"
+  },
+  {
+    "version": "3.13.7",
+    "url": "https://www.python.org/ftp/python/3.13.7/python-3.13.7-amd64.exe",
+    "file": "python-3.13.7-amd64.exe"
   }
 ]
