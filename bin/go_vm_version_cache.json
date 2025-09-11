@@ -785,8 +785,18 @@
     "file": "go1.24.6.windows-amd64.zip"
   },
   {
+    "version": "1.24.7",
+    "url": "https://go.dev/dl/go1.24.7.windows-amd64.zip",
+    "file": "go1.24.7.windows-amd64.zip"
+  },
+  {
     "version": "1.25.0",
     "url": "https://go.dev/dl/go1.25.0.windows-amd64.zip",
     "file": "go1.25.0.windows-amd64.zip"
+  },
+  {
+    "version": "1.25.1",
+    "url": "https://go.dev/dl/go1.25.1.windows-amd64.zip",
+    "file": "go1.25.1.windows-amd64.zip"
   }
 ]
