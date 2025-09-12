@@ -558,5 +558,55 @@
     "version": "3.7.1",
     "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.7.1/sdk/dartsdk-windows-x64-release.zip",
     "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.7.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.7.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.7.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.7.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.8.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.8.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.8.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.8.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.8.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.8.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.8.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.8.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.9.0",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.9.0/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.9.1",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.9.1/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.9.2",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.9.2/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
+  },
+  {
+    "version": "3.9.3",
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.9.3/sdk/dartsdk-windows-x64-release.zip",
+    "file": "dartsdk-windows-x64-release.zip"
   }
 ]
