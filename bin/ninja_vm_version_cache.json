@@ -143,5 +143,10 @@
     "version": "1.13.1",
     "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.1/ninja-win.zip",
     "file": "ninja-win.zip"
+  },
+  {
+    "version": "1.13.2",
+    "url": "https://github.com/ninja-build/ninja/releases/download/v1.13.2/ninja-win.zip",
+    "file": "ninja-win.zip"
   }
 ]
