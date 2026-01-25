@@ -313,5 +313,10 @@
     "version": "21.1.7",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.7/LLVM-21.1.7-win64.exe",
     "file": "LLVM-21.1.7-win64.exe"
+  },
+  {
+    "version": "21.1.8",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.8/LLVM-21.1.8-win64.exe",
+    "file": "LLVM-21.1.8-win64.exe"
   }
 ]

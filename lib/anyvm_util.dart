@@ -160,14 +160,19 @@ Future<void> downloadFileWithProgress(String url, String filePath) async {
     sink.add(data);
 
     downloadedBytes += data.length;
-    final progress = (downloadedBytes / totalBytes);
 
-    final numBars = (progress * progressBarLength).round();
-    final progressBars = List.filled(numBars, '=').join();
-    final emptySpaces = List.filled(progressBarLength - numBars, ' ').join();
+    // Content-Lengthが不明な場合(-1)はダウンロード済みバイト数のみ表示
+    if (totalBytes == -1) {
+      stdout.write('\rDownloaded: ${(downloadedBytes / 1024 / 1024).toStringAsFixed(2)} MB');
+    } else {
+      final progress = (downloadedBytes / totalBytes).clamp(0.0, 1.0);
+      final numBars = (progress * progressBarLength).round();
+      final progressBars = List.filled(numBars, '=').join();
+      final emptySpaces = List.filled(progressBarLength - numBars, ' ').join();
 
-    stdout.write(
-        '\r[$progressBars$emptySpaces] ${((progress * 100).toStringAsFixed(2))}%');
+      stdout.write(
+          '\r[$progressBars$emptySpaces] ${((progress * 100).toStringAsFixed(2))}%');
+    }
   }
   logger.i('\nDownload complete.');
   await sink.close();
