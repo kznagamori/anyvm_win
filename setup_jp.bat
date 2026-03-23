@@ -204,7 +204,7 @@ GOTO END_PWSH
 :WRITE_PWSH_PS1
 
 @REM pwshの起動時読み込みスクリプトへのパスの追記処理
-ECHO $env:Path = "%ANYVM_WIN_BIN_DIR%;$;" + $env:Path;>>"%PWSH_PROFILE_PS1%"
+ECHO $env:Path = "%ANYVM_WIN_BIN_DIR%;" + $env:Path;>>"%PWSH_PROFILE_PS1%"
 ECHO . "%ANYVM_WIN_SCRIPTS_DIR%\AnyVmActivate.ps1">>"%PWSH_PROFILE_PS1%"
 
 :END_PWSH
