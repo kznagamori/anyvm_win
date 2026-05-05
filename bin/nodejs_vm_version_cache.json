@@ -1030,6 +1030,16 @@
     "file": "node-v20.20.0-win-x64.zip"
   },
   {
+    "version": "20.20.1",
+    "url": "https://nodejs.org/dist/v20.20.1/node-v20.20.1-win-x64.zip",
+    "file": "node-v20.20.1-win-x64.zip"
+  },
+  {
+    "version": "20.20.2",
+    "url": "https://nodejs.org/dist/v20.20.2/node-v20.20.2-win-x64.zip",
+    "file": "node-v20.20.2-win-x64.zip"
+  },
+  {
     "version": "21.0.0",
     "url": "https://nodejs.org/dist/v21.0.0/node-v21.0.0-win-x64.zip",
     "file": "node-v21.0.0-win-x64.zip"
@@ -1240,6 +1250,16 @@
     "file": "node-v22.22.0-win-x64.zip"
   },
   {
+    "version": "22.22.1",
+    "url": "https://nodejs.org/dist/v22.22.1/node-v22.22.1-win-x64.zip",
+    "file": "node-v22.22.1-win-x64.zip"
+  },
+  {
+    "version": "22.22.2",
+    "url": "https://nodejs.org/dist/v22.22.2/node-v22.22.2-win-x64.zip",
+    "file": "node-v22.22.2-win-x64.zip"
+  },
+  {
     "version": "23.0.0",
     "url": "https://nodejs.org/dist/v23.0.0/node-v23.0.0-win-x64.zip",
     "file": "node-v23.0.0-win-x64.zip"
@@ -1400,6 +1420,26 @@
     "file": "node-v24.13.0-win-x64.zip"
   },
   {
+    "version": "24.13.1",
+    "url": "https://nodejs.org/dist/v24.13.1/node-v24.13.1-win-x64.zip",
+    "file": "node-v24.13.1-win-x64.zip"
+  },
+  {
+    "version": "24.14.0",
+    "url": "https://nodejs.org/dist/v24.14.0/node-v24.14.0-win-x64.zip",
+    "file": "node-v24.14.0-win-x64.zip"
+  },
+  {
+    "version": "24.14.1",
+    "url": "https://nodejs.org/dist/v24.14.1/node-v24.14.1-win-x64.zip",
+    "file": "node-v24.14.1-win-x64.zip"
+  },
+  {
+    "version": "24.15.0",
+    "url": "https://nodejs.org/dist/v24.15.0/node-v24.15.0-win-x64.zip",
+    "file": "node-v24.15.0-win-x64.zip"
+  },
+  {
     "version": "25.0.0",
     "url": "https://nodejs.org/dist/v25.0.0/node-v25.0.0-win-x64.zip",
     "file": "node-v25.0.0-win-x64.zip"
@@ -1428,5 +1468,50 @@
     "version": "25.4.0",
     "url": "https://nodejs.org/dist/v25.4.0/node-v25.4.0-win-x64.zip",
     "file": "node-v25.4.0-win-x64.zip"
+  },
+  {
+    "version": "25.5.0",
+    "url": "https://nodejs.org/dist/v25.5.0/node-v25.5.0-win-x64.zip",
+    "file": "node-v25.5.0-win-x64.zip"
+  },
+  {
+    "version": "25.6.0",
+    "url": "https://nodejs.org/dist/v25.6.0/node-v25.6.0-win-x64.zip",
+    "file": "node-v25.6.0-win-x64.zip"
+  },
+  {
+    "version": "25.6.1",
+    "url": "https://nodejs.org/dist/v25.6.1/node-v25.6.1-win-x64.zip",
+    "file": "node-v25.6.1-win-x64.zip"
+  },
+  {
+    "version": "25.7.0",
+    "url": "https://nodejs.org/dist/v25.7.0/node-v25.7.0-win-x64.zip",
+    "file": "node-v25.7.0-win-x64.zip"
+  },
+  {
+    "version": "25.8.0",
+    "url": "https://nodejs.org/dist/v25.8.0/node-v25.8.0-win-x64.zip",
+    "file": "node-v25.8.0-win-x64.zip"
+  },
+  {
+    "version": "25.8.1",
+    "url": "https://nodejs.org/dist/v25.8.1/node-v25.8.1-win-x64.zip",
+    "file": "node-v25.8.1-win-x64.zip"
+  },
+  {
+    "version": "25.8.2",
+    "url": "https://nodejs.org/dist/v25.8.2/node-v25.8.2-win-x64.zip",
+    "file": "node-v25.8.2-win-x64.zip"
+  },
+  {
+    "version": "25.9.0",
+    "url": "https://nodejs.org/dist/v25.9.0/node-v25.9.0-win-x64.zip",
+    "file": "node-v25.9.0-win-x64.zip"
+  },
+  {
+    "version": "26.0.0",
+    "url": "https://nodejs.org/dist/v26.0.0/node-v26.0.0-win-x64.zip",
+    "file": "node-v26.0.0-win-x64.zip"
   }
 ]
