@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:args/command_runner.dart';
 import 'package:anyvm_win/anyvm_util.dart' as anyvm_util;
 import 'package:path/path.dart' as path;
-import 'package:http/http.dart' as http;
-import 'package:html/parser.dart' as parser;
 
 const String versionCacheJsonName = 'dotnet_vm_version_cache.json';
 const String vmName = 'dotnetVm';
@@ -462,28 +460,8 @@ class DotnetVmInstall extends Command {
       anyvm_util.logger.i('$nugetPersistDirPath creatred');
     }
 
-    String? url;
-    final response = await http.get(Uri.parse(item['url']));
-    if (response.statusCode == 200) {
-      var document = parser.parse(response.body);
-      // ディレクトリリストを含むaタグを取得
-      var links = document.querySelectorAll('a');
-
-      for (final link in links) {
-        final href = link.attributes['href'];
-        if (href != null) {
-          if (href.endsWith(item['file'])) {
-            url = href;
-            anyvm_util.logger.i('Download url: $href');
-            break;
-          }
-        }
-      }
-    }
-    if (url == null) {
-      anyvm_util.logger.i('Download url not found');
-      return;
-    }
+    // バージョンキャッシュの url は直リンク zip を指すため、そのままダウンロードする
+    var url = item['url'];
     var filePath = path.join(envCacheDirPath, item['file']);
     var file = File(filePath);
     if (!await file.exists()) {
@@ -574,7 +552,7 @@ class DotnetVmUpdate extends Command {
         Map<String, dynamic> versionMap = {
           'version': version,
           'url':
-              'https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/sdk-$version-windows-x64-binaries',
+              'https://builds.dotnet.microsoft.com/dotnet/Sdk/$version/dotnet-sdk-$version-win-x64.zip',
           'file': 'dotnet-sdk-$version-win-x64.zip'
         };
         versionList.add(versionMap);

@@ -1260,6 +1260,21 @@
     "file": "node-v22.22.2-win-x64.zip"
   },
   {
+    "version": "22.22.3",
+    "url": "https://nodejs.org/dist/v22.22.3/node-v22.22.3-win-x64.zip",
+    "file": "node-v22.22.3-win-x64.zip"
+  },
+  {
+    "version": "22.23.0",
+    "url": "https://nodejs.org/dist/v22.23.0/node-v22.23.0-win-x64.zip",
+    "file": "node-v22.23.0-win-x64.zip"
+  },
+  {
+    "version": "22.23.1",
+    "url": "https://nodejs.org/dist/v22.23.1/node-v22.23.1-win-x64.zip",
+    "file": "node-v22.23.1-win-x64.zip"
+  },
+  {
     "version": "23.0.0",
     "url": "https://nodejs.org/dist/v23.0.0/node-v23.0.0-win-x64.zip",
     "file": "node-v23.0.0-win-x64.zip"
@@ -1440,6 +1455,21 @@
     "file": "node-v24.15.0-win-x64.zip"
   },
   {
+    "version": "24.16.0",
+    "url": "https://nodejs.org/dist/v24.16.0/node-v24.16.0-win-x64.zip",
+    "file": "node-v24.16.0-win-x64.zip"
+  },
+  {
+    "version": "24.17.0",
+    "url": "https://nodejs.org/dist/v24.17.0/node-v24.17.0-win-x64.zip",
+    "file": "node-v24.17.0-win-x64.zip"
+  },
+  {
+    "version": "24.18.0",
+    "url": "https://nodejs.org/dist/v24.18.0/node-v24.18.0-win-x64.zip",
+    "file": "node-v24.18.0-win-x64.zip"
+  },
+  {
     "version": "25.0.0",
     "url": "https://nodejs.org/dist/v25.0.0/node-v25.0.0-win-x64.zip",
     "file": "node-v25.0.0-win-x64.zip"
@@ -1513,5 +1543,30 @@
     "version": "26.0.0",
     "url": "https://nodejs.org/dist/v26.0.0/node-v26.0.0-win-x64.zip",
     "file": "node-v26.0.0-win-x64.zip"
+  },
+  {
+    "version": "26.1.0",
+    "url": "https://nodejs.org/dist/v26.1.0/node-v26.1.0-win-x64.zip",
+    "file": "node-v26.1.0-win-x64.zip"
+  },
+  {
+    "version": "26.2.0",
+    "url": "https://nodejs.org/dist/v26.2.0/node-v26.2.0-win-x64.zip",
+    "file": "node-v26.2.0-win-x64.zip"
+  },
+  {
+    "version": "26.3.0",
+    "url": "https://nodejs.org/dist/v26.3.0/node-v26.3.0-win-x64.zip",
+    "file": "node-v26.3.0-win-x64.zip"
+  },
+  {
+    "version": "26.3.1",
+    "url": "https://nodejs.org/dist/v26.3.1/node-v26.3.1-win-x64.zip",
+    "file": "node-v26.3.1-win-x64.zip"
+  },
+  {
+    "version": "26.4.0",
+    "url": "https://nodejs.org/dist/v26.4.0/node-v26.4.0-win-x64.zip",
+    "file": "node-v26.4.0-win-x64.zip"
   }
 ]
