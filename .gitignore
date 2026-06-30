@@ -1,0 +1,43 @@
+# ===== Go =====
+# コンパイル済みバイナリ・共有ライブラリ
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+# 同梱アセット（Ninja 用ランチャ）は追跡する（.doc/04, .doc/08 参照）
+!tools/symexe.exe
+
+# テストバイナリ（go test -c）とカバレッジ
+*.test
+*.out
+coverage.txt
+coverage.html
+profile.cov
+
+# Go ワークスペース
+go.work
+go.work.sum
+
+# 依存のベンダリング（vendor 利用時）
+/vendor/
+
+# ===== ビルド成果物 =====
+/dist/
+/build/
+
+# ===== anyvm ランタイム生成物（.doc/09-directory-layout.md 参照）=====
+# 実行時に生成・管理されるためコミットしない
+/bin/anyvm.exe
+/scripts/
+/envs/
+/state/
+/logs/
+
+# ===== エディタ / OS =====
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
