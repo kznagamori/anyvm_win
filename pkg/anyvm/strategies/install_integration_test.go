@@ -90,3 +90,78 @@ func TestArchiveExtractInstall(t *testing.T) {
 		t.Error("未導入版の Uninstall がエラーにならなかった")
 	}
 }
+
+// TestArchiveExtractInstallShortverStrip は shortver を含むテンプレート strip_component
+// （gradle 相当: "gradle-{{shortver .Version}}"）が正しく展開・リネームされることを検証する。
+func TestArchiveExtractInstallShortverStrip(t *testing.T) {
+	// gradle の zip を模した構成（最上位が "gradle-8.5/"。shortver(8.5.0)=8.5）。
+	zipBytes := makeZip(map[string]string{
+		"gradle-8.5/bin/gradle": "fake",
+		"gradle-8.5/LICENSE":    "lic",
+	})
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		_, _ = w.Write(zipBytes)
+	}))
+	defer srv.Close()
+
+	root := t.TempDir()
+	envDir := filepath.Join(root, "envs", "gradle")
+	env := types.Env{Root: root, Tool: "gradle", EnvDir: envDir, Cache: filepath.Join(envDir, "install-cache")}
+	m := &types.Manifest{
+		Name:    "gradle",
+		Install: types.InstallSpec{Type: "archive_extract", Archive: "zip", StripComponent: "gradle-{{shortver .Version}}"},
+	}
+	v := types.VersionInfo{Version: "8.5.0", URL: srv.URL + "/g.zip", File: "gradle-8.5.0-bin.zip"}
+	deps := types.Deps{HTTP: http.DefaultClient, Download: download.New(http.DefaultClient), Extract: extract.New()}
+
+	if err := (ArchiveExtract{}).Install(context.Background(), m, v, env, deps); err != nil {
+		t.Fatalf("Install: %v", err)
+	}
+	// strip_component "gradle-8.5" の内部が <version>=8.5.0 直下へ移設されている。
+	if !fileExists(filepath.Join(envDir, "8.5.0", "bin", "gradle")) {
+		t.Error("gradle バイナリが <version>/bin に配置されていない（shortver strip_component 不正）")
+	}
+}
+
+// TestArchiveExtractInstallEmptyStripPostDownload は strip_component="" の直接展開と
+// post_download（dotnet の nuget.exe 相当。dest に {{.VersionDir}})を検証する。
+func TestArchiveExtractInstallEmptyStripPostDownload(t *testing.T) {
+	// dotnet の zip を模した構成（最上位ディレクトリ無し。zip 直下が SDK ルート）。
+	zipBytes := makeZip(map[string]string{
+		"dotnet.exe":      "fake-sdk",
+		"sdk/version.txt": "9.0.100",
+	})
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/nuget.exe" {
+			_, _ = w.Write([]byte("fake-nuget"))
+			return
+		}
+		_, _ = w.Write(zipBytes)
+	}))
+	defer srv.Close()
+
+	root := t.TempDir()
+	envDir := filepath.Join(root, "envs", "dotnet")
+	env := types.Env{Root: root, Tool: "dotnet", EnvDir: envDir, Cache: filepath.Join(envDir, "install-cache")}
+	m := &types.Manifest{
+		Name: "dotnet",
+		Install: types.InstallSpec{
+			Type: "archive_extract", Archive: "zip", StripComponent: "",
+			PostDownload: []types.PostDownload{{URL: srv.URL + "/nuget.exe", Dest: "{{.VersionDir}}/nuget.exe"}},
+		},
+	}
+	v := types.VersionInfo{Version: "9.0.100", URL: srv.URL + "/dotnet.zip", File: "dotnet-sdk-9.0.100-win-x64.zip"}
+	deps := types.Deps{HTTP: http.DefaultClient, Download: download.New(http.DefaultClient), Extract: extract.New()}
+
+	if err := (ArchiveExtract{}).Install(context.Background(), m, v, env, deps); err != nil {
+		t.Fatalf("Install: %v", err)
+	}
+	// strip_component="" なので zip 直下が <version> 直下へ展開されている。
+	if !fileExists(filepath.Join(envDir, "9.0.100", "dotnet.exe")) {
+		t.Error("dotnet.exe が <version> 直下に配置されていない（空 strip_component 不正）")
+	}
+	// post_download の nuget.exe が <version>/nuget.exe に配置されている。
+	if !fileExists(filepath.Join(envDir, "9.0.100", "nuget.exe")) {
+		t.Error("post_download の nuget.exe が配置されていない")
+	}
+}
