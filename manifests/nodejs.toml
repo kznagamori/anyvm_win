@@ -1,0 +1,28 @@
+# Node.js（.doc/04 §3）。git_tags + archive_extract(zip)。PATH は current 直下（node.exe）。
+name = "nodejs"
+display_name = "Node.js"
+description = "Node.js JavaScript runtime version manager"
+homepage = "https://nodejs.org/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/nodejs/node"
+strip_prefix = "v"
+include = '^\d+\.\d+\.\d+$'
+min_version = "14.0.0"
+
+[artifact]
+url  = "https://nodejs.org/dist/v{{.Version}}/node-v{{.Version}}-win-x64.zip"
+file = "node-v{{.Version}}-win-x64.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "node-v{{.Version}}-win-x64"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}"]

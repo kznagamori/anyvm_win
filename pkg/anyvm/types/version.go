@@ -36,9 +36,10 @@ func CompareVersions(a, b string) int {
 
 // splitVersion は基底部分を数値要素のスライスへ分解する。
 func splitVersion(v string) []int {
-	// "-" 以降のサフィックスを落とす。
+	// "-" 以降（プレリリースサフィックス）を落とす。
 	v = strings.SplitN(v, "-", 2)[0]
-	parts := strings.FieldsFunc(v, func(r rune) bool { return r == '.' || r == '_' })
+	// 区切りは '.'・'_'（JDK の 11.0.2_7）・'+'（JDK の 11.0.2+7 ビルド番号）を許容する。
+	parts := strings.FieldsFunc(v, func(r rune) bool { return r == '.' || r == '_' || r == '+' })
 	nums := make([]int, 0, len(parts))
 	for _, p := range parts {
 		n, err := strconv.Atoi(p)

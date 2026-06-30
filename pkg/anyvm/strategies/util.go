@@ -19,7 +19,7 @@ func renderTemplate(tpl string, data any) (string, error) {
 	if tpl == "" {
 		return "", nil
 	}
-	t, err := template.New("t").Parse(tpl)
+	t, err := template.New("t").Funcs(types.TemplateFuncs()).Parse(tpl)
 	if err != nil {
 		return "", err
 	}
@@ -39,6 +39,7 @@ func fileExists(path string) bool {
 // 各ストラテジがインターフェースを満たすことをコンパイル時に保証する。
 var (
 	_ types.Discoverer = GitTags{}
+	_ types.Discoverer = GithubReleases{}
 	_ types.Discoverer = Static{}
 	_ types.Discoverer = NoDiscover{}
 	_ types.Installer  = ArchiveExtract{}

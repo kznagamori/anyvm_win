@@ -1,0 +1,26 @@
+# OpenJDK (Eclipse Temurin)（.doc/04 §4）。github_releases でアセットから版を列挙。
+name = "jdk"
+display_name = "OpenJDK (Temurin)"
+description = "OpenJDK (Eclipse Temurin) version manager"
+homepage = "https://adoptium.net/"
+
+[discover]
+type = "github_releases"
+sources = ["adoptium/temurin11-binaries", "adoptium/temurin17-binaries", "adoptium/temurin21-binaries"]
+asset_pattern = 'jdk_x64_windows_hotspot_(\d+\.\d+\.\d+(_\d+)?)\.zip$'
+version_subst = { "_" = "+" }   # 例: 11.0.2_7 -> 11.0.2+7
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "jdk-{{.Version}}"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+(_\d+)?'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin"]
+
+[activate.env]
+JAVA_HOME = "{{.Current}}"

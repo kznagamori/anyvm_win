@@ -1,0 +1,28 @@
+# CMake（.doc/04 §4）。git_tags + archive_extract(zip)。
+name = "cmake"
+display_name = "CMake"
+description = "CMake build tool version manager"
+homepage = "https://cmake.org/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/Kitware/CMake"
+strip_prefix = "v"
+include = '^\d+\.\d+\.\d+$'
+min_version = "2.0.0"
+
+[artifact]
+url  = "https://github.com/Kitware/CMake/releases/download/v{{.Version}}/cmake-{{.Version}}-windows-x86_64.zip"
+file = "cmake-{{.Version}}-windows-x86_64.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "cmake-{{.Version}}-windows-x86_64"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin"]

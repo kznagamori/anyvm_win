@@ -1,0 +1,33 @@
+# Gradle（.doc/04 §4）。git_tags + archive_extract(zip)。URL/展開名に shortver を使用。
+name = "gradle"
+display_name = "Gradle"
+description = "Gradle build tool version manager"
+homepage = "https://gradle.org/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/gradle/gradle-distributions"
+strip_prefix = "v"
+include = '^\d+\.\d+\.\d+$'
+min_version = "1.0.0"
+
+[artifact]
+# リリースタグは v<version>、アセットは gradle-<shortver>-bin.zip（末尾 .0 を除去）。
+url  = "https://github.com/gradle/gradle-distributions/releases/download/v{{.Version}}/gradle-{{shortver .Version}}-bin.zip"
+file = "gradle-{{.Version}}-bin.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "gradle-{{shortver .Version}}"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin"]
+
+[activate.env]
+GRADLE_HOME = "{{.Current}}"
+GRADLE_USER_HOME = "{{.Env}}/cache"

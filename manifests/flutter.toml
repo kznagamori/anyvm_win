@@ -1,0 +1,30 @@
+# Flutter SDK（.doc/04 §4）。git_tags + archive_extract(zip)。PUB_CACHE を設定。
+name = "flutter"
+display_name = "Flutter"
+description = "Flutter SDK version manager"
+homepage = "https://flutter.dev/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/flutter/flutter"
+include = '^\d+\.\d+\.\d+$'
+min_version = "2.0.0"
+
+[artifact]
+url  = "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_{{.Version}}-stable.zip"
+file = "flutter_windows_{{.Version}}-stable.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "flutter"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin", "{{.Env}}/.pub-cache/bin"]
+
+[activate.env]
+PUB_CACHE = "{{.Env}}/.pub-cache"

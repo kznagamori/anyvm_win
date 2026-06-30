@@ -33,6 +33,48 @@ func TestEmbeddedManifestsValid(t *testing.T) {
 	}
 }
 
+// TestEmbeddedManifestsAllTools はフェーズ3時点の全9ツールが登録され、
+// 特殊フィールド（jdk の github_releases/version_subst、dotnet の特殊キー/post_download、
+// gradle の shortver テンプレート）が正しく読めることを確認する。
+func TestEmbeddedManifestsAllTools(t *testing.T) {
+	reg := NewRegistry()
+	registerBuiltins(reg)
+	if err := LoadManifests(reg, manifests.FS, nil, nil); err != nil {
+		t.Fatalf("LoadManifests: %v", err)
+	}
+
+	want := []string{"go", "nodejs", "dart", "flutter", "cmake", "kotlin", "gradle", "jdk", "dotnet"}
+	for _, n := range want {
+		if _, ok := reg.Manifest(n); !ok {
+			t.Errorf("%s マニフェストが登録されていない", n)
+		}
+	}
+
+	// jdk: github_releases + sources(3) + version_subst(_→+)。
+	jdk, _ := reg.Manifest("jdk")
+	if jdk.Discover.Type != "github_releases" || len(jdk.Discover.Sources) != 3 {
+		t.Errorf("jdk discover が想定外: type=%s sources=%v", jdk.Discover.Type, jdk.Discover.Sources)
+	}
+	if jdk.Discover.VersionSubst["_"] != "+" {
+		t.Errorf("jdk version_subst が想定外: %v", jdk.Discover.VersionSubst)
+	}
+
+	// dotnet: 特殊キー DOTNET_ROOT(x86) + post_download(nuget.exe)。
+	dn, _ := reg.Manifest("dotnet")
+	if _, ok := dn.Activate.Env["DOTNET_ROOT(x86)"]; !ok {
+		t.Errorf("dotnet に DOTNET_ROOT(x86) キーが無い: %v", dn.Activate.Env)
+	}
+	if len(dn.Install.PostDownload) != 1 || dn.Install.PostDownload[0].Dest == "" {
+		t.Errorf("dotnet post_download が想定外: %v", dn.Install.PostDownload)
+	}
+
+	// gradle: shortver テンプレートを含む（検証は FuncMap で通る）。
+	gr, _ := reg.Manifest("gradle")
+	if gr.Install.StripComponent == "" || gr.Activate.Env["GRADLE_USER_HOME"] == "" {
+		t.Errorf("gradle のフィールドが想定外: strip=%q env=%v", gr.Install.StripComponent, gr.Activate.Env)
+	}
+}
+
 // TestValidateManifestRejectsUnknownType は未登録 type を弾くことを確認する。
 func TestValidateManifestRejectsUnknownType(t *testing.T) {
 	reg := NewRegistry()

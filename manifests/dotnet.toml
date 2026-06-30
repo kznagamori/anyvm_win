@@ -1,0 +1,43 @@
+# .NET SDK（.doc/04 §4）。git_tags + archive_extract(zip)。zip 直下が SDK ルート
+# （strip_component 無し）。post_download で nuget.exe を同梱。多数の DOTNET_/NUGET_ env。
+name = "dotnet"
+display_name = ".NET SDK"
+description = ".NET SDK version manager"
+homepage = "https://dotnet.microsoft.com/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/dotnet/sdk"
+strip_prefix = "v"
+include = '^\d+\.\d+\.\d+$'
+min_version = "6.0.0"
+
+[artifact]
+url  = "https://builds.dotnet.microsoft.com/dotnet/Sdk/{{.Version}}/dotnet-sdk-{{.Version}}-win-x64.zip"
+file = "dotnet-sdk-{{.Version}}-win-x64.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = ""   # zip 直下が導入ルート。<version> へ直接展開する。
+post_download = [
+  { url = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe", dest = "{{.VersionDir}}/nuget.exe" },
+]
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}", "{{.Env}}/.dotnet/tools"]
+
+[activate.env]
+DOTNET_ROOT = "{{.Current}}"
+"DOTNET_ROOT(x86)" = "{{.Current}}"
+DOTNET_CLI_HOME = "{{.Env}}"
+DOTNET_ADD_GLOBAL_TOOLS_TO_PATH = "false"
+DOTNET_CLI_TELEMETRY_OPTOUT = "true"
+NUGET_PACKAGES = "{{.Env}}/nuget/packages"
+NUGET_FALLBACK_PACKAGES = "{{.Env}}/nuget/fallback_packages"
+NUGET_HTTP_CACHE_PATH = "{{.Env}}/nuget/http_cache_path"
+NUGET_PERSIST_DG = "{{.Env}}/nuget/persist_dg"

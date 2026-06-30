@@ -1,0 +1,28 @@
+# Kotlin コンパイラ（.doc/04 §4）。git_tags + archive_extract(zip)。展開先 kotlinc。
+name = "kotlin"
+display_name = "Kotlin"
+description = "Kotlin compiler version manager"
+homepage = "https://kotlinlang.org/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/JetBrains/kotlin"
+strip_prefix = "v"
+include = '^\d+\.\d+\.\d+$'
+min_version = "1.0.0"
+
+[artifact]
+url  = "https://github.com/JetBrains/kotlin/releases/download/v{{.Version}}/kotlin-compiler-{{.Version}}.zip"
+file = "kotlin-compiler-{{.Version}}.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "kotlinc"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin"]

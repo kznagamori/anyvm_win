@@ -106,7 +106,7 @@ func validateManifest(reg *Registry, m *types.Manifest) error {
 		if tpl == "" {
 			continue
 		}
-		if _, err := template.New("x").Parse(tpl); err != nil {
+		if _, err := template.New("x").Funcs(types.TemplateFuncs()).Parse(tpl); err != nil {
 			return fmt.Errorf("%w: テンプレート %q: %v", ErrManifestInvalid, tpl, err)
 		}
 	}

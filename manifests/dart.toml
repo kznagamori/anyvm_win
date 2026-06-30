@@ -1,0 +1,30 @@
+# Dart SDK（.doc/04 §4）。git_tags + archive_extract(zip)。PUB_CACHE を設定。
+name = "dart"
+display_name = "Dart"
+description = "Dart SDK version manager"
+homepage = "https://dart.dev/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/dart-lang/sdk"
+include = '^\d+\.\d+\.\d+$'
+min_version = "2.0.0"
+
+[artifact]
+url  = "https://storage.googleapis.com/dart-archive/channels/stable/release/{{.Version}}/sdk/dartsdk-windows-x64-release.zip"
+file = "dartsdk-{{.Version}}-windows-x64-release.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "dart-sdk"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin", "{{.Env}}/.pub-cache/bin"]
+
+[activate.env]
+PUB_CACHE = "{{.Env}}/.pub-cache"
