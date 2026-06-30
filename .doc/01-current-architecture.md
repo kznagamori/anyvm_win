@@ -10,12 +10,12 @@ anyvm_win/
 │   ├── anyvm_win.dart          # main。CommandRunner にコマンドを登録
 │   ├── anyvm_win.exe           # dart compile exe の成果物
 │   ├── anyvm.bat / anyvm.ps1   # ラッパー（rehash/update/unset/version の集約処理）
-│   ├── *_vm_version_cache.json # 各ツールの「導入可能バージョン」キャッシュ（19 個）
+│   ├── *_vm_version_cache.json # 各ツールの「導入可能バージョン」キャッシュ（16 個。AndroidSDK は update 非対応のため無し）
 │   └── anyvm_win.json          # 「現在アクティブなバージョン」マップ（実行時生成）
 ├── lib/
 │   ├── anyvm_util.dart         # 共通ユーティリティ（DL・解凍・JSON・ログ・バージョン比較）
 │   ├── anyvm_init.dart         # init コマンド（scripts/ 配下の集約スクリプト生成）
-│   └── anyvm_<tool>vm.dart     # 各ツール実装（19 ファイル）
+│   └── anyvm_<tool>vm.dart     # 各ツール実装（17 ファイル）
 ├── scripts/                    # 実行時生成（.gitignore 対象）。activate/deactivate 群
 ├── envs/                       # 実行時生成（.gitignore 対象）。インストール済みツール実体
 ├── tools/symexe.exe            # Ninja 用の実行ラッパー
@@ -66,14 +66,14 @@ anyvm_win/
 
 ### 3.1 main（bin/anyvm_win.dart）
 
-`CommandRunner('anyvm', ...)` を生成し、`--version` / `--verbose` フラグと 19 ツール + `init` コマンドを登録して `run(args)` するだけの薄い構造です。
+`CommandRunner('anyvm', ...)` を生成し、`--version` / `--verbose` フラグと 17 ツール + `init` コマンドを登録して `run(args)` するだけの薄い構造です。
 
 ```dart
 runner.argParser.addFlag('verbose', negatable: false, callback: (verbose) {
   anyvm_util.setupLogging(verbose ? Level.all : Level.info);
 });
 runner.addCommand(anyvm_govm.GoVm());
-// ... 19 ツール ...
+// ... 17 ツール ...
 ```
 
 ### 3.2 共通ユーティリティ（lib/anyvm_util.dart）
@@ -152,7 +152,7 @@ exe は単一ツールのサブコマンドしか扱えないため、**全体�
 | `version` | 全ツールの `version` をラベル付きで表示 |
 | その他 | `anyvm_win.exe %*` に委譲 |
 
-> **観察された不整合**: ラッパー内のツール列挙がハードコードで、`update` では `AndroidSDKVm` と `RustVm` が**欠落**、`unset`/`version` では含まれる、といった差異がある。移植版では**マニフェストから動的に**全ツールを列挙し、この種の取りこぼしを構造的に排除する（[05](05-cli-design.md)）。
+> **観察された不整合**: ラッパー内のツール列挙がハードコードで、`update` では 17 ツール中 15 ツールのみ列挙され `AndroidSDKVm` と `RustVm` が**欠落**、`unset`/`version` では 17 ツール全てが含まれる、といった差異がある。移植版では**マニフェストから動的に**全ツールを列挙し、この種の取りこぼしを構造的に排除する（[05](05-cli-design.md)）。
 
 ## 6. 補助スクリプト
 

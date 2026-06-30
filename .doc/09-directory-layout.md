@@ -20,7 +20,7 @@ github.com/kznagamori/anyvm_win
 ├── pkg/
 │   └── anyvm/                  # 公開ライブラリ（GUI からも import 可）[07]
 │       ├── engine.go
-│       ├── types.go
+│       ├── types/              # 横断値型 Env/Activation 等（leaf, import 循環回避）[07]
 │       ├── manifest.go         # Manifest 型・ローダ・検証
 │       ├── registry.go
 │       ├── version.go
@@ -54,7 +54,7 @@ github.com/kznagamori/anyvm_win
 │   ├── manifests.go            # //go:embed *.toml
 │   ├── go.toml
 │   ├── python.toml
-│   ├── ...（19 ツール分）
+│   ├── ...（17 ツール分）
 ├── .doc/                       # 本ドキュメント群
 ├── testdata/                   # テスト用 HTML/JSON/アーカイブ [12]
 └── .github/workflows/          # CI（lint/test/release）
@@ -161,5 +161,5 @@ dist/
 └── tools/symexe.exe
 ```
 
-- 旧版は 19 個の `*_vm_version_cache.json` を同梱していたが、新版は `anyvm update` で生成するため**同梱不要**（初回 `anyvm update` を促す、または `static` フォールバックを同梱）。
+- 旧版は 16 個の `*_vm_version_cache.json` を同梱していたが、新版は `anyvm update` で生成するため**同梱不要**（初回 `anyvm update` を促す、または `static` フォールバックを同梱）。
 - マニフェストは `go:embed` でバイナリに内蔵されるため、配布は実質 `anyvm.exe` + `tools/` のみ。

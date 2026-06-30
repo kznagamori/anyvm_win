@@ -25,7 +25,7 @@ func TestEmbeddedManifestsValid(t *testing.T) {
 			t.Errorf("%s: %v", m.Name, err)
 		}
 	}
-	// 19 ツールが揃っているか
+	// 17 ツールが揃っているか
 	want := []string{"go","python","nodejs","rust","dart","flutter","jdk",
 		"dotnet","cmake","bazel","gradle","mingw","llvm","ninja","kotlin",
 		"androidsdk","winlibs"}
@@ -138,7 +138,7 @@ func TestEngineInstallSetFlow(t *testing.T) {
 ```go
 func TestConsoleHandlerLevels(t *testing.T) {
 	var out, errb bytes.Buffer
-	h := logging.NewConsoleHandlerW(&out, &errb, slog.LevelDebug, true)
+	h := logging.NewConsoleHandler(&out, &errb, slog.LevelDebug, true)
 	l := slog.New(h)
 	l.Info(" 1.22.0")                   // out に "1.22.0\n"
 	l.Warn("missing")                   // errb に "warning: missing"

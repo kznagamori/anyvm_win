@@ -60,7 +60,7 @@
 | `rustup` | rust | rustup-init + config.toml、単一インストール型分岐、sccache 条件 env |
 | `android_sdk` | androidsdk | HTML 動的取得、多段 PATH、JDK 依存の注意喚起 |
 
-**完了条件**: 19 ツール全てが動作。
+**完了条件**: 17 ツール全てが動作。
 
 ## フェーズ 5: 全体コマンド & 移行 & セットアップ
 

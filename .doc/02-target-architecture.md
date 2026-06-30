@@ -112,12 +112,12 @@ CLI → Engine.Update(ctx, tool)
 ### 5.2 `anyvm <tool> install -v X`（インストール）
 
 ```text
-CLI → Engine.Install(ctx, tool, X, progress)
+CLI → Engine.Install(ctx, tool, X)
         → m := Registry.Manifest(tool)
         → v := CacheStore.Find(tool, X)
         → if envs/<tool>/X 既存 → 「導入済み」で終了
         → installer := installRegistry[m.Install.Type]
-        → installer.Install(ctx, m, v, env, progress)
+        → installer.Install(ctx, m, v, env, deps)
               # download（進捗）→ extract（zip/7z）→ リネーム/配置
         → slog: 「導入完了」
 ```
@@ -128,8 +128,8 @@ CLI → Engine.Install(ctx, tool, X, progress)
 CLI → Engine.Set(ctx, tool, X)
         → Engine.unset(tool)（既存 current の後始末）
         → platform.CreateLink(envs/<tool>/current, envs/<tool>/X)  # ジャンクション = os/syscall
-        → act := Activation.Build(m, X, env)   # env/PATH をテンプレートから計算
-        → platform.WriteScript(scripts/<tool>Activate.bat/.ps1, act.Bat/.Ps1)
+        → act := buildActivation(m, X, env)        # env/PATH をテンプレートから計算
+        → platform.WriteActivationScripts(env, tool, act)
         → StateStore.SetActive(tool, X)        # active.toml
         → slog: 「X を有効化。anyvm rehash で反映」
 ```
@@ -137,6 +137,13 @@ CLI → Engine.Set(ctx, tool, X)
 ### 5.4 `anyvm rehash` / `update` / `unset` / `version`（全体コマンド）
 
 旧版はラッパーがツールを列挙していたが、新版は **Registry が保持する全マニフェストを動的に走査**する。取りこぼし（旧 update の AndroidSDK/Rust 欠落）を構造的に防ぐ。
+
+```text
+CLI → Engine.UpdateAll(ctx)
+        → Registry.Manifests() で全 17 ツールを列挙
+        → errgroup + semaphore で並行に Engine.Update(ctx, tool) を実行
+        → 各ツールの結果を CacheStore へ保存
+```
 
 ## 6. 並行性・キャンセル
 
@@ -152,5 +159,5 @@ CLI → Engine.Set(ctx, tool, X)
 ## 8. 次に読む
 
 - マニフェストの厳密なスキーマ → [03. プラグイン／マニフェスト仕様](03-plugin-manifest-spec.md)
-- 19 ツールの具体的な落とし込み → [04. ツール移植カタログ](04-tool-migration-catalog.md)
+- 17 ツールの具体的な落とし込み → [04. ツール移植カタログ](04-tool-migration-catalog.md)
 - lib の公開 API → [07. ライブラリ API](07-library-api.md)

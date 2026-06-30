@@ -208,6 +208,8 @@ link            = "junction"          # junction | none（Ninja は none＝実�
 | JDK | `^\d+\.\d+\.\d+(_\d+)?` | junction |
 | AndroidSDK | `^\d+$` | junction |
 
+> **アンカーの規約**: `version_pattern` は先頭 `^` で固定し、Go の `regexp` で評価する。末尾 `$` の有無は Dart 実装を忠実に再現する — `^\d+\.\d+\.\d+$`（標準）と `^\d+$`（AndroidSDK）は前後を固定し、`^\d+\.\d+\.\d+.*$`（MinGW/LLVM/WinLibs）と `^\d+\.\d+\.\d+(_\d+)?`（JDK・末尾 `$` 無し）は**末尾サフィックスを許容**する意図。新規マニフェストで完全一致させたい場合は必ず `$` を付けること。
+
 ## 7. `[activate]` — PATH と環境変数
 
 ```toml
@@ -363,4 +365,4 @@ link = "none"
 path = ["{{.Current}}"]
 ```
 
-> 19 ツールすべての TOML 落とし込みは [04. ツール移植カタログ](04-tool-migration-catalog.md) を参照。
+> 17 ツールすべての TOML 落とし込みは [04. ツール移植カタログ](04-tool-migration-catalog.md) を参照。

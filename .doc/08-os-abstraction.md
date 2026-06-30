@@ -88,7 +88,7 @@ func (w Windows) WriteActivationScripts(env types.Env, tool string, act types.Ac
 	data := scriptData{
 		Guard: "_" + tool + "Vm_ENV_VAL",
 		Path:  strings.Join(act.Path, ";") + ";",
-		Env:   act.Env, // 順序保持のため []KV を推奨
+		Env:   act.Env, // act.Env は []EnvVar（キー名ソートで決定的順序）
 	}
 	for _, t := range []scriptTarget{
 		{tmpl: activateBatTmpl, file: tool + "Activate.bat"},

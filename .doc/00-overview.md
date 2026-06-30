@@ -2,7 +2,7 @@
 
 ## 1. 背景
 
-`anyvm_win` は Linux の **anyenv** に着想を得た、Windows 用の開発ツールバージョン管理システムです。Python・Node.js・Go・Rust・Java など 19 種類の開発ツールを、レジストリやシステム全体のインストールを汚さずにインストール・切り替え・アンインストールできます。
+`anyvm_win` は Linux の **anyenv** に着想を得た、Windows 用の開発ツールバージョン管理システムです。Python・Node.js・Go・Rust・Java など 17 種類の開発ツールを、レジストリやシステム全体のインストールを汚さずにインストール・切り替え・アンインストールできます。
 
 現行版は **Dart** で実装され、単一の実行ファイル `anyvm_win.exe`（`dart compile exe` で生成）として配布されています。本プロジェクトは、この実装を **Go 言語** へ移植します。
 
@@ -20,7 +20,7 @@
 
 ### 3.1 対象に含む
 
-- 19 ツール（PythonVm, NodejsVm, GoVm, RustVm, DartVm, FlutterVm, JDKVm, dotnetVm, CMakeVm, BazelVm, GradleVm, MinGWVm, LLVMVm, NinjaVm, KotlinVm, AndroidSDKVm, WinLibsVm）の全機能
+- 17 ツール（PythonVm, NodejsVm, GoVm, RustVm, DartVm, FlutterVm, JDKVm, dotnetVm, CMakeVm, BazelVm, GradleVm, MinGWVm, LLVMVm, NinjaVm, KotlinVm, AndroidSDKVm, WinLibsVm）の全機能
 - `init` / `rehash` / `update` / `unset` / `version` の全体コマンド
 - バージョン検出（update）・インストール・有効化（set/activate）・無効化（unset）・アンインストールの全ライフサイクル
 - 再利用可能な lib（`pkg/anyvm`）と、それを利用する CLI（`cmd/anyvm`）
@@ -36,7 +36,7 @@
 
 ### 4.1 外部化方式 = ハイブリッド
 
-19 ツールはほぼ同型のテンプレート（install/update/versions/version/set/unset/uninstall の 7 サブコマンド）で実装されており、違いは概ね次の 3 点に集約されます。
+17 ツールはほぼ同型のテンプレート（install/update/versions/version/set/unset/uninstall の 7 サブコマンド）で実装されており、違いは概ね次の 3 点に集約されます。
 
 1. **バージョン検出方法**（HTML スクレイピング／`git ls-remote`／GitHub API／なし）
 2. **インストール方法**（zip 展開＋リネーム／単一 exe 配置／7z 展開／専用インストーラ）

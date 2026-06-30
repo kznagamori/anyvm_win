@@ -5,8 +5,9 @@ CLI も将来の GUI も利用する公開ライブラリの API です。**副�
 ## 1. 公開型
 
 ```go
-// pkg/anyvm/types.go
-package anyvm
+// pkg/anyvm/types/types.go — 横断値型は leaf パッケージに置き、
+// pkg/anyvm（platform を import）⇄ internal/platform（types を import）の循環を避ける（[08][09]）。
+package types
 
 // VersionInfo は導入可能な 1 バージョン。
 type VersionInfo struct {
@@ -42,6 +43,21 @@ type Env struct {
 
 // ProgressFunc はダウンロード・展開の進捗（done/total バイト or 件数）。
 type ProgressFunc func(done, total int64)
+
+// EnvVar は有効化時に設定する環境変数（マップではなくスライスで適用順を確定）。
+type EnvVar struct{ Key, Value string }
+
+// Activation は有効化に必要な PATH と環境変数（テンプレート展開済み）。
+// Env はキー名でソートして決定的順序にする（ゴールデンテスト安定化・[12]）。
+type Activation struct {
+	Path []string // PATH へ前置するディレクトリ（順序保持）
+	Env  []EnvVar // 設定する環境変数（決定的順序）
+}
+
+// pkg/anyvm は上記 leaf 型（VersionInfo/InstalledVersion/ManifestMeta/Env/EnvVar/Activation/ProgressFunc）を
+// 型エイリアスで再公開し、公開 API では anyvm.Env / anyvm.VersionInfo 等として参照できる:
+//   type Env = types.Env;  type VersionInfo = types.VersionInfo;
+//   type Activation = types.Activation;  type ProgressFunc = types.ProgressFunc; ...
 ```
 
 ## 2. Engine
@@ -183,7 +199,7 @@ func (StdActivator) Activate(ctx context.Context, m *anyvm.Manifest, version str
 		}
 	}
 	// 3) PATH と env を計算（テンプレート展開 + env_if 条件）
-	act := buildActivation(m, version, env) // {Path []string, Env map[string]string}
+	act := buildActivation(m, version, env) // anyvm.Activation{Path []string, Env []EnvVar}
 	// 4) <tool>Activate/Deactivate .bat/.ps1 を生成（[08]）
 	if err := d.Platform.WriteActivationScripts(env, m.Name, act); err != nil { return err }
 	return nil

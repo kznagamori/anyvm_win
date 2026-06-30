@@ -22,10 +22,10 @@ Dart で実装された Windows 用開発ツールバージョン管理システ
 | ファイル | 内容 | 主な読者 |
 |----------|------|----------|
 | [00-overview.md](00-overview.md) | 移植の目的・スコープ・全体像・決定事項の根拠 | 全員 |
-| [01-current-architecture.md](01-current-architecture.md) | 現状（Dart 版）アーキテクチャの分析。19 ツールの組み込みコードのカタログ | 全員 |
+| [01-current-architecture.md](01-current-architecture.md) | 現状（Dart 版）アーキテクチャの分析。17 ツールの組み込みコードのカタログ | 全員 |
 | [02-target-architecture.md](02-target-architecture.md) | 目標アーキテクチャ。lib / CLI / GUI の 3 層構造とハイブリッドプラグイン機構 | 設計者 |
 | [03-plugin-manifest-spec.md](03-plugin-manifest-spec.md) | プラグイン／TOML マニフェストの完全仕様。ストラテジ type と go:embed 上書き | 実装者・プラグイン作者 |
-| [04-tool-migration-catalog.md](04-tool-migration-catalog.md) | 19 ツールをマニフェスト + ストラテジへマッピングした移植カタログ | 実装者 |
+| [04-tool-migration-catalog.md](04-tool-migration-catalog.md) | 17 ツールをマニフェスト + ストラテジへマッピングした移植カタログ | 実装者 |
 | [05-cli-design.md](05-cli-design.md) | cobra による CLI 設計。コマンド木・フラグ・動的サブコマンド生成 | 実装者 |
 | [06-logging.md](06-logging.md) | slog によるログ設計。カスタム Handler・レベル・ファイル出力・進捗表示 | 実装者 |
 | [07-library-api.md](07-library-api.md) | `pkg/anyvm` 公開 API 設計。インターフェース・型・コアフロー | 実装者・GUI 開発者 |
