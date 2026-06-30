@@ -17,9 +17,9 @@ func New() types.Platform { return Windows{} }
 // Windows は Windows 用の Platform 実装。
 type Windows struct{}
 
-// encode はスクリプトを日本語 Windows コンソールの既定コードページ(CP932)向けに
+// EncodeForScript はスクリプトを日本語 Windows コンソールの既定コードページ(CP932)向けに
 // Shift_JIS でエンコードする（旧実装の挙動を踏襲。.doc/08 §3）。
-func (Windows) encode(s string) ([]byte, error) {
+func (Windows) EncodeForScript(s string) ([]byte, error) {
 	return japanese.ShiftJIS.NewEncoder().Bytes([]byte(s))
 }
 
@@ -43,17 +43,17 @@ func (Windows) IsLink(path string) (bool, error) {
 
 // WriteActivationScripts は <tool>Activate/Deactivate の .bat/.ps1 を SJIS で生成する。
 func (w Windows) WriteActivationScripts(env types.Env, tool string, act types.Activation) error {
-	return writeActivationScripts(env, tool, act, w.encode)
+	return writeActivationScripts(env, tool, act, w.EncodeForScript)
 }
 
 // ClearActivationScripts は無効化時にスクリプトを空に上書きする。
 func (w Windows) ClearActivationScripts(env types.Env, tool string) error {
-	return writeFiles(env.Scripts, emptyScripts(tool), w.encode)
+	return writeFiles(env.Scripts, emptyScripts(tool), w.EncodeForScript)
 }
 
 // WriteAggregateScripts は集約スクリプト AnyVm{Activate,Deactivate} を生成する。
 func (w Windows) WriteAggregateScripts(env types.Env, tools []string) error {
-	return writeAggregateScripts(env, tools, w.encode)
+	return writeAggregateScripts(env, tools, w.EncodeForScript)
 }
 
 // Run は外部プロセスを実行する。

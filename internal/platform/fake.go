@@ -86,5 +86,8 @@ func (f *Fake) Run(ctx context.Context, name string, args []string, opt types.Ru
 	return types.RunResult{ExitCode: 0}, nil
 }
 
+// EncodeForScript は UTF-8 恒等エンコード（テスト用）。
+func (f *Fake) EncodeForScript(s string) ([]byte, error) { return []byte(s), nil }
+
 // Exists は Files マップに登録されたパスのみ true を返す。
 func (f *Fake) Exists(path string) bool { return f.Files[path] }

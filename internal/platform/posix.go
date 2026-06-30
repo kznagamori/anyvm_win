@@ -18,8 +18,8 @@ func New() types.Platform { return Posix{} }
 // Posix は非 Windows 向けの暫定実装。
 type Posix struct{}
 
-// encode は UTF-8 恒等エンコード（非 Windows では SJIS 変換を行わない）。
-func (Posix) encode(s string) ([]byte, error) { return []byte(s), nil }
+// EncodeForScript は UTF-8 恒等エンコード（非 Windows では SJIS 変換を行わない）。
+func (Posix) EncodeForScript(s string) ([]byte, error) { return []byte(s), nil }
 
 // CreateLink は symlink で代替する（ジャンクション相当）。
 func (Posix) CreateLink(link, target string) error { return os.Symlink(target, link) }
@@ -41,17 +41,17 @@ func (Posix) IsLink(path string) (bool, error) {
 
 // WriteActivationScripts は .bat/.ps1 を UTF-8 で生成する。
 func (p Posix) WriteActivationScripts(env types.Env, tool string, act types.Activation) error {
-	return writeActivationScripts(env, tool, act, p.encode)
+	return writeActivationScripts(env, tool, act, p.EncodeForScript)
 }
 
 // ClearActivationScripts は無効化時にスクリプトを空に上書きする。
 func (p Posix) ClearActivationScripts(env types.Env, tool string) error {
-	return writeFiles(env.Scripts, emptyScripts(tool), p.encode)
+	return writeFiles(env.Scripts, emptyScripts(tool), p.EncodeForScript)
 }
 
 // WriteAggregateScripts は集約スクリプトを生成する。
 func (p Posix) WriteAggregateScripts(env types.Env, tools []string) error {
-	return writeAggregateScripts(env, tools, p.encode)
+	return writeAggregateScripts(env, tools, p.EncodeForScript)
 }
 
 // Run は外部プロセスを実行する。

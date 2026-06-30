@@ -66,7 +66,7 @@ GitHub Releases のアセットから列挙。
 ```toml
 [discover]
 type          = "github_releases"
-source        = ["adoptium/temurin11-binaries", "adoptium/temurin17-binaries", "adoptium/temurin21-binaries"]
+sources       = ["adoptium/temurin11-binaries", "adoptium/temurin17-binaries", "adoptium/temurin21-binaries"]
 asset_pattern = 'jdk_x64_windows_hotspot_(\d+\.\d+\.\d+(_\d+)?)\.zip$'  # group(1)=version
 version_subst = { "_" = "+" }       # 任意。version 文字列の置換（JDK: 11.0.2_7 → 11.0.2+7）
 min_version   = ""

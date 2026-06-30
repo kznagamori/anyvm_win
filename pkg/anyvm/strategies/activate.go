@@ -2,6 +2,7 @@ package strategies
 
 import (
 	"context"
+	"fmt"
 	"sort"
 
 	"github.com/kznagamori/anyvm_win/pkg/anyvm/types"
@@ -16,10 +17,8 @@ type StdActivator struct{}
 func (StdActivator) Activate(_ context.Context, m *types.Manifest, version string, env types.Env, deps types.Deps) error {
 	// link=junction のツールは current を版ディレクトリへ張り替える。
 	if m.Layout.Link == "junction" {
-		if deps.Platform.Exists(env.Current) {
-			if err := deps.Platform.RemoveLink(env.Current); err != nil {
-				return err
-			}
+		if err := removeCurrentLink(env, deps); err != nil {
+			return err
 		}
 		if err := deps.Platform.CreateLink(env.Current, env.VersionDir(version)); err != nil {
 			return err
@@ -32,12 +31,28 @@ func (StdActivator) Activate(_ context.Context, m *types.Manifest, version strin
 
 // Deactivate は無効化する（current を外し、スクリプトを空にする）。
 func (StdActivator) Deactivate(_ context.Context, m *types.Manifest, env types.Env, deps types.Deps) error {
-	if m.Layout.Link == "junction" && deps.Platform.Exists(env.Current) {
-		if err := deps.Platform.RemoveLink(env.Current); err != nil {
+	if m.Layout.Link == "junction" {
+		if err := removeCurrentLink(env, deps); err != nil {
 			return err
 		}
 	}
 	return deps.Platform.ClearActivationScripts(env, m.Name)
+}
+
+// removeCurrentLink は current が存在する場合に、それがリンクであることを確認してから外す。
+// リンクでない実体ディレクトリだった場合は、誤って実体を消さないようエラーにする（堅牢化）。
+func removeCurrentLink(env types.Env, deps types.Deps) error {
+	if !deps.Platform.Exists(env.Current) {
+		return nil
+	}
+	isLink, err := deps.Platform.IsLink(env.Current)
+	if err != nil {
+		return err
+	}
+	if !isLink {
+		return fmt.Errorf("%s がリンクではありません（実体ディレクトリ）。手動で確認してください", env.Current)
+	}
+	return deps.Platform.RemoveLink(env.Current)
 }
 
 // BuildActivation はマニフェストの activate 定義から、テンプレート展開済みの

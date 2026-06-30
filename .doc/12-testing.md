@@ -138,7 +138,7 @@ func TestEngineInstallSetFlow(t *testing.T) {
 ```go
 func TestConsoleHandlerLevels(t *testing.T) {
 	var out, errb bytes.Buffer
-	h := logging.NewConsoleHandler(&out, &errb, slog.LevelDebug, true)
+	h := logging.NewConsoleHandler(&out, &errb, slog.LevelDebug)
 	l := slog.New(h)
 	l.Info(" 1.22.0")                   // out に "1.22.0\n"
 	l.Warn("missing")                   // errb に "warning: missing"

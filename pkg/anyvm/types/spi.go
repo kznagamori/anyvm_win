@@ -19,6 +19,10 @@ type Platform interface {
 	// IsLink は path がリンクかどうかを返す。
 	IsLink(path string) (bool, error)
 
+	// EncodeForScript はスクリプト文字列を OS コンソール向けバイト列へ変換する
+	// （Windows-JP: Shift_JIS、その他: UTF-8 恒等）。GUI 等の外部利用者も利用できるよう公開する。
+	EncodeForScript(s string) ([]byte, error)
+
 	// WriteActivationScripts は <tool>Activate/Deactivate の .bat/.ps1 を生成する。
 	WriteActivationScripts(env Env, tool string, act Activation) error
 	// ClearActivationScripts は無効化時にスクリプトを空（実質 no-op）に上書きする。

@@ -65,11 +65,12 @@ type Activation struct {
 ```go
 // pkg/anyvm/engine.go
 type Config struct {
-	Root         string         // 必須。ANYVM_ROOT
-	ExtraDirs    []string       // 追加のマニフェスト探索先（既定は <Root>/manifests）
-	HTTP         HTTPClient     // 注入可（既定 net/http）
-	Platform     platform.Platform // 注入可（既定 windows 実装）
-	GitHubToken  string         // 任意。API レート緩和
+	Root        string       // 必須。ANYVM_ROOT
+	ExtraDirs   []string     // 追加のマニフェスト探索先（既定は <Root>/manifests）
+	HTTP        HTTPDoer     // 注入可（既定 http.DefaultClient）
+	Platform    Platform     // 注入可（既定 platform.New()）
+	GitHubToken string       // 任意。API レート緩和（空なら環境変数 GITHUB_TOKEN を使用）
+	Logger      *slog.Logger // 任意。既定は slog.Default()
 }
 
 type Engine struct {
@@ -146,12 +147,13 @@ type Activator interface {
 
 // Deps: ストラテジが使う注入済み副作用一式。
 type Deps struct {
-	HTTP     HTTPClient
-	Download Downloader   // 進捗付き DL（internal/download）
-	Extract  Extractor    // zip/7z（internal/extract）
-	Platform platform.Platform
-	Progress ProgressFunc
-	Logger   *slog.Logger
+	HTTP        HTTPDoer
+	Download    Downloader // 進捗付き DL（internal/download）
+	Extract     Extractor  // zip/7z（internal/extract）
+	Platform    Platform
+	Progress    ProgressFunc
+	Logger      *slog.Logger
+	GitHubToken string // GitHub API のレート緩和用トークン（任意）
 }
 
 // レジストリ（type 文字列 → 実装）。
@@ -284,6 +286,7 @@ var (
 	ErrAlreadyInstalled = errors.New("already installed")
 	ErrNotInstalled     = errors.New("not installed")
 	ErrManifestInvalid  = errors.New("manifest invalid")
+	ErrStrategyNotFound = errors.New("strategy not registered")
 )
 ```
 

@@ -53,7 +53,6 @@ type ConsoleHandler struct {
 	out     io.Writer   // stdout（Info）
 	err     io.Writer   // stderr（Debug/Warn/Error）
 	level   slog.Leveler
-	verbose bool
 	attrs   []slog.Attr
 }
 
@@ -137,7 +136,7 @@ func setupLogging(verbose bool, format, file string) {
 	if format == "json" {
 		console = slog.NewJSONHandler(os.Stderr, &slog.HandlerOptions{Level: level})
 	} else {
-		console = logging.NewConsoleHandler(os.Stdout, os.Stderr, level, verbose)
+		console = logging.NewConsoleHandler(os.Stdout, os.Stderr, level)
 	}
 	handlers := []slog.Handler{console}
 	if fileH := logging.NewFileHandler(file, slog.LevelError); fileH != nil {

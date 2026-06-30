@@ -7,7 +7,7 @@
 ```text
 anyvm                                  # ルート
 ├─ (global flags)
-│   --verbose, -v          冗長出力（slog 最小レベルを Debug に）
+│   --verbose              冗長出力（slog 最小レベルを Debug に。-v は付けない*）
 │   --log-format <text|json>   ログ整形（既定 text）
 │   --log-file <path>      追加のログ出力先（既定 <ROOT>/logs/anyvm.log）
 │   --root <path>          ANYVM_ROOT の明示（既定: 環境変数 or exe 親の親）
@@ -98,7 +98,7 @@ func NewRootCmd() *cobra.Command {
 		},
 	}
 	pf := root.PersistentFlags()
-	pf.BoolVarP(&g.verbose, "verbose", "v", false, "冗長出力")
+	pf.BoolVar(&g.verbose, "verbose", false, "冗長出力") // -v は付けない（ツールの -v/--version と衝突するため）
 	pf.StringVar(&g.logFormat, "log-format", "text", "ログ整形 text|json")
 	pf.StringVar(&g.logFile, "log-file", "", "ログ出力先ファイル")
 	pf.StringVar(&g.root, "root", "", "ANYVM_ROOT")
@@ -207,7 +207,7 @@ func ExitCode(err error) int {
 	switch {
 	case err == nil, errors.Is(err, errStopAfterVersion):
 		return 0
-	case errors.Is(err, anyvm.ErrVersionNotFound):
+	case errors.Is(err, anyvm.ErrVersionNotFound), errors.Is(err, anyvm.ErrToolNotFound):
 		return 2
 	case errors.Is(err, anyvm.ErrAlreadyInstalled):
 		return 0 // 冪等成功扱い
@@ -235,4 +235,4 @@ func ExitCode(err error) int {
 | 動的サブコマンド | Execute 前にマニフェスト先読みして AddCommand |
 | Context 伝播 | `ExecuteContext` + `cmd.SetContext` で Engine と ctx を伝播 |
 | エラー出力 | `SilenceErrors/SilenceUsage=true`、slog に一元化 |
-| 並行コマンド | `update`/`unset`/`version` は Engine 内で errgroup 制御 |
+| 並行コマンド | `update`(UpdateAll) のみ Engine 内で errgroup + semaphore 並行。`unset`/`version` は状態ファイル(active.toml)を共有するため逐次 |

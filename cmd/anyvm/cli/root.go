@@ -46,8 +46,14 @@ func NewRootCmd() (*cobra.Command, error) {
 		return nil, err
 	}
 	// 数値進捗は slog とは別系統でバーに流す（.doc/06 §6）。
+	// 完了（done>=total>0）時は Done() で改行確定し、後続の slog 出力が進捗行へ食い込むのを防ぐ。
 	if pbar != nil {
-		eng.SetProgress(func(done, total int64) { pbar.Update(done, total) })
+		eng.SetProgress(func(done, total int64) {
+			pbar.Update(done, total)
+			if total > 0 && done >= total {
+				pbar.Done()
+			}
+		})
 	}
 
 	cmd := &cobra.Command{

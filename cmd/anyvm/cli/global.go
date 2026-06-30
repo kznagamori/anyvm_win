@@ -72,14 +72,19 @@ func newVersionAllCmd(eng *anyvm.Engine) *cobra.Command {
 	}
 }
 
-// newListCmd は list コマンド（管理可能なツール一覧を表示）。
+// newListCmd は list コマンド（管理可能なツール・有効版・説明を一覧表示。.doc/05 §7）。
 func newListCmd(eng *anyvm.Engine) *cobra.Command {
 	return &cobra.Command{
 		Use:   "list",
 		Short: "管理可能なツール（マニフェスト）の一覧を表示",
 		RunE: func(c *cobra.Command, _ []string) error {
+			active := eng.AllActiveVersions()
 			for _, m := range eng.Manifests() {
-				slog.Info(fmt.Sprintf("%-14s %s", m.Name, m.Description))
+				v := active[m.Name]
+				if v == "" {
+					v = "-"
+				}
+				slog.Info(fmt.Sprintf("%-14s %-12s %s", m.Name, v, m.Description))
 			}
 			return nil
 		},

@@ -86,7 +86,7 @@ func (Windows) EncodeForScript(s string) ([]byte, error) {
 // internal/platform/scripts_windows.go
 func (w Windows) WriteActivationScripts(env types.Env, tool string, act types.Activation) error {
 	data := scriptData{
-		Guard: "_" + tool + "Vm_ENV_VAL",
+		Guard: "_ANYVM_" + strings.ToUpper(tool) + "_ACTIVE",
 		Path:  strings.Join(act.Path, ";") + ";",
 		Env:   act.Env, // act.Env は []EnvVar（キー名ソートで決定的順序）
 	}

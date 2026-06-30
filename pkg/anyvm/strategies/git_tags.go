@@ -3,11 +3,13 @@ package strategies
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/kznagamori/anyvm_win/pkg/anyvm/types"
@@ -37,7 +39,7 @@ func (GitTags) Discover(ctx context.Context, m *types.Manifest, deps types.Deps)
 	if err != nil {
 		return nil, err
 	}
-	tags, err := fetchGitHubTags(ctx, deps, owner, repo)
+	tags, err := fetchTags(ctx, deps, m.Discover.Source, owner, repo)
 	if err != nil {
 		return nil, err
 	}
@@ -113,9 +115,29 @@ func parseGitHubRepo(src string) (owner, repo string, err error) {
 	return parts[0], parts[1], nil
 }
 
-// fetchGitHubTags は Tags API をページングしながら全タグ名を取得する。
+// errRateLimited は GitHub REST API のレート制限（403/429）を示す番兵エラー。
+var errRateLimited = errors.New("github api rate limited")
+
+// fetchTags はタグ名を取得する。まず GitHub REST API を試し、レート制限(403/429)に
+// 当たった場合は、レート対象外のスマート HTTP(info/refs) へフォールバックする
+// （.doc/03 §3, .doc/04 §1）。
+func fetchTags(ctx context.Context, deps types.Deps, source, owner, repo string) ([]string, error) {
+	tags, err := fetchTagsREST(ctx, deps, owner, repo)
+	if err == nil {
+		return tags, nil
+	}
+	if errors.Is(err, errRateLimited) && source != "" {
+		if deps.Logger != nil {
+			deps.Logger.Debug("REST がレート制限。スマート HTTP にフォールバックします", "source", source)
+		}
+		return fetchTagsSmartHTTP(ctx, deps, source)
+	}
+	return nil, err
+}
+
+// fetchTagsREST は Tags API をページングしながら全タグ名を取得する。
 // 安全のためページ数に上限を設ける。GitHubToken があれば認証ヘッダを付与する。
-func fetchGitHubTags(ctx context.Context, deps types.Deps, owner, repo string) ([]string, error) {
+func fetchTagsREST(ctx context.Context, deps types.Deps, owner, repo string) ([]string, error) {
 	const maxPages = 30
 	var all []string
 	for page := 1; page <= maxPages; page++ {
@@ -131,6 +153,11 @@ func fetchGitHubTags(ctx context.Context, deps types.Deps, owner, repo string) (
 		resp, err := deps.HTTP.Do(req)
 		if err != nil {
 			return nil, err
+		}
+		// 403/429 はレート制限としてフォールバック可能なエラーにする。
+		if resp.StatusCode == http.StatusForbidden || resp.StatusCode == http.StatusTooManyRequests {
+			resp.Body.Close()
+			return nil, fmt.Errorf("GitHub API %s: HTTP %d: %w", url, resp.StatusCode, errRateLimited)
 		}
 		if resp.StatusCode != http.StatusOK {
 			b, _ := io.ReadAll(io.LimitReader(resp.Body, 512))
@@ -152,4 +179,68 @@ func fetchGitHubTags(ctx context.Context, deps types.Deps, owner, repo string) (
 		}
 	}
 	return all, nil
+}
+
+// fetchTagsSmartHTTP は git の スマート HTTP プロトコル(info/refs?service=git-upload-pack)
+// で参照広告を取得し、refs/tags のタグ名を抽出する。レート制限の対象外で、未認証でも使える。
+func fetchTagsSmartHTTP(ctx context.Context, deps types.Deps, source string) ([]string, error) {
+	url := strings.TrimSuffix(source, "/") + "/info/refs?service=git-upload-pack"
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp, err := deps.HTTP.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("smart HTTP %s: HTTP %d", url, resp.StatusCode)
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	return parsePktLineTags(body), nil
+}
+
+// parsePktLineTags は git の pkt-line 形式の参照広告から refs/tags のタグ名を抽出する。
+// peeled タグ(^{}) は基底名へ畳み、重複は除去する。
+func parsePktLineTags(body []byte) []string {
+	const tagPrefix = "refs/tags/"
+	seen := map[string]bool{}
+	var tags []string
+	for i := 0; i+4 <= len(body); {
+		// 先頭 4 桁の 16 進数がパケット長（自身の 4 バイトを含む）。
+		n, err := strconv.ParseInt(string(body[i:i+4]), 16, 32)
+		if err != nil {
+			break
+		}
+		if n == 0 { // flush パケット
+			i += 4
+			continue
+		}
+		if int(n) < 4 || i+int(n) > len(body) {
+			break
+		}
+		line := string(body[i+4 : i+int(n)])
+		i += int(n)
+
+		idx := strings.Index(line, tagPrefix)
+		if idx < 0 {
+			continue
+		}
+		name := line[idx+len(tagPrefix):]
+		// 改行・NUL（capabilities 区切り）・空白以降を落とす。
+		if p := strings.IndexAny(name, "\n\x00 "); p >= 0 {
+			name = name[:p]
+		}
+		name = strings.TrimSuffix(name, "^{}") // peeled タグを基底名へ
+		if name == "" || seen[name] {
+			continue
+		}
+		seen[name] = true
+		tags = append(tags, name)
+	}
+	return tags
 }
