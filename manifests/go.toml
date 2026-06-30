@@ -1,0 +1,39 @@
+# Go 言語のツールマニフェスト（.doc/03 §10.1, .doc/04 §3）。
+# 標準ツールの代表例: git_tags で版を列挙し、archive_extract(zip) で導入する。
+name = "go"
+display_name = "Go"
+description = "Go programming language version manager"
+homepage = "https://go.dev/"
+aliases = ["golang"]
+
+[discover]
+type = "git_tags"
+source = "https://github.com/golang/go"
+strip_prefix = "go"
+include = '^\d+\.\d+\.\d+$'
+min_version = "1.13.0"
+
+[artifact]
+url  = "https://go.dev/dl/go{{.Version}}.windows-amd64.zip"
+file = "go{{.Version}}.windows-amd64.zip"
+
+[install]
+type = "archive_extract"
+archive = "zip"
+strip_component = "go"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin", "{{.Env}}/go/bin"]
+
+[activate.env]
+GOROOT = "{{.Current}}"
+GOPATH = "{{.Env}}/go"
+GOBIN = "{{.Env}}/go/bin"
+GOCACHE = "{{.Current}}/go-build"
+GOENV = "{{.Current}}/env"
+GO111MODULE = "on"
+GOMODCACHE = "{{.Current}}/pkg/mod"
