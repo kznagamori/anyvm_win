@@ -322,7 +322,7 @@ homepage = "https://adoptium.net/"
 
 [discover]
 type = "github_releases"
-source = ["adoptium/temurin11-binaries", "adoptium/temurin17-binaries", "adoptium/temurin21-binaries"]
+sources = ["adoptium/temurin11-binaries", "adoptium/temurin17-binaries", "adoptium/temurin21-binaries"]
 asset_pattern = 'jdk_x64_windows_hotspot_(\d+\.\d+\.\d+(_\d+)?)\.zip$'
 version_subst = { "_" = "+" }
 

@@ -89,3 +89,23 @@ func TestValidateManifestRejectsUnknownType(t *testing.T) {
 		t.Fatal("未登録の discover type が検証を通ってしまった")
 	}
 }
+
+// TestValidateManifestRejectsBadEnvTemplate は activate.env 値の不正テンプレートを
+// ロード時に弾くことを確認する（#5 検証強化。post_download.dest も同一ループで検証される）。
+func TestValidateManifestRejectsBadEnvTemplate(t *testing.T) {
+	reg := NewRegistry()
+	registerBuiltins(reg)
+	m := &Manifest{Name: "x"}
+	m.Discover.Type = "none"
+	m.Install.Type = "archive_extract"
+	m.Activate.Env = map[string]string{"FOO": "{{.Current"} // 閉じ括弧なしの不正テンプレート
+	if err := validateManifest(reg, m); err == nil {
+		t.Fatal("activate.env の不正テンプレートが検証を通ってしまった")
+	}
+
+	// 正常なテンプレートは通る。
+	m.Activate.Env = map[string]string{"FOO": "{{.Env}}/x"}
+	if err := validateManifest(reg, m); err != nil {
+		t.Fatalf("正常な activate.env テンプレートが拒否された: %v", err)
+	}
+}

@@ -93,15 +93,16 @@ include = '^\d+\.\d+\.\d+$'
 min_version = "2.0.0"
 [artifact]
 url  = "https://storage.googleapis.com/dart-archive/channels/stable/release/{{.Version}}/sdk/dartsdk-windows-x64-release.zip"
-file = "dartsdk-{{.Version}}-windows-x64.zip"
+file = "dartsdk-{{.Version}}-windows-x64-release.zip"
 [install]
 type = "archive_extract"
 archive = "zip"
 strip_component = "dart-sdk"
 [activate]
-path = ["{{.Current}}/bin", "{{.Current}}/.pub-cache/bin"]
+# .pub-cache はツール共通領域 envs/dart 直下（=<EnvDir>=current の親）に置く。
+path = ["{{.Current}}/bin", "{{.Env}}/.pub-cache/bin"]
 [activate.env]
-PUB_CACHE = "{{.Current}}/.pub-cache"
+PUB_CACHE = "{{.Env}}/.pub-cache"
 ```
 flutter は `source=flutter/flutter`、`strip_component="flutter"`、min_version=2.0.0、`url` は flutter のリリースアーカイブ。PATH/PUB_CACHE は dart と同型。
 

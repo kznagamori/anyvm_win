@@ -100,8 +100,16 @@ func validateManifest(reg *Registry, m *types.Manifest) error {
 			return fmt.Errorf("%w: 正規表現 %q: %v", ErrManifestInvalid, re, err)
 		}
 	}
-	// テンプレートの構文検証。
+	// テンプレートの構文検証（url/file/strip_component/path に加え、
+	// post_download の url/dest と activate.env の値も対象にし、不正テンプレートを
+	// 実行時ではなくロード時に検出する）。
 	tpls := append([]string{m.Artifact.URL, m.Artifact.File, m.Install.StripComponent}, m.Activate.Path...)
+	for _, pd := range m.Install.PostDownload {
+		tpls = append(tpls, pd.URL, pd.Dest)
+	}
+	for _, val := range m.Activate.Env {
+		tpls = append(tpls, val)
+	}
 	for _, tpl := range tpls {
 		if tpl == "" {
 			continue
