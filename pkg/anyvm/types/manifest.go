@@ -102,5 +102,6 @@ func (m *Manifest) Meta() ManifestMeta {
 		Aliases:       m.Aliases,
 		Description:   m.Description,
 		SingleInstall: m.SingleInstall(),
+		NoDiscover:    m.Discover.Type == "none",
 	}
 }

@@ -1,0 +1,29 @@
+# Python（.doc/04 §7）。HTML から版を列挙（html_scrape）し、公式 exe を WiX dark.exe +
+# msiexec(/a) + ensurepip で導入（python_msi）。href_regex は Go の RE2 制約で後方参照を使わない。
+name = "python"
+display_name = "Python"
+description = "Python interpreter version manager"
+homepage = "https://www.python.org/"
+
+[discover]
+type = "html_scrape"
+url = "https://www.python.org/downloads/windows/"
+anchor_text = "Windows installer (64-bit)"
+href_regex = '/python/(\d+\.\d+\.\d+)/python-\d+\.\d+\.\d+-amd64\.exe$'
+
+[artifact]
+url  = "https://www.python.org/ftp/python/{{.Version}}/python-{{.Version}}-amd64.exe"
+file = "python-{{.Version}}-amd64.exe"
+
+[install]
+type = "python_msi"
+wix_url = "https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311-binaries.zip"
+exclude_msi = ["appendpath.msi", "launcher.msi", "path.msi", "pip.msi"]
+run_ensurepip = true
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}", "{{.Current}}/Scripts"]

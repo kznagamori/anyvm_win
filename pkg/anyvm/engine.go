@@ -199,16 +199,27 @@ func (e *Engine) Install(ctx context.Context, tool, version string) error {
 		return err
 	}
 	env := e.envFor(tool)
-	if !m.SingleInstall() && e.plat.Exists(env.VersionDir(version)) {
+	inst, err := e.reg.installer(m.Install.Type)
+	if err != nil {
+		return err
+	}
+
+	// discover=none（rust/androidsdk）は版リストを持たないため cache を介さず、
+	// installer に自己完結で導入させる（rust は installer_url、androidsdk は install 時スクレイプ）。
+	if m.Discover.Type == "none" {
+		if err := inst.Install(ctx, m, types.VersionInfo{Version: version}, env, e.makeDeps()); err != nil {
+			return err
+		}
+		e.logger.Info(fmt.Sprintf("%s を導入しました", tool))
+		return nil
+	}
+
+	if e.plat.Exists(env.VersionDir(version)) {
 		return fmt.Errorf("%w: %s %s", ErrAlreadyInstalled, tool, version)
 	}
 	v, ok := e.cache.Find(tool, version)
 	if !ok {
 		return fmt.Errorf("%w: %s %s（先に `anyvm %s update` を実行してください）", ErrVersionNotFound, tool, version, tool)
-	}
-	inst, err := e.reg.installer(m.Install.Type)
-	if err != nil {
-		return err
 	}
 	if err := inst.Install(ctx, m, v, env, e.makeDeps()); err != nil {
 		return err

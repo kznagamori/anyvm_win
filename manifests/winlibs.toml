@@ -1,0 +1,25 @@
+# WinLibs（.doc/04 §5）。posix+ucrt のみ採用し版を gcc-llvm-mingw-revision へ正規化（winlibs_tags）。
+name = "winlibs"
+display_name = "WinLibs MinGW"
+description = "WinLibs MinGW-w64 (GCC/LLVM) version manager"
+homepage = "https://winlibs.com/"
+
+[discover]
+type = "winlibs_tags"
+source = "https://github.com/brechtsanders/winlibs_mingw"
+include = '^\d+\.\d+\.\d+.*$'
+
+[install]
+type = "archive_extract"
+archive = "7z"
+strip_component = "mingw64"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+.*$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin", "{{.Current}}/bin/x86_64-w64-mingw32/bin"]
+
+[activate.env]
+LIBCLANG_PATH = "{{.Current}}/bin"

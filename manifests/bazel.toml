@@ -1,0 +1,28 @@
+# Bazel（.doc/04 §6）。zip 内の bazel.exe を <version>/ に配置（single_binary）。junction 使用。
+name = "bazel"
+display_name = "Bazel"
+description = "Bazel build system version manager"
+homepage = "https://bazel.build/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/bazelbuild/bazel"
+include = '^\d+\.\d+\.\d+$'
+min_version = "6.0.0"
+
+[artifact]
+url  = "https://github.com/bazelbuild/bazel/releases/download/{{.Version}}/bazel-{{.Version}}-windows-x86_64.zip"
+file = "bazel-{{.Version}}-windows-x86_64.zip"
+
+[install]
+type = "single_binary"
+archive = "zip"
+binary = "bazel.exe"
+wrapper = "none"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}"]

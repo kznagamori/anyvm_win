@@ -1,0 +1,22 @@
+# MinGW-w64（.doc/04 §5）。niXman タグを分割して 7z アセット URL を組み立てる（mingw_tags）。
+name = "mingw"
+display_name = "MinGW-w64"
+description = "MinGW-w64 GCC toolchain version manager"
+homepage = "https://github.com/niXman/mingw-builds-binaries"
+
+[discover]
+type = "mingw_tags"
+source = "https://github.com/niXman/mingw-builds-binaries"
+include = '^\d+\.\d+\.\d+.*$'
+
+[install]
+type = "archive_extract"
+archive = "7z"
+strip_component = "mingw64"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+.*$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin", "{{.Current}}/x86_64-w64-mingw32/bin"]

@@ -39,6 +39,9 @@ type ManifestMeta struct {
 	Description string
 	// SingleInstall は discover=none かつ link=none のツール（Rust 型）を示す。
 	SingleInstall bool
+	// NoDiscover は discover=none のツール（Rust/AndroidSDK 型）を示す。
+	// version 指定なしの `install` で導入する（版リストを持たない）。
+	NoDiscover bool
 }
 
 // ProgressFunc はダウンロード・展開などの進捗を受け取るコールバック。

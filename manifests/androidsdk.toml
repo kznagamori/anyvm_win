@@ -1,0 +1,25 @@
+# Android SDK（.doc/04 §7）。discover=none。install 時に developer.android.com を
+# スクレイプして最新の commandline-tools を取得し、<version>/cmdline-tools/latest へ再配置。
+# 版は数値ビルド番号。sdkmanager の実行（platform-tools 等の追加導入）はユーザーに委ねる。
+name = "androidsdk"
+display_name = "Android SDK"
+description = "Android SDK command-line tools manager"
+homepage = "https://developer.android.com/studio"
+
+[discover]
+type = "none"
+
+[install]
+type = "android_sdk"
+relocate_to = "cmdline-tools/latest"
+
+[layout]
+version_pattern = '^\d+$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/platform-tools", "{{.Current}}/cmdline-tools/latest/bin", "{{.Current}}/emulator"]
+
+[activate.env]
+ANDROID_SDK_ROOT = "{{.Current}}"
+ANDROID_HOME = "{{.Current}}"

@@ -43,11 +43,38 @@ func TestEmbeddedManifestsAllTools(t *testing.T) {
 		t.Fatalf("LoadManifests: %v", err)
 	}
 
-	want := []string{"go", "nodejs", "dart", "flutter", "cmake", "kotlin", "gradle", "jdk", "dotnet"}
+	want := []string{
+		// フェーズ2〜3
+		"go", "nodejs", "dart", "flutter", "cmake", "kotlin", "gradle", "jdk", "dotnet",
+		// フェーズ4
+		"bazel", "ninja", "mingw", "llvm", "winlibs", "python", "rust", "androidsdk",
+	}
 	for _, n := range want {
 		if _, ok := reg.Manifest(n); !ok {
 			t.Errorf("%s マニフェストが登録されていない", n)
 		}
+	}
+
+	// フェーズ4 の特殊ストラテジ・属性。
+	ninja, _ := reg.Manifest("ninja")
+	if ninja.Install.Type != "single_binary" || ninja.Install.Wrapper != "symexe" || ninja.Layout.Link != "none" {
+		t.Errorf("ninja が想定外: %+v", ninja.Install)
+	}
+	if mw, _ := reg.Manifest("mingw"); mw.Discover.Type != "mingw_tags" {
+		t.Errorf("mingw discover=%s", mw.Discover.Type)
+	}
+	if wl, _ := reg.Manifest("winlibs"); wl.Discover.Type != "winlibs_tags" || wl.Install.Archive != "7z" {
+		t.Errorf("winlibs が想定外: discover=%s archive=%s", wl.Discover.Type, wl.Install.Archive)
+	}
+	if py, _ := reg.Manifest("python"); py.Discover.Type != "html_scrape" || py.Install.Type != "python_msi" {
+		t.Errorf("python が想定外: discover=%s install=%s", py.Discover.Type, py.Install.Type)
+	}
+	rust, _ := reg.Manifest("rust")
+	if !rust.SingleInstall() || rust.Install.Type != "rustup" || len(rust.Activate.EnvIf) != 1 {
+		t.Errorf("rust が想定外: single=%v install=%s env_if=%d", rust.SingleInstall(), rust.Install.Type, len(rust.Activate.EnvIf))
+	}
+	if as, _ := reg.Manifest("androidsdk"); as.Discover.Type != "none" || as.Install.Type != "android_sdk" || as.Layout.VersionPattern != `^\d+$` {
+		t.Errorf("androidsdk が想定外: %+v", as.Layout)
 	}
 
 	// jdk: github_releases + sources(3) + version_subst(_→+)。

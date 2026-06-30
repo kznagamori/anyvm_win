@@ -23,9 +23,9 @@ func newToolCmd(eng *anyvm.Engine, m anyvm.ManifestMeta) *cobra.Command {
 		RunE:    func(c *cobra.Command, _ []string) error { return c.Help() },
 	}
 	tc.AddCommand(
-		newToolInstall(eng, m.Name),
-		newToolUninstall(eng, m.Name),
-		newToolSet(eng, m.Name),
+		newToolInstall(eng, m.Name, m.NoDiscover),
+		newToolUninstall(eng, m.Name, m.SingleInstall),
+		newToolSet(eng, m.Name, m.SingleInstall),
 		newToolUnset(eng, m.Name),
 		newToolVersion(eng, m.Name),
 		newToolVersions(eng, m.Name),
@@ -35,7 +35,8 @@ func newToolCmd(eng *anyvm.Engine, m anyvm.ManifestMeta) *cobra.Command {
 }
 
 // newToolInstall は install サブコマンド（-l 一覧 / --latest 最新 / -v 指定）。
-func newToolInstall(eng *anyvm.Engine, tool string) *cobra.Command {
+// discover=none（rust/androidsdk）は版指定なしの `install` で導入する。
+func newToolInstall(eng *anyvm.Engine, tool string, noDiscover bool) *cobra.Command {
 	var (
 		list    bool
 		latest  bool
@@ -64,6 +65,9 @@ func newToolInstall(eng *anyvm.Engine, tool string) *cobra.Command {
 				return eng.InstallLatest(ctx, tool)
 			case version != "":
 				return eng.Install(ctx, tool, version)
+			case noDiscover:
+				// discover=none: 版リストを持たないため、引数なしで導入する。
+				return eng.Install(ctx, tool, "")
 			default:
 				return c.Help()
 			}
@@ -76,14 +80,14 @@ func newToolInstall(eng *anyvm.Engine, tool string) *cobra.Command {
 	return c
 }
 
-// newToolUninstall は uninstall サブコマンド（-v 指定）。
-func newToolUninstall(eng *anyvm.Engine, tool string) *cobra.Command {
+// newToolUninstall は uninstall サブコマンド（-v 指定。単一インストール型は版不要）。
+func newToolUninstall(eng *anyvm.Engine, tool string, singleInstall bool) *cobra.Command {
 	var version string
 	c := &cobra.Command{
 		Use:   "uninstall",
 		Short: "指定版を削除（-v <版>）",
 		RunE: func(c *cobra.Command, _ []string) error {
-			if version == "" {
+			if version == "" && !singleInstall {
 				return c.Help()
 			}
 			return eng.Uninstall(c.Context(), tool, version)
@@ -93,14 +97,14 @@ func newToolUninstall(eng *anyvm.Engine, tool string) *cobra.Command {
 	return c
 }
 
-// newToolSet は set サブコマンド（-v 指定）。
-func newToolSet(eng *anyvm.Engine, tool string) *cobra.Command {
+// newToolSet は set サブコマンド（-v 指定。単一インストール型は版不要）。
+func newToolSet(eng *anyvm.Engine, tool string, singleInstall bool) *cobra.Command {
 	var version string
 	c := &cobra.Command{
 		Use:   "set",
 		Short: "指定版を有効化（-v <版>）",
 		RunE: func(c *cobra.Command, _ []string) error {
-			if version == "" {
+			if version == "" && !singleInstall {
 				return c.Help()
 			}
 			return eng.Set(c.Context(), tool, version)

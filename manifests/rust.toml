@@ -1,0 +1,43 @@
+# Rust（.doc/04 §7）。rustup-init.exe で導入する単一インストール型（discover=none, link=none）。
+# 版ディレクトリ・junction は持たず、.cargo/.rustup/.sccache を直接管理。sccache は条件付き env。
+name = "rust"
+display_name = "Rust"
+description = "Rust toolchain (via rustup) manager"
+homepage = "https://www.rust-lang.org/"
+
+[discover]
+type = "none"
+
+[install]
+type = "rustup"
+installer_url = "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
+default_host = "x86_64-pc-windows-gnu"
+toolchain = "stable"
+cargo_config = """
+[target.x86_64-pc-windows-gnu]
+rustflags = [
+  "-C", "link-arg=-Wl,--exclude-libs=ALL",
+  "-C", "link-arg=-Wl,--exclude-all-symbols",
+  "-C", "link-arg=-Wl,--allow-multiple-definition",
+]
+"""
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "none"
+
+[activate]
+path = ["{{.Env}}/.cargo/bin"]
+
+[activate.env]
+RUSTUP_HOME = "{{.Env}}/.rustup"
+CARGO_HOME = "{{.Env}}/.cargo"
+RUSTUP_DIST_SERVER = "https://static.rust-lang.org"
+RUSTUP_DIST_ROOT = "https://static.rust-lang.org/rustup"
+
+[[activate.env_if]]
+exists = "{{.Env}}/.cargo/bin/sccache.exe"
+[activate.env_if.env]
+RUSTC_WRAPPER = "sccache"
+SCCACHE_CACHE_SIZE = "1G"
+SCCACHE_DIR = "{{.Env}}/.sccache"

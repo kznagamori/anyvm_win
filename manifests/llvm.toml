@@ -1,0 +1,33 @@
+# LLVM/Clang（.doc/04 §5）。NSIS インストーラ(exe)を 7z として展開（archive_extract 7z）。
+# 注: NSIS exe の展開は pure-Go 7z(bodgit/sevenzip)が非対応の場合があり、その際は 7z.exe
+#     フォールバックが必要（.doc/11 リスク表）。strip_component="" で <version> 直下へ展開。
+name = "llvm"
+display_name = "LLVM"
+description = "LLVM/Clang toolchain version manager"
+homepage = "https://llvm.org/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/llvm/llvm-project"
+strip_prefix = "llvmorg-"
+include = '^\d+\.\d+\.\d+$'
+min_version = "14.0.0"
+
+[artifact]
+url  = "https://github.com/llvm/llvm-project/releases/download/llvmorg-{{.Version}}/LLVM-{{.Version}}-win64.exe"
+file = "LLVM-{{.Version}}-win64.exe"
+
+[install]
+type = "archive_extract"
+archive = "7z"
+strip_component = ""
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+.*$'
+link = "junction"
+
+[activate]
+path = ["{{.Current}}/bin"]
+
+[activate.env]
+LIBCLANG_PATH = "{{.Current}}/bin"

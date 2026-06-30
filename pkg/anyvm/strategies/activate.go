@@ -3,7 +3,10 @@ package strategies
 import (
 	"context"
 	"fmt"
+	"os"
+	"path/filepath"
 	"sort"
+	"strings"
 
 	"github.com/kznagamori/anyvm_win/pkg/anyvm/types"
 )
@@ -15,12 +18,18 @@ type StdActivator struct{}
 
 // Activate は version を有効化する。
 func (StdActivator) Activate(_ context.Context, m *types.Manifest, version string, env types.Env, deps types.Deps) error {
-	// link=junction のツールは current を版ディレクトリへ張り替える。
-	if m.Layout.Link == "junction" {
+	switch {
+	case m.Layout.Link == "junction":
+		// link=junction のツールは current を版ディレクトリへ張り替える。
 		if err := removeCurrentLink(env, deps); err != nil {
 			return err
 		}
 		if err := deps.Platform.CreateLink(env.Current, env.VersionDir(version)); err != nil {
+			return err
+		}
+	case m.Install.Wrapper == "symexe":
+		// ninja 型（link=none）: current を実ディレクトリにし symexe ラッパー + .ini を配置。
+		if err := setupSymexeWrapper(m, version, env, deps); err != nil {
 			return err
 		}
 	}
@@ -31,12 +40,43 @@ func (StdActivator) Activate(_ context.Context, m *types.Manifest, version strin
 
 // Deactivate は無効化する（current を外し、スクリプトを空にする）。
 func (StdActivator) Deactivate(_ context.Context, m *types.Manifest, env types.Env, deps types.Deps) error {
-	if m.Layout.Link == "junction" {
+	switch {
+	case m.Layout.Link == "junction":
 		if err := removeCurrentLink(env, deps); err != nil {
 			return err
 		}
+	case m.Install.Wrapper == "symexe":
+		// symexe の current は junction でなく実ディレクトリなので通常削除する。
+		_ = os.RemoveAll(env.Current)
 	}
 	return deps.Platform.ClearActivationScripts(env, m.Name)
+}
+
+// setupSymexeWrapper は ninja 型（link=none + wrapper=symexe）の current を組み立てる。
+// current を実ディレクトリとして作り、tools/symexe.exe を current/<binary> にコピーし、
+// <binary 拡張子抜き>.ini に実体（<version>）へのパスを書く（.doc/04 §6、Dart 原典の ninja.ini）。
+func setupSymexeWrapper(m *types.Manifest, version string, env types.Env, deps types.Deps) error {
+	binary := m.Install.Binary
+	if binary == "" {
+		return fmt.Errorf("symexe: install.binary が必要です")
+	}
+	_ = os.RemoveAll(env.Current)
+	if err := os.MkdirAll(env.Current, 0o755); err != nil {
+		return err
+	}
+	symexe := filepath.Join(env.Tools, "symexe.exe")
+	if err := copyFile(symexe, filepath.Join(env.Current, binary)); err != nil {
+		return fmt.Errorf("symexe.exe の配置に失敗（%s が必要）: %w", symexe, err)
+	}
+	verDir := env.VersionDir(version)
+	iniName := strings.TrimSuffix(binary, filepath.Ext(binary)) + ".ini"
+	ini := fmt.Sprintf("[CONFIG]\nOPTS=\nCODEPAGE=65001\n[OPT]\nPATH=%s\n[EXE]\nPATH=%s\n",
+		verDir, filepath.Join(verDir, binary))
+	enc, err := deps.Platform.EncodeForScript(ini)
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(filepath.Join(env.Current, iniName), enc, 0o644)
 }
 
 // removeCurrentLink は current が存在する場合に、それがリンクであることを確認してから外す。

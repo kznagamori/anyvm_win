@@ -46,7 +46,7 @@
 | 7 | jdk | JDKVm | github_releases | archive_extract | zip | JAVA_HOME | `^\d+\.\d+\.\d+(_\d+)?` | junction |
 | 8 | dotnet | dotnetVm | git_tags | archive_extract | zip | DOTNET_*,NUGET_* | `^\d+\.\d+\.\d+$` | junction |
 | 9 | cmake | CMakeVm | git_tags | archive_extract | zip | — | `^\d+\.\d+\.\d+$` | junction |
-| 10 | bazel | BazelVm | git_tags | single_binary | zip | — | `^\d+\.\d+\.\d+$` | none |
+| 10 | bazel | BazelVm | git_tags | single_binary | zip | — | `^\d+\.\d+\.\d+$` | junction |
 | 11 | gradle | GradleVm | git_tags | archive_extract | zip | GRADLE_HOME,GRADLE_USER_HOME | `^\d+\.\d+\.\d+$` | junction |
 | 12 | mingw | MinGWVm | git_tags | archive_extract | 7z | — | `^\d+\.\d+\.\d+.*$` | junction |
 | 13 | llvm | LLVMVm | git_tags | archive_extract | 7z | LIBCLANG_PATH | `^\d+\.\d+\.\d+.*$` | junction |
@@ -194,19 +194,19 @@ source = "https://github.com/bazelbuild/bazel"
 include = '^\d+\.\d+\.\d+$'
 min_version = "6.0.0"
 [artifact]
-url  = "https://github.com/bazelbuild/bazel/releases/download/{{.Version}}/bazel-{{.Version}}-windows-x86_64.exe"
-file = "bazel-{{.Version}}-windows-x86_64.exe"
+url  = "https://github.com/bazelbuild/bazel/releases/download/{{.Version}}/bazel-{{.Version}}-windows-x86_64.zip"
+file = "bazel-{{.Version}}-windows-x86_64.zip"
 [install]
 type = "single_binary"
-archive = "none"     # exe 直 DL（zip でない）
+archive = "zip"      # zip 内の bazel.exe を取り出して配置
 binary = "bazel.exe"
 wrapper = "none"
 [layout]
-link = "none"
+link = "junction"
 [activate]
 path = ["{{.Current}}"]
 ```
-> Bazel は zip でなく exe 直リンクのため `archive="none"`（DL したものをそのまま `<version>/bazel.exe` に配置）。
+> Bazel は zip 配布（`bazel-<version>-windows-x86_64.zip`）で、内部の `bazel.exe` を `<version>/bazel.exe` に取り出し、`current` は junction を張る（Dart 原典に準拠）。
 
 ### ninja
 [03 §10.3](03-plugin-manifest-spec.md) 参照。`wrapper="symexe"` で、`tools/symexe.exe` を `<version>/ninja.exe` の隣に配置し `.ini` に実体パスを書く（旧仕様踏襲）。

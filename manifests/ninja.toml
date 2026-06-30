@@ -1,0 +1,30 @@
+# Ninja（.doc/03 §10.3, .doc/04 §6）。zip 内の ninja.exe を配置（single_binary）。
+# link=none + symexe ラッパー: current/ninja.exe は tools/symexe.exe、ninja.ini が実体を指す。
+name = "ninja"
+display_name = "Ninja"
+description = "Ninja build system version manager"
+homepage = "https://ninja-build.org/"
+
+[discover]
+type = "git_tags"
+source = "https://github.com/ninja-build/ninja"
+strip_prefix = "v"
+include = '^\d+\.\d+\.\d+$'
+min_version = "1.0.0"
+
+[artifact]
+url  = "https://github.com/ninja-build/ninja/releases/download/v{{.Version}}/ninja-win.zip"
+file = "ninja-{{.Version}}-win.zip"
+
+[install]
+type = "single_binary"
+archive = "zip"
+binary = "ninja.exe"
+wrapper = "symexe"
+
+[layout]
+version_pattern = '^\d+\.\d+\.\d+$'
+link = "none"
+
+[activate]
+path = ["{{.Current}}"]
